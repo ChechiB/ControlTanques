@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="475.0" style="-fx-background-color: #c0c0c0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <TableView layoutX="28.0" layoutY="373.0" prefHeight="181.0" prefWidth="414.0" scaleShape="false" style="-fx-border-color: rgb(144,168,74); -fx-border-radius: 15; -fx-background-radius: 15;">
+         <columns>
+            <TableColumn prefWidth="96.0" sortType="DESCENDING" text="N° Remontaje" />
+            <TableColumn prefWidth="107.0" resizable="false" text="Hora inicio" />
+            <TableColumn prefWidth="106.0" text="Hora Fin" />
+            <TableColumn prefWidth="103.0" text="Estado" />
+         </columns>
+         <opaqueInsets>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </opaqueInsets>
+      </TableView>
+      <Pane layoutX="29.0" layoutY="42.0" prefHeight="62.0" prefWidth="414.0" style="-fx-background-color: #ffffff; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="122.0" layoutY="23.0" text="CONFIGURACIÓN REMONTAJES">
+               <font>
+                  <Font name="Carlito Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="29.0" layoutY="128.0" prefHeight="229.0" prefWidth="414.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="120.0" layoutY="16.0" text="Periocidad del tanque" />
+            <JFXCheckBox layoutX="266.0" layoutY="16.0" prefHeight="18.0" prefWidth="9.0" text=" " />
+            <Pane layoutX="20.0" layoutY="47.0" prefHeight="117.0" prefWidth="367.0" style="-fx-border-color: rgb(144,168,74); -fx-border-radius: 15;">
+               <opaqueInsets>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </opaqueInsets>
+               <children>
+                  <Label layoutX="126.0" layoutY="28.0" text="Inicio" />
+                  <Label layoutX="134.0" layoutY="77.0" text="Fin" />
+                  <JFXTimePicker layoutX="185.0" layoutY="21.0" prefHeight="28.0" prefWidth="87.0" />
+                  <JFXTimePicker layoutX="184.0" layoutY="64.0" prefHeight="28.0" prefWidth="87.0" />
+               </children>
+            </Pane>
+            <JFXButton buttonType="RAISED" layoutX="228.0" layoutY="177.0" style="-fx-background-color: rgb(60, 203, 230);" text="Eliminar" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="113.0" layoutY="177.0" style="-fx-background-color: rgb(60, 203, 230);" text="Agregar" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane prefHeight="43.0" prefWidth="475.0">
+         <children>
+            <ImageView fitHeight="41.0" fitWidth="47.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="41.0" fitWidth="47.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
