@@ -7,38 +7,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Consumidor extends Thread {
+
     private Monitor monitor;
-    DTOMensaje dtoMensaje;
+    String mensaje;
     private DatosTanqueGuiDTO datosTanqueGuiDTO;
     private int cantidadTanques=0;
+    private ArrayList <TanqueImp> tanqueImpArrayList = new ArrayList<TanqueImp>();
 
 
+    //Constructor Consumidor --> Mantiene una copia propia del objeto (Monitor) compartido
     public Consumidor( Monitor monitor ) {
         System.out.println("Creando consumidor");
-
-        // Mantiene una copia propia del objeto compartido
         this.monitor = monitor;
     }
 
     public void run() {
         System.out.println("En run");
 
-         dtoMensaje = monitor.getMensaje();
-         armarDto(dtoMensaje);
-         System.out.println(dtoMensaje.getMensaje());
-
+         mensaje = monitor.getMensaje();
      }
 
-     //Armado de los distintos mensajes
-    private void armarDto(DTOMensaje mensaje) {
+     //Armado de los distintos mensajes ---> Armado va en el Experto
+    private void armarDto(String mensaje) {
+
+        //Aca no se arma el DTO. Deberia devolver msj y el experto deberia crear y manejar el DTO
         System.out.println("En armado DTO");
 
         datosTanqueGuiDTO = new DatosTanqueGuiDTO();
-        String[] parts = mensaje.getMensaje().split("-");
+
+        String[] parts = mensaje.split("-");
 
         switch (Integer.parseInt(parts[0])) {
             //Codigo de operacion == 0 --> Mensaje de configuracion de tanques
+            //Setear creacion de objeto Tanque, Remontaje, Temperatura, etc; de acuerdo al codigo de operacion
             case 0:
+                //Creacion de Tanque
+                TanqueImp tanqueImp = new TanqueImp();
+
                 for (int i = 0; i < parts.length; i++) {
                     switch (i) {
                         case 0:
@@ -55,9 +60,12 @@ public class Consumidor extends Thread {
                             break;
                     }
                 }
-                break;
 
+                tanqueImpArrayList.add(tanqueImp);
+                break;
         }
+
+
 
     }
 

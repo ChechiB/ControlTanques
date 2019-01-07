@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Monitor {
 
-    private List<DTOMensaje> dtoMensajeList = new ArrayList<DTOMensaje>();
-    private int siguienteTanque = 0;
+    private List<String> mensajeArrayList = new ArrayList<String>();
+    private int siguienteMensaje = 0;
     // Flags para saber el estado del buffer
     private boolean estaLlena = false;
     private boolean estaVacia = true;
-    private DTOMensaje dtoMensaje;
+    private String mensaje;
 
 
 
-    public synchronized DTOMensaje getMensaje(){
+    public synchronized String getMensaje(){
         System.out.println("Get mensaje de la lista");
         // No se puede consumir si el buffer está vacío
         System.out.println(estaVacia);
@@ -29,30 +29,23 @@ public class Monitor {
         }
         // Decrementa la cuenta, ya que va a consumir un DTOTanque
 
-        siguienteTanque--;
+        siguienteMensaje--;
         // Comprueba si se retiró el ultimo Tanque
-        if( siguienteTanque == 0 ) {
+        if( siguienteMensaje == 0 ) {
             System.out.println("Lista Vacia 2");
             estaVacia = true;
         }
         // El buffer no puede estar lleno, porque acabamos de consumir
         estaLlena = false;
         notify();
-        //Se elimina el DTOTanque de la lista
-        dtoMensaje = new DTOMensaje();
+        mensaje = new String();
+        mensaje = mensajeArrayList.get(siguienteMensaje);
 
-        dtoMensaje = dtoMensajeList.get(siguienteTanque);
-        System.out.println(dtoMensaje.getMensaje());
-        System.out.println("En getMensaje");
-
-
-        //dtoMensajeList.iterator().remove();
-        // Devuelve la letra al thread consumidor
-        return( dtoMensaje );
+        return( mensaje );
     }
 
     // Método para añadir letras al buffer
-    public synchronized void setDtoMensaje( DTOMensaje dtoMensaje ) {
+    public synchronized void setMensaje( String mensaje ) {
         System.out.println("En setDtoMensaje");
 
         // Espera hasta que haya sitio para otra letra
@@ -61,19 +54,19 @@ public class Monitor {
             try {
                 wait(); // Se sale cuando estaLlena cambia a false
             } catch( InterruptedException e ) {
-                ;
+
             }
         }
 
         System.out.println("Agregando tanque");
         // Añade un DTOTanque
-        dtoMensajeList.add(siguienteTanque,dtoMensaje);
-        System.out.println("Mensajes en la cola: " + dtoMensajeList.size());
+        mensajeArrayList.add(siguienteMensaje,mensaje);
+        System.out.println("Mensajes en la cola: " + mensajeArrayList.size());
 
         // Cambia al siguiente lugar disponible
-        siguienteTanque++;
+        siguienteMensaje++;
         // Comprueba si el buffer está lleno
-        if( siguienteTanque == 100) {
+        if( siguienteMensaje == 100) {
             estaLlena = true;
         }
         estaVacia = false;

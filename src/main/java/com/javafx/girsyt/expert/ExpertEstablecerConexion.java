@@ -2,14 +2,11 @@ package com.javafx.girsyt.expert;
 
 import com.javafx.girsyt.adaptador.AdaptadorUDP;
 import com.javafx.girsyt.adaptador.FactoriaAdaptadorConexion;
-import com.javafx.girsyt.controller.ControladorVistaGeneralUI;
 import com.javafx.girsyt.controller.ControllerEstablecerConexion;
 import com.javafx.girsyt.dto.DatosTanqueGuiDTO;
 import com.javafx.girsyt.dto.PaqueteRecibidoDTO;
-import com.javafx.girsyt.entidad.DTOMensaje;
 
 import java.io.IOException;
-import java.net.SocketException;
 
 public class ExpertEstablecerConexion {
     private AdaptadorUDP adaptadorUDP;
@@ -44,6 +41,7 @@ public class ExpertEstablecerConexion {
 
     }
     public DatosTanqueGuiDTO actualizarGUI(){
+
         System.out.println("En Experto establecer Conexion");
         return adaptadorUDP.getDTOMensaje();
     }

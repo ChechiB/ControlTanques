@@ -126,6 +126,13 @@ public class DatosTanqueGuiDTO {
       this.arrayRemontaje= remontajes;
 
     }
+
+    public void setBandera(int i) {
+    }
+
+    public int getbandera(){
+        return bandera;
+    }
 }
 
 

@@ -1,7 +1,5 @@
 package com.javafx.girsyt.decorator;
 
-import com.javafx.girsyt.controller.ControladorVistaGeneralUI;
-import com.javafx.girsyt.entidad.DTOMensaje;
 import com.javafx.girsyt.expert.ExpertEstablecerConexion;
 
 import java.io.IOException;

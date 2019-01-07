@@ -18,10 +18,7 @@ public class ServidorHiloImp extends Task<Void> {
     private boolean estadoHilo = false;
     private int cont = 0;
     private ControladorVistaGeneralUI controladorVistaGeneralUI;
-    private  DTOMensaje dtoMensaje;
     private Monitor monitor;
-    private List<DTOMensaje> dtoMensajeList = new ArrayList<DTOMensaje>();
-
 
     public ServidorHiloImp(DatagramSocket socketServidor, Monitor monitor){
         this.socketServidor = socketServidor;
@@ -37,9 +34,9 @@ public class ServidorHiloImp extends Task<Void> {
         return paqueteRecibidoDTO;
     }
 
-    public DTOMensaje getDtoMensaje() {
+   /* public String getDtoMensaje() {
         return dtoMensaje;
-    }
+    }*/
 
     @Override
     protected Void call() throws Exception {
@@ -47,7 +44,8 @@ public class ServidorHiloImp extends Task<Void> {
         System.out.print("En hilo escuchando");
 
         //Creacion del holder
-                DatagramPacket recibirPaquete = new DatagramPacket(recibirDatos, recibirDatos.length);
+        DatagramPacket recibirPaquete = new DatagramPacket(recibirDatos, recibirDatos.length);
+
         try {
             socketServidor.receive(recibirPaquete); //recepciona el paquete
         } catch (IOException e) {
@@ -56,12 +54,9 @@ public class ServidorHiloImp extends Task<Void> {
 
         System.out.println("Port: " + recibirPaquete.getPort() + " Address: " + recibirPaquete.getAddress().toString());
         //Se extraen los datos como cadena
-        String p = new String(recibirPaquete.getData());
-        System.out.println(p);
-        dtoMensaje = new DTOMensaje();
-        dtoMensaje.setMensaje(p.trim());
+        String mensaje = new String(recibirPaquete.getData()).trim();
 
-        monitor.setDtoMensaje(dtoMensaje);
+        monitor.setMensaje(mensaje);
 
         return null;
     }

@@ -1,31 +1,22 @@
 package com.javafx.girsyt.controller;
 
 import com.javafx.girsyt.dto.DatosTanqueGuiDTO;
-import com.javafx.girsyt.entidad.Consumidor;
-import com.javafx.girsyt.entidad.DTOMensaje;
-import com.javafx.girsyt.entidad.ServidorHiloImp;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 public class ControladorVistaGeneralUI extends Application{
