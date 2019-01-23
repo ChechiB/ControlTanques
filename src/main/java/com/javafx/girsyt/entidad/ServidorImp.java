@@ -1,7 +1,7 @@
 package com.javafx.girsyt.entidad;
 
 public class ServidorImp {
-    private int puerto = 5557;
+    private int puerto = 5558;
 
     public int getPuerto() {
         return puerto;

@@ -2,7 +2,6 @@ package com.javafx.girsyt.adaptador;
 
 
 import com.javafx.girsyt.controller.ControladorVistaGeneralUI;
-import com.javafx.girsyt.dto.DatosTanqueGuiDTO;
 import com.javafx.girsyt.dto.PaqueteRecibidoDTO;
 import com.javafx.girsyt.entidad.*;
 import com.javafx.girsyt.expert.ExpertEstablecerConexion;
@@ -16,7 +15,6 @@ public class AdaptadorUDP implements AdaptadorConexion {
     private PaqueteRecibidoDTO paqueteRecibidoDTO;
     private ExpertEstablecerConexion expertEstablecerConexion;
     private DatagramSocket socketServidor = null;
-    private DTOMensaje dtoMensaje = new DTOMensaje();
     private Consumidor consumidor ;
     private ControladorVistaGeneralUI controladorVistaGeneral;
 
@@ -84,13 +82,13 @@ public class AdaptadorUDP implements AdaptadorConexion {
     }
 
 
-    public DatosTanqueGuiDTO getDTOMensaje() {
+    public String[] getMensaje() {
         System.out.println("En AdaptadorUDP establecer Conexion");
         consumidor = new Consumidor(monitor);
         consumidor.run();
 
 
-        return consumidor.getDtoMensaje();
+        return consumidor.getMensaje();
     }
 
 }

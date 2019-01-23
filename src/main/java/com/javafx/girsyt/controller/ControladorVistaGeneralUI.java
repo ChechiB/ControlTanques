@@ -204,6 +204,7 @@ public class ControladorVistaGeneralUI extends Application{
             return new Task<DatosTanqueGuiDTO>() {
                 @Override
                 protected DatosTanqueGuiDTO call() throws Exception {
+                    System.out.println(" ");
                     System.out.println("En hilo consumidor");
                     mensajeRecibido = controllerEstablecerConexion.actualizarGUI();
                     Platform.runLater(new Runnable() {
@@ -221,6 +222,7 @@ public class ControladorVistaGeneralUI extends Application{
                                             controladorPlantillaTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
                                             FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/views/tanqueUI.fxml"));
                                             root2 = (Parent) fxmlLoader2.load();
+
                                             ControladorTanqueUI controladorTanqueUI = fxmlLoader2.getController();
                                             controladorTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
                                             controladorPlantillaTanqueUI.setParent(root2);
@@ -235,10 +237,26 @@ public class ControladorVistaGeneralUI extends Application{
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
-
-
                                     break;
-                            }}
+                                    }
+                                case 1:
+                                    int i = 0;
+                                    while(i<controladorPlantillaTanqueUIList.size()){
+                                        System.out.println("En while case 1");
+                                        //Comparar instancias de controlador para actualizar el tanque correcto
+                                        System.out.println(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText());
+                                        System.out.println(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText());
+
+                                        if(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())){
+                                            System.out.println("En case 1 GUI");
+                                            controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().setText(mensajeRecibido.getTemperaturaMinimaInicial());
+
+
+                                        }
+                                        ++i;
+
+                                    }
+                            }
 
                             hiloConsumidor.restart();
 

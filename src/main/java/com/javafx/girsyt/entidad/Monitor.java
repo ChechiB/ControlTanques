@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Monitor {
 
-    private List<String> mensajeArrayList = new ArrayList<String>();
+    private List<String[]> mensajeArrayList = new ArrayList<String[]>();
     private int siguienteMensaje = 0;
     // Flags para saber el estado del buffer
     private boolean estaLlena = false;
     private boolean estaVacia = true;
-    private String mensaje;
+    private String [] mensaje = new String[2];
 
 
 
-    public synchronized String getMensaje(){
+    public synchronized String[] getMensaje(){
         System.out.println("Get mensaje de la lista");
         // No se puede consumir si el buffer está vacío
         System.out.println(estaVacia);
@@ -38,14 +38,12 @@ public class Monitor {
         // El buffer no puede estar lleno, porque acabamos de consumir
         estaLlena = false;
         notify();
-        mensaje = new String();
         mensaje = mensajeArrayList.get(siguienteMensaje);
-
         return( mensaje );
     }
 
     // Método para añadir letras al buffer
-    public synchronized void setMensaje( String mensaje ) {
+    public synchronized void setMensaje( String[] mensaje ) {
         System.out.println("En setDtoMensaje");
 
         // Espera hasta que haya sitio para otra letra

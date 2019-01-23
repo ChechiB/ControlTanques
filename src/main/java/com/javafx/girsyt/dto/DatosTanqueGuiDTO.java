@@ -35,6 +35,7 @@ public class DatosTanqueGuiDTO {
 
 
     public int getCodigoOperacion() {
+        System.out.println("codigoOperacion: " + codigoOperacion);
         return codigoOperacion;
     }
 
