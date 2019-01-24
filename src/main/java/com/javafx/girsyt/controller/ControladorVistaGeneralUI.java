@@ -81,6 +81,7 @@ public class ControladorVistaGeneralUI extends Application{
     private HashMap<Integer, ControladorPlantillaTanqueUI> grillaTanque;
 
 
+
     @FXML
     private void conectar(ActionEvent event) throws IOException {
 
@@ -207,6 +208,7 @@ public class ControladorVistaGeneralUI extends Application{
                     System.out.println(" ");
                     System.out.println("En hilo consumidor");
                     mensajeRecibido = controllerEstablecerConexion.actualizarGUI();
+                    System.out.println("Codigo operacion: " + mensajeRecibido.getCodigoOperacion());
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -217,11 +219,12 @@ public class ControladorVistaGeneralUI extends Application{
                                             System.out.println("En try");
                                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/plantillaTanqueUI.fxml"));
                                             Parent root = fxmlLoader.load();
-                                            ControladorPlantillaTanqueUI controladorPlantillaTanqueUI = new ControladorPlantillaTanqueUI();
+                                            controladorPlantillaTanqueUI = new ControladorPlantillaTanqueUI();
                                             controladorPlantillaTanqueUI = fxmlLoader.getController();
                                             controladorPlantillaTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
                                             FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/views/tanqueUI.fxml"));
                                             root2 = (Parent) fxmlLoader2.load();
+                                            //controladorPlantillaTanqueUI.getLabel_temp_min().textProperty().unbind();
 
                                             ControladorTanqueUI controladorTanqueUI = fxmlLoader2.getController();
                                             controladorTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
@@ -249,8 +252,10 @@ public class ControladorVistaGeneralUI extends Application{
 
                                         if(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())){
                                             System.out.println("En case 1 GUI");
-                                            controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().setText(mensajeRecibido.getTemperaturaMinimaInicial());
-
+                                           //controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().setText(mensajeRecibido.getTemperaturaMinimaInicial());
+                                            controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(mensajeRecibido.getTemperaturaActual());
+                                           // controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().bind(hiloConsumidor.messageProperty());
+                                           //updateMessage(mensajeRecibido.getTemperaturaActual());
 
                                         }
                                         ++i;

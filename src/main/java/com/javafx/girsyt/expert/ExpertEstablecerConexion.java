@@ -140,6 +140,8 @@ public class ExpertEstablecerConexion {
                             }
                         }
                     }else if(parts[i].length() ==1){
+
+                        datosTanqueGuiDTO.setIdTanque(datosTanque[0].substring(datosTanque[0].length()-2, datosTanque[0].length()));
                         //Datos dinamicos
                      /*
                             a-b-cc,c-dd:dd
