@@ -65,6 +65,7 @@ public class ControladorVistaGeneralUI extends Application{
 
     @FXML
     private List<ControladorPlantillaTanqueUI> controladorPlantillaTanqueUIList = new ArrayList<ControladorPlantillaTanqueUI>();
+    private List<ControladorTanqueUI> controladorTanqueUIList= new ArrayList<>();
     private boolean ready = false;
 
     private ControllerEstablecerConexion controllerEstablecerConexion;
@@ -77,8 +78,7 @@ public class ControladorVistaGeneralUI extends Application{
     private boolean estadoConexion = false;
     private Thread t;
     private int posColumna = 0, posFila = 0;
-    private HashMap <ControladorPlantillaTanqueUI,ControladorTanqueUI> hasmapControladores;
-    private HashMap<Integer, ControladorPlantillaTanqueUI> grillaTanque;
+    private List<List<Object>> tanquesList = new ArrayList<List<Object>>();
 
 
 
@@ -212,6 +212,7 @@ public class ControladorVistaGeneralUI extends Application{
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
+
                             switch (mensajeRecibido.getCodigoOperacion()){
                                 case 0:
                                     if (verificarUnicidad(mensajeRecibido,controladorPlantillaTanqueUIList)){
@@ -232,6 +233,8 @@ public class ControladorVistaGeneralUI extends Application{
                                             controladorPlantillaTanqueUI.initScene();
                                             controladorPlantillaTanqueUI.setControladorTanqueUI(controladorTanqueUI);
                                             controladorPlantillaTanqueUIList.add(controladorPlantillaTanqueUI);
+                                            controladorTanqueUIList.add(controladorTanqueUI);
+                                            tanquesList.add(Arrays.asList(controladorPlantillaTanqueUI,controladorPlantillaTanqueUI));
                                             System.out.println("Tamaño " + controladorPlantillaTanqueUIList.size());
                                             gridPane_plantilla.addColumn(posColumna, root);
                                             ++posColumna;
@@ -242,25 +245,62 @@ public class ControladorVistaGeneralUI extends Application{
                                         }
                                     break;
                                     }
+
                                 case 1:
-                                    int i = 0;
+                                    int i=0;
+                                    int j= 0;
                                     while(i<controladorPlantillaTanqueUIList.size()){
-                                        System.out.println("En while case 1");
+
                                         //Comparar instancias de controlador para actualizar el tanque correcto
-                                        System.out.println(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText());
-                                        System.out.println(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText());
+                                        if(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())) {
+                                           controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(mensajeRecibido.getTemperaturaMinimaInicial());
+                                           controladorPlantillaTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(mensajeRecibido.getTemperaturaMaximaInicial());
 
-                                        if(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())){
-                                            System.out.println("En case 1 GUI");
-                                           //controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().setText(mensajeRecibido.getTemperaturaMinimaInicial());
-                                            controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(mensajeRecibido.getTemperaturaActual());
-                                           // controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().bind(hiloConsumidor.messageProperty());
-                                           //updateMessage(mensajeRecibido.getTemperaturaActual());
+                                            while (j<controladorTanqueUIList.size()) {
+                                                if (controladorTanqueUIList.get(j).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())) {
+                                                    controladorTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(mensajeRecibido.getTemperaturaMinimaInicial());
+                                                    controladorTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(mensajeRecibido.getTemperaturaMaximaInicial());
+                                                    controladorTanqueUIList.get(i).setRemontajes(mensajeRecibido.getRemontaje());
 
+
+                                                }
+                                                ++j;
+                                            }
                                         }
                                         ++i;
 
                                     }
+                                case 2:
+                                    i=0;
+                                    j= 0;
+                                    while(i<controladorPlantillaTanqueUIList.size()){
+                                        System.out.println("En while case 1");
+                                        //Comparar instancias de controlador para actualizar el tanque correcto
+                                        if(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())) {
+                                            controladorPlantillaTanqueUIList.get(i).getLabel_temp_actual().textProperty().setValue(mensajeRecibido.getTemperaturaActual());
+                                            controladorPlantillaTanqueUIList.get(i).setEstadoEnfriamiento(mensajeRecibido.getEstadoEnfriamiento());
+                                            controladorPlantillaTanqueUIList.get(i).setEstadoRemontaje(mensajeRecibido.getEstadoRemontaje());
+
+                                            while (j<controladorTanqueUIList.size()) {
+                                                if (controladorTanqueUIList.get(j).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())) {
+                                                    System.out.println("En case 1 GUI");
+                                                    //controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().setText(mensajeRecibido.getTemperaturaMinimaInicial());
+
+                                                    controladorTanqueUIList.get(j).getLabel_temp_actual().textProperty().setValue(mensajeRecibido.getTemperaturaActual());
+                                                    controladorTanqueUIList.get(j).setEstadoEnfriamiento(mensajeRecibido.getEstadoEnfriamiento());
+                                                    controladorTanqueUIList.get(j).setEstadoRemontaje(mensajeRecibido.getEstadoRemontaje());
+
+                                                    // controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().bind(hiloConsumidor.messageProperty());
+                                                    //updateMessage(mensajeRecibido.getTemperaturaActual());
+
+                                                }
+                                                ++j;
+                                            }
+                                        }
+                                        ++i;
+
+                                    }
+                                    break;
                             }
 
                             hiloConsumidor.restart();
@@ -290,9 +330,6 @@ public class ControladorVistaGeneralUI extends Application{
             iteratorLista = controladorPlantillaTanqueUIList.iterator();
 
            while(iteratorLista.hasNext()){
-               System.out.println("While iterator");
-               //System.out.println("Id tanque lista: " + iteratorLista.next().getLabel_nro_tanque().getText());
-               System.out.println("Id tanque recibido:" + mensajeRecibido.getIdTanque());
                if (!(iteratorLista.next().getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque()))){
                    unicidad = true;
                }

@@ -4,12 +4,11 @@ import com.javafx.girsyt.adaptador.AdaptadorUDP;
 import com.javafx.girsyt.adaptador.FactoriaAdaptadorConexion;
 import com.javafx.girsyt.controller.ControllerEstablecerConexion;
 import com.javafx.girsyt.dto.DatosTanqueGuiDTO;
-import com.javafx.girsyt.dto.PaqueteRecibidoDTO;
+import com.javafx.girsyt.dto.RemontajeDTO;
 import com.javafx.girsyt.entidad.TanqueImp;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ExpertEstablecerConexion {
     private AdaptadorUDP adaptadorUDP;
@@ -48,7 +47,7 @@ public class ExpertEstablecerConexion {
 
         String mensaje[] = adaptadorUDP.getMensaje();
         datosTanqueGuiDTO = new DatosTanqueGuiDTO();
-
+        TanqueImp tanqueImp = null;
         String[] parts = mensaje[0].split("-");
 
         String[] datosTanque = mensaje[1].split("-");
@@ -57,53 +56,53 @@ public class ExpertEstablecerConexion {
 
         switch (Integer.parseInt(parts[0])) {
             //Codigo de operacion == 0 --> Mensaje de configuracion de tanques
-            //Setear creacion de objeto Tanque, Remontaje, Temperatura, etc; de acuerdo al codigo de operacion
             case 0:
-                System.out.println("Creando Tanque y DTO");
-                //Creacion de Tanque
-                TanqueImp tanqueImp = new TanqueImp();
 
-                for (int i = 0; i < parts.length; i++) {
-                    switch (i) {
-                        case 0:
-                            datosTanqueGuiDTO.setCodigoOperacion(Integer.parseInt(parts[i]));
-                            break;
-                        case 1:
-                            datosTanqueGuiDTO.setIdTanque(parts[i].substring(parts[i].length()-2, parts[i].length()));
-                            tanqueImp.setIdTanque(Integer.parseInt(parts[i].substring(parts[i].length()-2, parts[i].length())));
-                            datosTanqueGuiDTO.setDireccionIP(parts[i]);
-                            tanqueImp.setDireccionIP(parts[i]);
-                            break;
-                        case 2:
-                            datosTanqueGuiDTO.setPort(Integer.parseInt(parts[i]));
-                            tanqueImp.setPuerto(Integer.parseInt(parts[i]));
-                            break;
+               if(existenciaTanque(datosTanque)){
+
+                   tanqueImp = new TanqueImp();
+
+                    for (int i = 0; i < parts.length; i++) {
+                        switch (i) {
+                            case 0:
+                                datosTanqueGuiDTO.setCodigoOperacion(Integer.parseInt(parts[i]));
+                                break;
+                            case 1:
+                                datosTanqueGuiDTO.setIdTanque(parts[i].substring(parts[i].length()-2, parts[i].length()));
+                                tanqueImp.setIdTanque(Integer.parseInt(parts[i].substring(parts[i].length()-2, parts[i].length())));
+                                datosTanqueGuiDTO.setDireccionIP(parts[i]);
+                                tanqueImp.setDireccionIP(parts[i]);
+                                break;
+                            case 2:
+                                datosTanqueGuiDTO.setPort(Integer.parseInt(parts[i]));
+                                tanqueImp.setPuerto(Integer.parseInt(parts[i]));
+                                break;
+                        }
                     }
-                }
 
-                tanqueImpArrayList.add(tanqueImp);
+                    tanqueImpArrayList.add(tanqueImp);
+                }
                 break;
 
             case 1:
                 int i = 0;
-                TanqueImp tanqueImp1 = null;
                 try{
-                    System.out.println(datosTanque);
-                    // #TODO: Aca hace cosas raras, revisar el getTanque. Te amooouuuuu <3
-                    tanqueImp1 = getTanque(datosTanque); //Agregar If con tanque distinto de nulo
+                    tanqueImp = getTanque(datosTanque); //Agregar If con tanque distinto de nulo
                 }catch( Exception e){
-                    System.out.println("tanqueImp1: " + tanqueImp1);
+                    System.out.println("tanqueImp1: " + tanqueImp);
                 }
 
-                if (tanqueImp1!=null) {
-                    datosTanqueGuiDTO.setCodigoOperacion(1);
-                    //Es necesario crear un DTO nuevo?
-                    datosTanqueGuiDTO = new DatosTanqueGuiDTO();
-                    if (parts[i + 1].length() == 2) {
+                if (tanqueImp!=null) {
 
+                    //Es necesario crear un DTO nuevo?
+
+
+                        datosTanqueGuiDTO.setCodigoOperacion(1);
                         //Datos estaticos. Se recibe una vez
                         datosTanqueGuiDTO.setTipoPaquete("estatico");
                         datosTanqueGuiDTO.setBandera(0);
+
+                        ArrayList<RemontajeDTO> remontajeDTOArrayList = new ArrayList<>();
 
                         for (i = 1; i < parts.length; ++i) {
                             //Crear DtoRemontaje y asociarlo al tanque con temperatura y demas
@@ -115,34 +114,52 @@ public class ExpertEstablecerConexion {
                                 //Inicio primer remontaje
                                 //Seria bueno para automatizar las cantidad de remontajes, analizar la estructura del mensaje segun eso determinar si es remontaje, direccionIp, etc--> Analizador sintactico
                                 case 4:
-                                    tanqueImp1.setRemontaje(parts[2], parts[3], parts[4]);
+                                    //Falta agregar numero remontaje en TanqueImp
+                                    tanqueImp.setRemontaje(parts[2], parts[3], parts[4],0);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[2], parts[3], parts[4],0));
                                     break;
                                 case 7:
-                                    tanqueImp1.setRemontaje(parts[5], parts[6], parts[7]);
+                                    tanqueImp.setRemontaje(parts[5], parts[6], parts[7],1);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[5], parts[6], parts[7],1));
                                     break;
                                 case 10:
-                                    tanqueImp1.setRemontaje(parts[8], parts[9], parts[10]);
+                                    tanqueImp.setRemontaje(parts[8], parts[9], parts[10],2);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[8], parts[9], parts[10],2));
                                     break;
                                 case 13:
-                                    tanqueImp1.setRemontaje(parts[11], parts[12], parts[13]);
+                                    tanqueImp.setRemontaje(parts[11], parts[12], parts[13],3);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[11], parts[12], parts[13],3));
                                     break;
                                 case 14: //Habilitacion periocidad
-                                    tanqueImp1.setPeriocidad(parts[i]);
+                                    tanqueImp.setPeriocidad(parts[i]);
                                     datosTanqueGuiDTO.setPeriocidad(parts[i]);
                                     break;
                                 case 15:      //Temperatura Máxima
-                                    tanqueImp1.setTempMaxima(Double.parseDouble(parts[i]));
+                                    tanqueImp.setTempMaxima(Double.parseDouble(parts[i]));
                                     datosTanqueGuiDTO.setTemperaturaMaximaInicial(parts[i]);
                                     break;
                                 case 16:   //Temperatura Mínima
-                                    tanqueImp1.setTempMinima(Double.parseDouble(parts[i]));
+                                    tanqueImp.setTempMinima(Double.parseDouble(parts[i]));
+                                    datosTanqueGuiDTO.setTemperaturaMinimaInicial(parts[i]);
                                     break;
                             }
-                        }
-                    }else if(parts[i].length() ==1){
 
-                        datosTanqueGuiDTO.setIdTanque(datosTanque[0].substring(datosTanque[0].length()-2, datosTanque[0].length()));
-                        //Datos dinamicos
+                            datosTanqueGuiDTO.setRemontaje(remontajeDTOArrayList);
+                        }
+                    }
+
+                break;
+            case 2:
+
+                try{
+                    tanqueImp = getTanque(datosTanque); //Agregar If con tanque distinto de nulo
+                }catch( Exception e){
+                    System.out.println("tanqueImp1: " + tanqueImp);
+                }
+                if (tanqueImp!=null) {
+
+                    datosTanqueGuiDTO.setIdTanque(datosTanque[0].substring(datosTanque[0].length()-2, datosTanque[0].length()));
+                //Datos dinamicos
                      /*
                             a-b-cc,c-dd:dd
                                a: estado de remontaje 1 --> Si esta remontando
@@ -150,66 +167,84 @@ public class ExpertEstablecerConexion {
                                c: temperatura actual 4
                                d: hora del equipo 5
                      */
-                        System.out.print("Dinamico");
-                        datosTanqueGuiDTO.setCodigoOperacion(1);
-                        datosTanqueGuiDTO.setBandera(1);
-                        tanqueImp1.setTipoPaquete("dinamico");
-                        datosTanqueGuiDTO.setIdTanque((String.valueOf(tanqueImp1.getIdTanque())));
-                        for (i = 1; i < parts.length; ++i){
-                            
-                            
-                            switch (i){
-                                case 1:
-                                    datosTanqueGuiDTO.setEstadoRemontaje(parts[i]);
-                                    tanqueImp1.setEstadoRemontaje(parts[i]);
-                                    break;
-                                case 2:
-                                    datosTanqueGuiDTO.setEstadoEnfriamiento(parts[i]);
-                                    tanqueImp1.setEstadoEnfriamiento(parts[i]);
-                                    break;
-                                case 3:
-                                    datosTanqueGuiDTO.setTemperaturaActual(parts[i]);
-                                    tanqueImp1.setTemperaturaActual(parts[i]);
-                                    break;
-                                case 4:
-                                    datosTanqueGuiDTO.setHoraDispositivo(parts[i]);
-                                    tanqueImp1.setHoraDispositivo(parts[i]);
-                                    break;
-                            }
-                        }
+                datosTanqueGuiDTO.setCodigoOperacion(2);
+                datosTanqueGuiDTO.setBandera(1);
+                tanqueImp.setTipoPaquete("dinamico");
+
+                for (i = 1; i < parts.length; ++i){
+
+
+                    switch (i){
+                        case 1:
+                            datosTanqueGuiDTO.setEstadoRemontaje(parts[i]);
+                            tanqueImp.setEstadoRemontaje(parts[i]);
+                            break;
+                        case 2:
+                            datosTanqueGuiDTO.setEstadoEnfriamiento(parts[i]);
+                            tanqueImp.setEstadoEnfriamiento(parts[i]);
+                            break;
+                        case 3:
+                            datosTanqueGuiDTO.setTemperaturaActual(parts[i]);
+                            tanqueImp.setTemperaturaActual(parts[i]);
+                            break;
+                        case 4:
+                            datosTanqueGuiDTO.setHoraDispositivo(parts[i]);
+                            tanqueImp.setHoraDispositivo(parts[i]);
+                            break;
                     }
-
-
                 }
 
-
+            }
+                break;
         }
         return datosTanqueGuiDTO;
     }
 
+    private boolean existenciaTanque(String[] datosTanque){
+        boolean unicidad = false;
+        int i = 0;
+
+        if (tanqueImpArrayList == null || tanqueImpArrayList.isEmpty()){
+            unicidad = true;
+        }else if(!(tanqueImpArrayList == null)){
+
+            while(i<tanqueImpArrayList.size()){
+                if (!(tanqueImpArrayList.get(i).getDireccionIP().equals(datosTanque[0].trim()))){
+                    unicidad = true;
+                }
+                ++i;
+
+            }
+        }
+        return unicidad;
+    }
 
 
     private TanqueImp getTanque (String[]datosTanque){
-        //Agregar execpcion si no hay tanques
-
         TanqueImp tanqueImp = new TanqueImp();
         int i = 0;
 
-        //Si la lista esta vacía devolver true
+        while (i < tanqueImpArrayList.size()) {
+            if (tanqueImpArrayList.get(i).getDireccionIP().equals(datosTanque[0].trim())) {
+                   tanqueImp = tanqueImpArrayList.get(i);
 
-        if (!(tanqueImpArrayList == null || tanqueImpArrayList.isEmpty())) {
-            while (i < tanqueImpArrayList.size()) {
-                if (tanqueImpArrayList.get(i).getDireccionIP().equals(datosTanque[0].trim())) {
-                    tanqueImp = tanqueImpArrayList.get(i);
-                }else{
-                    tanqueImp = null;
-                }
-                ++i;
             }
-        }else {
-            tanqueImp = null;
+            ++i;
         }
+
 
         return tanqueImp;
     }
+
+    private RemontajeDTO createRemontajeDTO(String habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje){
+        RemontajeDTO remontajeDTO = new RemontajeDTO();
+        remontajeDTO.setHabilitacionRemontaje(habilitacionRemontaje);
+        remontajeDTO.setInicioRemontaje(inicioRemontaje);
+        remontajeDTO.setFinRemontaje(finRemontaje);
+        remontajeDTO.setNumRemontaje(numeroRemontaje);
+
+        return remontajeDTO;
+    }
+
+
 }

@@ -127,9 +127,10 @@ public class TanqueImp {
     }
 
 
-    public void setRemontaje(String numeroRemontaje, String inicioRemontaje, String finRemontaje) {
+    public void setRemontaje(String habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje) {
         RemontajeImp remontajeImp = new RemontajeImp();
-        remontajeImp.setNumRemontaje(Integer.parseInt(numeroRemontaje));
+        remontajeImp.setHabilitacionRemontaje(habilitacionRemontaje);
+        remontajeImp.setNumRemontaje(numeroRemontaje);
         remontajeImp.setInicioRemontaje(new Date(inicioRemontaje));
         remontajeImp.setFinRemontaje(new Date(finRemontaje));
         arrayRemontaje.add(remontajeImp);

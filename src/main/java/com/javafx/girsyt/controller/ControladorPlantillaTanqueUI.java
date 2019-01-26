@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -140,5 +141,23 @@ public class ControladorPlantillaTanqueUI implements Initializable {
 
     public void setParent(Parent root2) {
         this.root2 = root2;
+    }
+
+    public void setEstadoEnfriamiento(String estadoEnfriamiento){
+        if (estadoEnfriamiento.equals("0")){
+            getImg_enfriado().setImage(new Image("images/IconoLedAmarilloApagado.png"));
+        }else{
+            getImg_enfriado().setImage(new Image("images/IconoLedAmarillo.png"));
+        }
+
+    }
+
+    public void setEstadoRemontaje(String estadoRemontaje){
+        if (estadoRemontaje.equals("0")){
+            getImg_remontaje().setImage(new Image("images/IconoLedRojoApagado.png"));
+        }else{
+            getImg_remontaje().setImage(new Image("images/IconoLedRojo.png"));
+        }
+
     }
 }

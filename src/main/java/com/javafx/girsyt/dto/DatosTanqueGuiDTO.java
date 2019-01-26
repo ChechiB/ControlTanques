@@ -1,5 +1,7 @@
 package com.javafx.girsyt.dto;
 
+import java.util.ArrayList;
+
 public class DatosTanqueGuiDTO {
 
     private int port;
@@ -13,7 +15,7 @@ public class DatosTanqueGuiDTO {
     private String tipoPaquete;
     private int bandera;
     private String periocidad;
-    private RemontajeDTO[] arrayRemontaje = new RemontajeDTO[4];
+    private ArrayList<RemontajeDTO> arrayRemontaje = new ArrayList<>();
 
     public int getPort() {
         return port;
@@ -117,14 +119,14 @@ public class DatosTanqueGuiDTO {
         this.direccionIP = direccionIP;
     }
 
-    public RemontajeDTO [] getRemontaje() {
+    public ArrayList<RemontajeDTO> getRemontaje() {
         return arrayRemontaje;
     }
 
 
-    public void setRemontaje(RemontajeDTO[] remontajes) {
+    public void setRemontaje(ArrayList<RemontajeDTO> remontajes) {
 
-      this.arrayRemontaje= remontajes;
+      this.arrayRemontaje =remontajes;
 
     }
 
@@ -134,6 +136,8 @@ public class DatosTanqueGuiDTO {
     public int getbandera(){
         return bandera;
     }
+
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.javafx.girsyt.controller;
 
+import com.javafx.girsyt.dto.RemontajeDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,12 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class ControladorTanqueUI {
 
@@ -230,7 +233,25 @@ public class ControladorTanqueUI {
 
     }
 
-    public void setParent(Parent root2) {
-        this.root2 = root2;
+    public void setEstadoEnfriamiento(String estadoEnfriamiento){
+        if (estadoEnfriamiento.equals("0")){
+            getImg_enfriado().setImage(new Image("images/IconoLedAmarilloApagado.png"));
+        }else{
+            getImg_enfriado().setImage(new Image("images/IconoLedAmarillo.png"));
+        }
+
+    }
+
+    public void setEstadoRemontaje(String estadoRemontaje){
+        if (estadoRemontaje.equals("0")){
+            getImg_remontaje().setImage(new Image("images/IconoLedRojoApagado.png"));
+        }else{
+            getImg_remontaje().setImage(new Image("images/IconoLedRojo.png"));
+        }
+
+    }
+
+    public void setRemontajes(ArrayList<RemontajeDTO> remontaje) {
+        //Manejo de la tabla de remontajes
     }
 }
