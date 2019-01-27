@@ -1,13 +1,19 @@
 package com.javafx.girsyt.controller;
 
 import com.javafx.girsyt.dto.RemontajeDTO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.fxml.FXML;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -16,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Observable;
 
 public class ControladorTanqueUI {
 
@@ -27,13 +34,26 @@ public class ControladorTanqueUI {
 
     private String periocidad;
     @FXML
-    private LineChart<?, ?> chart_temp;
+    private LineChart<String, Number> chart_temp;
 
     @FXML
     private Label label_nro_tanque;
 
     @FXML
-    private TableView<?> table_remontajes;
+    private TableView<RemontajeTable> table_remontajes;
+
+    @FXML
+    private TableColumn<RemontajeTable, String> col_numeroRemontaje;
+
+    @FXML
+    private TableColumn<RemontajeTable, String> col_horaInicioRemontaje;
+
+    @FXML
+    private TableColumn<RemontajeTable, String> col_horaFinRemontaje;
+
+    @FXML
+    private TableColumn<RemontajeTable, String> col_estadoRemontaje;
+
 
     @FXML
     private Button btn_configurar_remontaje;
@@ -42,12 +62,10 @@ public class ControladorTanqueUI {
     private Button btn_enviar_remontaje;
 
     @FXML
-    private Spinner<?> spinner_temp_min;
+    private Spinner<Double> spinner_temp_min;
 
     @FXML
-    private Spinner<?> spinner_temp_max;
-
-
+    private Spinner<Double> spinner_temp_max;
 
     @FXML
     private Button btn_enviar_temp;
@@ -69,6 +87,27 @@ public class ControladorTanqueUI {
 
     @FXML
     private Label label_temp_min;
+
+    private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
+
+    private ControladorRemontajesUI controladorRemontajesUI;
+
+    private ArrayList<RemontajeDTO> remontaje = new ArrayList<>();
+
+    private CategoryAxis xAxis = new CategoryAxis();
+    private NumberAxis yAxis = new NumberAxis();
+    private XYChart.Series<String, Number> datos= new XYChart.Series<>();
+
+    private ObservableList<XYChart.Series<String, Number>> datosDos = FXCollections.observableArrayList();
+
+
+    public ArrayList<RemontajeDTO> getRemontaje() {
+        return remontaje;
+    }
+
+    public void setRemontaje(ArrayList<RemontajeDTO> remontaje) {
+        this.remontaje = remontaje;
+    }
 
     @FXML
     void conectar(ActionEvent event) {
@@ -104,7 +143,7 @@ public class ControladorTanqueUI {
         return chart_temp;
     }
 
-    public void setChart_temp(LineChart<?, ?> chart_temp) {
+    public void setChart_temp(LineChart<String, Number> chart_temp) {
         this.chart_temp = chart_temp;
     }
 
@@ -120,7 +159,7 @@ public class ControladorTanqueUI {
         return table_remontajes;
     }
 
-    public void setTable_remontajes(TableView<?> table_remontajes) {
+    public void setTable_remontajes(TableView<RemontajeTable> table_remontajes) {
         this.table_remontajes = table_remontajes;
     }
 
@@ -140,19 +179,19 @@ public class ControladorTanqueUI {
         this.btn_enviar_remontaje = btn_enviar_remontaje;
     }
 
-    public Spinner<?> getSpinner_temp_min() {
+    public Spinner<Double> getSpinner_temp_min() {
         return spinner_temp_min;
     }
 
-    public void setSpinner_temp_min(Spinner<?> spinner_temp_min) {
+    public void setSpinner_temp_min(Spinner<Double> spinner_temp_min) {
         this.spinner_temp_min = spinner_temp_min;
     }
 
-    public Spinner<?> getSpinner_temp_max() {
+    public Spinner<Double> getSpinner_temp_max() {
         return spinner_temp_max;
     }
 
-    public void setSpinner_temp_max(Spinner<?> spinner_temp_max) {
+    public void setSpinner_temp_max(Spinner<Double> spinner_temp_max) {
         this.spinner_temp_max = spinner_temp_max;
     }
 
@@ -214,8 +253,14 @@ public class ControladorTanqueUI {
 
     @FXML
     void configurarRemontaje(ActionEvent event) throws IOException {
-        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/views/remontajesUI.fxml"));
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/views/remontajeUI.fxml"));
         Parent root = (Parent) fxml.load();
+
+        controladorRemontajesUI = new ControladorRemontajesUI();
+        controladorRemontajesUI = fxml.getController();
+        controladorRemontajesUI.setRemontajesConfiguracion(getRemontaje());
+
+
         Stage remontajes = new Stage();
         remontajes.setScene(new Scene(root));
         remontajes.show();
@@ -251,7 +296,41 @@ public class ControladorTanqueUI {
 
     }
 
-    public void setRemontajes(ArrayList<RemontajeDTO> remontaje) {
+    public void setRemontajesTable(ArrayList<RemontajeDTO> remontaje) {
+        System.out.println("");
         //Manejo de la tabla de remontajes
+        int i=0;
+
+        while(i <remontaje.size()) {
+            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(), remontaje.get(i).getHabilitacionRemontaje()));
+            ++i;
+        }
+
+        col_numeroRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("numeroRemontaje"));
+        col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
+        col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
+        col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("estadoRemontaje"));
+
+        table_remontajes.setItems(datosTablaRemontaje);
     }
+
+    public void iniciarLineChart(){
+        this.xAxis.setLabel("Hora");
+        this.yAxis.setLabel("Temperatura");
+        chart_temp.setTitle("Historico");
+        SpinnerValueFactory<Double>  value = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 0.0);
+        getSpinner_temp_min().setValueFactory(value);
+        getSpinner_temp_max().setValueFactory(value);
+
+    }
+
+    public void updateTemperaturaLineChart(){
+        System.out.println("Temp actual" + Integer.parseInt(getLabel_temp_actual().textProperty().getValue()));
+        datos.getData().add(new XYChart.Data<String, Number>("12:00",13));
+        datos.getData().add(new XYChart.Data<String, Number>("25",17));
+        datos.getData().add(new XYChart.Data<String, Number>("32",Integer.parseInt(getLabel_temp_actual().textProperty().getValue())));
+        chart_temp.getData().add(datos);
+    }
+
+
 }

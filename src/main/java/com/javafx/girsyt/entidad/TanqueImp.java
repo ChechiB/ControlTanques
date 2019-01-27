@@ -1,7 +1,10 @@
 package com.javafx.girsyt.entidad;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class TanqueImp {
 
@@ -128,11 +131,12 @@ public class TanqueImp {
 
 
     public void setRemontaje(String habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje) {
+
         RemontajeImp remontajeImp = new RemontajeImp();
         remontajeImp.setHabilitacionRemontaje(habilitacionRemontaje);
         remontajeImp.setNumRemontaje(numeroRemontaje);
-        remontajeImp.setInicioRemontaje(new Date(inicioRemontaje));
-        remontajeImp.setFinRemontaje(new Date(finRemontaje));
+        remontajeImp.setInicioRemontaje(inicioRemontaje);
+        remontajeImp.setFinRemontaje(finRemontaje);
         arrayRemontaje.add(remontajeImp);
 
     }

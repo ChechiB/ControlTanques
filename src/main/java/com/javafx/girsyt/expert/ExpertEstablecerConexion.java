@@ -143,9 +143,9 @@ public class ExpertEstablecerConexion {
                                     datosTanqueGuiDTO.setTemperaturaMinimaInicial(parts[i]);
                                     break;
                             }
-
-                            datosTanqueGuiDTO.setRemontaje(remontajeDTOArrayList);
                         }
+
+                    datosTanqueGuiDTO.setRemontaje(remontajeDTOArrayList);
                     }
 
                 break;

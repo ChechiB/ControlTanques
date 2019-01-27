@@ -5,8 +5,8 @@ import java.util.Date;
 public class RemontajeImp {
 
         private int numRemontaje;
-        private Date inicioRemontaje;
-        private Date finRemontaje;
+        private String inicioRemontaje;
+        private String finRemontaje;
         private String habilitacionRemontaje;
 
 
@@ -18,19 +18,19 @@ public class RemontajeImp {
             this.numRemontaje = numRemontaje;
         }
 
-        public Date getInicioRemontaje() {
+        public String getInicioRemontaje() {
             return inicioRemontaje;
         }
 
-        public void setInicioRemontaje(Date inicioRemontaje) {
+        public void setInicioRemontaje(String inicioRemontaje) {
             this.inicioRemontaje = inicioRemontaje;
         }
 
-        public Date getFinRemontaje() {
+        public String getFinRemontaje() {
             return finRemontaje;
         }
 
-        public void setFinRemontaje(Date finRemontaje) {
+        public void setFinRemontaje(String finRemontaje) {
             this.finRemontaje = finRemontaje;
         }
 
