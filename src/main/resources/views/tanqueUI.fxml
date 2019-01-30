@@ -16,11 +16,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1018.0" style="-fx-background-color: #c0c0c0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.girsyt.controller.ControladorTanqueUI">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1098.0" style="-fx-background-color: #c0c0c0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.girsyt.controller.ControladorTanqueUI">
    <children>
       <Pane layoutX="28.0" layoutY="384.0" prefHeight="290.0" prefWidth="544.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
          <children>
-            <LineChart fx:id="chart_temp" layoutX="20.0" layoutY="13.0" prefHeight="259.0" prefWidth="499.0" title="Histograma">
+            <LineChart fx:id="chart_temp" layoutX="20.0" layoutY="13.0" prefHeight="259.0" prefWidth="499.0" title="Histograma diario">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -42,19 +42,11 @@
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="888.0" layoutY="5.0" mnemonicParsing="false" onAction="#conectar">
-               <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/connect.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Label fx:id="label_nro_tanque" alignment="CENTER" layoutX="204.0" layoutY="12.0" prefHeight="17.0" prefWidth="58.0" text="ID">
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font></Label>
+            <Label fx:id="label_menu" layoutX="906.0" layoutY="19.0" />
          </children>
       </Pane>
       <Pane layoutX="597.0" layoutY="94.0" prefHeight="581.0" prefWidth="394.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
@@ -103,10 +95,10 @@
                         <Font name="Carlito Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="122.0" layoutY="50.0" text="Mínima" />
-                  <Label layoutX="122.0" layoutY="92.0" text="Máxima" />
-                  <Spinner fx:id="spinner_temp_min" editable="true" layoutX="192.0" layoutY="46.0" prefHeight="25.0" prefWidth="58.0" />
-                  <Spinner fx:id="spinner_temp_max" layoutX="192.0" layoutY="88.0" prefHeight="25.0" prefWidth="58.0" />
+                  <Label layoutX="110.0" layoutY="50.0" text="Mínima" />
+                  <Label layoutX="110.0" layoutY="92.0" text="Máxima" />
+                  <Spinner fx:id="spinner_temp_min" editable="true" layoutX="180.0" layoutY="46.0" prefHeight="25.0" prefWidth="70.0" />
+                  <Spinner fx:id="spinner_temp_max" layoutX="180.0" layoutY="88.0" prefHeight="25.0" prefWidth="70.0" />
                   <Button fx:id="btn_enviar_temp" layoutX="134.0" layoutY="137.0" mnemonicParsing="false" onAction="#enviarTemperatura" prefHeight="25.0" prefWidth="80.0" text="Enviar" />
                   <Line endX="100.0" layoutX="181.0" layoutY="30.0" startX="-100.0" stroke="#90a84a" />
                </children>
@@ -173,5 +165,10 @@
             </Label>
          </children>
       </Pane>
+      <HBox fx:id="hbox_menu" layoutX="1007.0" layoutY="11.0" prefHeight="667.0" prefWidth="87.0" style="-fx-background-radius: 5;">
+         <children>
+            <Pane fx:id="hbox_pane_vbox" prefHeight="667.0" prefWidth="142.0" />
+         </children>
+      </HBox>
    </children>
 </Pane>

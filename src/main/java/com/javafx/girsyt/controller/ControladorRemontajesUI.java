@@ -4,12 +4,13 @@ import com.javafx.girsyt.dto.RemontajeDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.converter.LocalTimeStringConverter;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 public class ControladorRemontajesUI {
@@ -22,6 +23,12 @@ public class ControladorRemontajesUI {
 
     @FXML
     private Button btn_eliminar;
+
+    @FXML
+    private Spinner<LocalTime> spinner_timePickerInicio;
+
+    @FXML
+    private Spinner<LocalTime> spinner_timePickerFin;
 
     @FXML
     private TableView<RemontajeTable> table_remontajes;
@@ -134,6 +141,31 @@ public class ControladorRemontajesUI {
 
     public void setBtn_cancelar(Button btn_cancelar) {
         this.btn_cancelar = btn_cancelar;
+    }
+
+    public Spinner<LocalTime> getSpinner_timePickerInicio() {
+        return spinner_timePickerInicio;
+    }
+
+    public void setSpinner_timePickerInicio(Spinner<LocalTime> spinner_timePickerInicio) {
+        this.spinner_timePickerInicio = spinner_timePickerInicio;
+    }
+
+    public Spinner<LocalTime> getSpinner_timePickerFin() {
+        return spinner_timePickerFin;
+    }
+
+    public void setSpinner_timePickerFin(Spinner<LocalTime> spinner_timePickerFin) {
+        this.spinner_timePickerFin = spinner_timePickerFin;
+    }
+
+    public void inicializarSpinners(){
+        TimePickerSpinner timePickerSpinnerInicio = new TimePickerSpinner();
+        SpinnerValueFactory<LocalTime> valorHoraInicio = timePickerSpinnerInicio.initSpinnerTime();
+        getSpinner_timePickerInicio().setValueFactory(valorHoraInicio);
+        TimePickerSpinner timePickerSpinnerFin = new TimePickerSpinner();
+        SpinnerValueFactory<LocalTime> valorHoraFin = timePickerSpinnerFin.initSpinnerTime();
+        getSpinner_timePickerFin().setValueFactory(valorHoraFin);
     }
 
     public void setRemontajesConfiguracion(ArrayList<RemontajeDTO> remontaje) {

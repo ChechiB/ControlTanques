@@ -1,6 +1,7 @@
 package com.javafx.girsyt.controller;
 
 import com.javafx.girsyt.dto.DatosTanqueGuiDTO;
+import com.jfoenix.controls.JFXMasonryPane;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,6 +40,8 @@ public class ControladorVistaGeneralUI extends Application{
     @FXML
     private ControladorPlantillaTanqueUI controladorPlantillaTanqueUI;
 
+    @FXML
+    private TilePane tilePane_tanque;
 
     @FXML
     private Pane panel_tanque;
@@ -64,14 +68,13 @@ public class ControladorVistaGeneralUI extends Application{
     private Label label_estadoServicio;
 
     @FXML
+    private JFXMasonryPane paneMasonry;
+
     private List<ControladorPlantillaTanqueUI> controladorPlantillaTanqueUIList = new ArrayList<ControladorPlantillaTanqueUI>();
     private List<ControladorTanqueUI> controladorTanqueUIList= new ArrayList<>();
     private boolean ready = false;
-
     private ControllerEstablecerConexion controllerEstablecerConexion;
-   // private ControladorSincronizarTanques controladorSincronizarTanques;
     private ConectarBackground conectarBackground;
- //   private Consumidor consumidor;
     private DatosTanqueGuiDTO mensajeRecibido;
     private HiloConsumidor hiloConsumidor;
     private Parent root,root2;
@@ -88,7 +91,6 @@ public class ControladorVistaGeneralUI extends Application{
         controllerEstablecerConexion = new ControllerEstablecerConexion();
         conectarBackground =new ConectarBackground();
         label_estadoServicio.textProperty().bind(conectarBackground.messageProperty());
-
 
         System.out.println(conectarBackground.getState());
 
@@ -109,32 +111,11 @@ public class ControladorVistaGeneralUI extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        label_vista_general.textProperty().unbind();
-        label_vista_general.textProperty().bind(conectarBackground.messageProperty());
-        System.out.println("En Start");
-
-
-    }
-
-
-    private void prueba(){
-        Task<Void> task = new Task<Void>(){
-            @Override
-            protected Void call()  {
-                hiloConsumidor = new HiloConsumidor();
-                hiloConsumidor.start();
-                return null;
-            }
-        };
-        //start Task
-
-        Thread t = new Thread(task);
-        t.setDaemon(true); // thread will not prevent application shutdown
-        t.start();
-
+        System.out.println("En start");
+            label_vista_general.textProperty().unbind();
+            label_vista_general.textProperty().bind(conectarBackground.messageProperty());
 
     }
-
 
     private class ConectarBackground extends Service<String>{
 
@@ -228,7 +209,6 @@ public class ControladorVistaGeneralUI extends Application{
 
                                             ControladorTanqueUI controladorTanqueUI = fxmlLoader2.getController();
                                             controladorTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
-                                            controladorTanqueUI.iniciarLineChart();
 
                                             controladorPlantillaTanqueUI.setParent(root2);
                                             controladorPlantillaTanqueUI.initScene();
@@ -237,8 +217,15 @@ public class ControladorVistaGeneralUI extends Application{
                                             controladorTanqueUIList.add(controladorTanqueUI);
                                             tanquesList.add(Arrays.asList(controladorPlantillaTanqueUI,controladorPlantillaTanqueUI));
                                             System.out.println("Tamaño " + controladorPlantillaTanqueUIList.size());
-                                            gridPane_plantilla.addColumn(posColumna, root);
+                                            /*if (posColumna < 2){
+                                                gridPane_plantilla.add(root,posColumna,posFila);
+                                            }else{
+                                                gridPane_plantilla.addColumn(posColumna,root);
+                                            }*/
+                                            paneMasonry.getChildren().add(root);
+                                            System.out.println("Pos columna " + posColumna);
                                             ++posColumna;
+
 
                                             //Cuando ya haya cuatro tanques colocar nueva fila
                                         } catch (IOException e) {

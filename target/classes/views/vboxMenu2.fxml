@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vBox_menu" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="89.0" style="-fx-background-radius: 5; -fx-background-color: #ebebe0;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.girsyt.controller.ControladorMenuTanque">
+   <children>
+      <Button alignment="CENTER" cancelButton="true" disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="79.0" prefWidth="89.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+               <image>
+                  <Image url="@../images/Services_50px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane prefHeight="480.0" prefWidth="89.0" style="-fx-background-color: #ebebe0; -fx-background-radius: 15;">
+         <children>
+            <VBox fx:id="vBox_menuButtons" alignment="CENTER" layoutY="-7.0" prefHeight="313.0" prefWidth="89.0" style="-fx-background-color: #ebebe0;">
+               <children>
+                  <Button fx:id="btn_conectarMenu" accessibleText="conectar" contentDisplay="TOP" mnemonicParsing="false" prefHeight="70.0" prefWidth="93.0" style="-fx-border-radius: 15; -fx-background-color: #ebebe0;" text="Conectar" textAlignment="CENTER" textFill="#111111">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Data%20Transfer_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_sincronizarMenu" accessibleText="sincronizar" contentDisplay="TOP" mnemonicParsing="false" prefHeight="70.0" prefWidth="99.0" style="-fx-background-color: #ebebe0;" text="Sincronizar">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Time_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_historialMenu" accessibleText="historial" contentDisplay="TOP" mnemonicParsing="false" prefHeight="55.0" prefWidth="103.0" style="-fx-background-color: #ebebe0;" text="Historial">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Time%20MachineG_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Button>
+                <Button fx:id="btn_stopMenu" accessibleText="stop" contentDisplay="TOP" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #ebebe0;" text="Stop">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Stop_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+      </Pane>
+   </children>
+</VBox>

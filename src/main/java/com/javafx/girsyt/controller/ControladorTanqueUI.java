@@ -1,9 +1,13 @@
 package com.javafx.girsyt.controller;
 
 import com.javafx.girsyt.dto.RemontajeDTO;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +20,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -35,6 +43,15 @@ public class ControladorTanqueUI {
     private String periocidad;
     @FXML
     private LineChart<String, Number> chart_temp;
+
+    @FXML
+    private HBox hbox_menu;
+
+    @FXML
+    private Pane hbox_pane_linea;
+
+    @FXML
+    private Pane hbox_pane_vbox;
 
     @FXML
     private Label label_nro_tanque;
@@ -87,6 +104,12 @@ public class ControladorTanqueUI {
 
     @FXML
     private Label label_temp_min;
+
+    @FXML
+    private JFXHamburger hamburger_menu;
+
+    @FXML
+    private JFXDrawer drawer_menu;
 
     private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
 
@@ -259,7 +282,7 @@ public class ControladorTanqueUI {
         controladorRemontajesUI = new ControladorRemontajesUI();
         controladorRemontajesUI = fxml.getController();
         controladorRemontajesUI.setRemontajesConfiguracion(getRemontaje());
-
+        controladorRemontajesUI.inicializarSpinners();
 
         Stage remontajes = new Stage();
         remontajes.setScene(new Scene(root));
@@ -314,23 +337,37 @@ public class ControladorTanqueUI {
         table_remontajes.setItems(datosTablaRemontaje);
     }
 
-    public void iniciarLineChart(){
-        this.xAxis.setLabel("Hora");
-        this.yAxis.setLabel("Temperatura");
-        chart_temp.setTitle("Historico");
-        SpinnerValueFactory<Double>  value = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 0.0);
+    private void inicializarSpinners(){
+        //No aumenta la parte fraccionaria https://medium.com/@joshwickham/creating-an-integer-spinner-in-javafx-f8fda8d12ae5
+        SpinnerValueFactory<Double>  value = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100,0.0,0.1);
+        SpinnerValueFactory<Double>  value2 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100,0.0, 0.1);
+
         getSpinner_temp_min().setValueFactory(value);
-        getSpinner_temp_max().setValueFactory(value);
+        getSpinner_temp_max().setValueFactory(value2);
 
     }
 
     public void updateTemperaturaLineChart(){
-        System.out.println("Temp actual" + Integer.parseInt(getLabel_temp_actual().textProperty().getValue()));
-        datos.getData().add(new XYChart.Data<String, Number>("12:00",13));
-        datos.getData().add(new XYChart.Data<String, Number>("25",17));
-        datos.getData().add(new XYChart.Data<String, Number>("32",Integer.parseInt(getLabel_temp_actual().textProperty().getValue())));
+        //Colocar en un array las temperaturas para poder graficar. Sino solo grafica un punto.
+
+        datos.getData().add(new XYChart.Data<String, Number>(getLabel_hora_dispositivo().textProperty().getValue(),Double.parseDouble(getLabel_temp_actual().textProperty().getValue())));
         chart_temp.getData().add(datos);
     }
 
+    private void inicializarMenu() throws IOException {
+        VBox vboxMenu = FXMLLoader.load(getClass().getResource("/views/vboxMenu2.fxml"));
+        ControladorMenuTanque controladorMenuTanque= new ControladorMenuTanque();
+        hbox_pane_vbox.getChildren().add(vboxMenu);
+
+
+    }
+
+
+    @FXML
+    public void initialize() throws IOException {
+       inicializarSpinners();
+       inicializarMenu();
+
+    }
 
 }

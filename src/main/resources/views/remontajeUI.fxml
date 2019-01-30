@@ -4,11 +4,11 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.girsyt.controller.ControladorRemontajesUI">
    <children>
@@ -31,17 +31,19 @@
             <DatePicker layoutX="76.0" layoutY="97.0" prefHeight="25.0" prefWidth="99.0" />
             <Button fx:id="btn_agregar" layoutX="76.0" layoutY="141.0" mnemonicParsing="false" text="Agregar" />
             <Button fx:id="btn_eliminar" layoutX="158.0" layoutY="141.0" mnemonicParsing="false" text="Eliminar" />
+            <Spinner fx:id="spinner_timePickerInicio" editable="true" layoutX="187.0" layoutY="51.0" prefHeight="25.0" prefWidth="76.0" />
+            <Spinner fx:id="spinner_timePickerFin" layoutX="189.0" layoutY="97.0" prefHeight="25.0" prefWidth="76.0" />
          </children>
       </Pane>
       <TableView fx:id="table_remontajes" layoutX="30.0" layoutY="299.0" prefHeight="200.0" prefWidth="302.0">
         <columns>
-          <TableColumn fx:id="col_numeroRemontaje" prefWidth="44.0" text="N°" />
-          <TableColumn fx:id="col_horaInicioRemontaje" prefWidth="78.0" text="Inicio" />
-            <TableColumn fx:id="col_horaFinRemontaje" prefWidth="88.0" text="Fin" />
-            <TableColumn fx:id="col_estadoRemontaje" prefWidth="90.0" text="Estado" />
+          <TableColumn fx:id="col_numeroRemontaje" prefWidth="44.0" resizable="false" text="N°" />
+          <TableColumn fx:id="col_horaInicioRemontaje" prefWidth="78.0" resizable="false" text="Inicio" />
+            <TableColumn fx:id="col_horaFinRemontaje" prefWidth="88.0" resizable="false" text="Fin" />
+            <TableColumn fx:id="col_estadoRemontaje" prefWidth="90.0" resizable="false" text="Estado" />
         </columns>
       </TableView>
-      <Button fx:id="btn_aceptar" layoutX="108.0" layoutY="520.0" mnemonicParsing="false" text="Aceptar" />
-      <Button fx:id="btn_cancelar" layoutX="198.0" layoutY="520.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="btn_aceptar" alignment="CENTER" contentDisplay="CENTER" layoutX="108.0" layoutY="520.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="btn_cancelar" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="520.0" mnemonicParsing="false" text="Cancelar" />
    </children>
 </Pane>
