@@ -108,7 +108,7 @@ public class PaqueteRecibidoDTO {
             return bandera;
         }
 
-        public void setRemontaje(String[] remontajes, int i, int j) {
+        /*public void setRemontaje(String[] remontajes, int i, int j) {
 
             RemontajeDTO remontaje = new RemontajeDTO();
 
@@ -117,7 +117,7 @@ public class PaqueteRecibidoDTO {
             remontaje.setFinRemontaje(remontajes[i-1]);
             remontaje.setNumRemontaje(j);
             arrayRemontaje[j] = remontaje;
-        }
+        } */
     }
 
 

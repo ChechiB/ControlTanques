@@ -7,8 +7,8 @@ import com.javafx.girsyt.fabrica.FabricaExpertos;
 public class ControladorSincronizarTanques {
     private ExpertSincronizarTanques expertSincronizarTanques;
 
-    public void sincronizar(boolean ready) {
+    /*public void sincronizar(boolean ready) {
         expertSincronizarTanques = (ExpertSincronizarTanques) FabricaExpertos.getinstancia().crearExperto("SincronizarTanques");
         expertSincronizarTanques.sincronizar(ready);
-    }
+    }*/
 }

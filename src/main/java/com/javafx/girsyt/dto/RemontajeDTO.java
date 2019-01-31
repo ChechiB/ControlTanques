@@ -5,7 +5,7 @@ public class RemontajeDTO {
     private int numRemontaje;
     private String inicioRemontaje;
     private String finRemontaje;
-    private String habilitacionRemontaje;
+    private boolean habilitacionRemontaje;
 
 
     public int getNumRemontaje() {
@@ -32,11 +32,11 @@ public class RemontajeDTO {
         this.finRemontaje = finRemontaje;
     }
 
-    public String getHabilitacionRemontaje() {
+    public boolean getHabilitacionRemontaje() {
         return habilitacionRemontaje;
     }
 
-    public void setHabilitacionRemontaje(String habilitacionRemontaje) {
+    public void setHabilitacionRemontaje(boolean habilitacionRemontaje) {
         this.habilitacionRemontaje = habilitacionRemontaje;
     }
 }

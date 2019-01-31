@@ -4,6 +4,7 @@ import com.javafx.girsyt.dto.RemontajeDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.LocalTimeStringConverter;
@@ -52,6 +53,7 @@ public class ControladorRemontajesUI {
     private Button btn_cancelar;
 
     private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
+    private Parent root;
 
 
     public TableView<RemontajeTable> getTable_remontajes() {
@@ -169,11 +171,11 @@ public class ControladorRemontajesUI {
     }
 
     public void setRemontajesConfiguracion(ArrayList<RemontajeDTO> remontaje) {
-        //Manejo de la tabla de remontajes
+       //Manejo de la tabla de remontajes
         int i=0;
 
         while(i <remontaje.size()) {
-            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(), remontaje.get(i).getHabilitacionRemontaje()));
+            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(), String.valueOf(remontaje.get(i).getHabilitacionRemontaje())));
             ++i;
         }
 
@@ -181,7 +183,19 @@ public class ControladorRemontajesUI {
         col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
         col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
         col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("estadoRemontaje"));
-
+        System.out.println(col_numeroRemontaje);
+        System.out.println(col_horaInicioRemontaje);
+        System.out.println(col_horaFinRemontaje);
+        System.out.println(col_estadoRemontaje);
         table_remontajes.setItems(datosTablaRemontaje);
+
+    }
+
+    public void initialize(){
+        inicializarSpinners();
+    }
+
+    public void setParent(Parent root) {
+        this.root = root;
     }
 }

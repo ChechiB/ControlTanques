@@ -1,16 +1,14 @@
 package com.javafx.girsyt.controller;
 
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.ImageView;
 
-public class RemontajeTable {
-
+public class RemontajeConfiguracionTable {
     private final SimpleStringProperty numeroRemontaje;
     private final SimpleStringProperty inicioRemontaje;
     private final SimpleStringProperty finRemontaje;
-    private final SimpleObjectProperty estadoRemontaje;
+    private final javafx.scene.image.ImageView estadoRemontaje;
 
     public String getNumeroRemontaje() {
         return numeroRemontaje.get();
@@ -48,21 +46,14 @@ public class RemontajeTable {
         this.finRemontaje.set(finRemontaje);
     }
 
-    public Object getEstadoRemontaje() {
-        return estadoRemontaje.get();
+    public ImageView getEstadoRemontaje() {
+        return estadoRemontaje;
     }
 
-    public void setEstadoRemontaje(Object estadoRemontaje) {
-        this.estadoRemontaje.set(estadoRemontaje);
-    }
-
-    public RemontajeTable(String numeroRemontaje, String inicioRemontaje, String finRemontaje, Object estadoRemontaje){
+    public RemontajeConfiguracionTable(String numeroRemontaje, String inicioRemontaje, String finRemontaje, javafx.scene.image.ImageView estadoRemontaje){
         this.numeroRemontaje = new SimpleStringProperty(numeroRemontaje);
         this.inicioRemontaje =  new SimpleStringProperty(inicioRemontaje);
         this.finRemontaje =  new SimpleStringProperty(finRemontaje);
-        this.estadoRemontaje = new SimpleObjectProperty(estadoRemontaje);
+        this.estadoRemontaje = estadoRemontaje;
     }
-
-
-
 }

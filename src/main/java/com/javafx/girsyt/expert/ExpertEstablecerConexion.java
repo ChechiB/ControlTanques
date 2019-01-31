@@ -115,20 +115,20 @@ public class ExpertEstablecerConexion {
                                 //Seria bueno para automatizar las cantidad de remontajes, analizar la estructura del mensaje segun eso determinar si es remontaje, direccionIp, etc--> Analizador sintactico
                                 case 4:
                                     //Falta agregar numero remontaje en TanqueImp
-                                    tanqueImp.setRemontaje(parts[2], parts[3], parts[4],0);
-                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[2], parts[3], parts[4],0));
+                                    tanqueImp.setRemontaje(Boolean.valueOf(parts[2]), parts[3], parts[4],0);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(convertToBoolean(parts[2]), parts[3], parts[4],0));
                                     break;
                                 case 7:
-                                    tanqueImp.setRemontaje(parts[5], parts[6], parts[7],1);
-                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[5], parts[6], parts[7],1));
+                                    tanqueImp.setRemontaje(convertToBoolean(parts[5]), parts[6], parts[7],1);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(convertToBoolean(parts[5]), parts[6], parts[7],1));
                                     break;
                                 case 10:
-                                    tanqueImp.setRemontaje(parts[8], parts[9], parts[10],2);
-                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[8], parts[9], parts[10],2));
+                                    tanqueImp.setRemontaje(convertToBoolean(parts[8]), parts[9], parts[10],2);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(convertToBoolean(parts[8]), parts[9], parts[10],2));
                                     break;
                                 case 13:
-                                    tanqueImp.setRemontaje(parts[11], parts[12], parts[13],3);
-                                    remontajeDTOArrayList.add(createRemontajeDTO(parts[11], parts[12], parts[13],3));
+                                    tanqueImp.setRemontaje(convertToBoolean(parts[11]), parts[12], parts[13],3);
+                                    remontajeDTOArrayList.add(createRemontajeDTO(convertToBoolean(parts[11]), parts[12], parts[13],3));
                                     break;
                                 case 14: //Habilitacion periocidad
                                     tanqueImp.setPeriocidad(parts[i]);
@@ -236,7 +236,7 @@ public class ExpertEstablecerConexion {
         return tanqueImp;
     }
 
-    private RemontajeDTO createRemontajeDTO(String habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje){
+    private RemontajeDTO createRemontajeDTO(boolean habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje){
         RemontajeDTO remontajeDTO = new RemontajeDTO();
         remontajeDTO.setHabilitacionRemontaje(habilitacionRemontaje);
         remontajeDTO.setInicioRemontaje(inicioRemontaje);
@@ -244,6 +244,12 @@ public class ExpertEstablecerConexion {
         remontajeDTO.setNumRemontaje(numeroRemontaje);
 
         return remontajeDTO;
+    }
+
+    private boolean convertToBoolean(String valor){
+        System.out.println(valor);
+        return !valor.contains("0") ;
+
     }
 
 

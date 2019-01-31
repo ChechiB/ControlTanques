@@ -40,6 +40,10 @@ public class ControladorTanqueUI {
 
     private String ipTanque;
 
+    private int puerto;
+
+    private Stage remontajes;
+
     private String periocidad;
     @FXML
     private LineChart<String, Number> chart_temp;
@@ -69,7 +73,7 @@ public class ControladorTanqueUI {
     private TableColumn<RemontajeTable, String> col_horaFinRemontaje;
 
     @FXML
-    private TableColumn<RemontajeTable, String> col_estadoRemontaje;
+    private TableColumn<RemontajeTable, ImageView> col_estadoRemontaje;
 
 
     @FXML
@@ -105,11 +109,6 @@ public class ControladorTanqueUI {
     @FXML
     private Label label_temp_min;
 
-    @FXML
-    private JFXHamburger hamburger_menu;
-
-    @FXML
-    private JFXDrawer drawer_menu;
 
     private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
 
@@ -122,7 +121,15 @@ public class ControladorTanqueUI {
     private XYChart.Series<String, Number> datos= new XYChart.Series<>();
 
     private ObservableList<XYChart.Series<String, Number>> datosDos = FXCollections.observableArrayList();
+    private boolean tableEmpty = true;
 
+    public void setPuerto(int puerto) {
+        this.puerto = puerto;
+    }
+
+    public int getPuerto(){
+        return puerto;
+    }
 
     public ArrayList<RemontajeDTO> getRemontaje() {
         return remontaje;
@@ -132,11 +139,65 @@ public class ControladorTanqueUI {
         this.remontaje = remontaje;
     }
 
-    @FXML
-    void conectar(ActionEvent event) {
-        System.out.print("hello");
 
+    public TableColumn<RemontajeTable, String> getCol_numeroRemontaje() {
+        return col_numeroRemontaje;
     }
+
+    public void setCol_numeroRemontaje(TableColumn<RemontajeTable, String> col_numeroRemontaje) {
+        this.col_numeroRemontaje = col_numeroRemontaje;
+    }
+
+    public TableColumn<RemontajeTable, String> getCol_horaInicioRemontaje() {
+        return col_horaInicioRemontaje;
+    }
+
+    public void setCol_horaInicioRemontaje(TableColumn<RemontajeTable, String> col_horaInicioRemontaje) {
+        this.col_horaInicioRemontaje = col_horaInicioRemontaje;
+    }
+
+    public TableColumn<RemontajeTable, String> getCol_horaFinRemontaje() {
+        return col_horaFinRemontaje;
+    }
+
+    public void setCol_horaFinRemontaje(TableColumn<RemontajeTable, String> col_horaFinRemontaje) {
+        this.col_horaFinRemontaje = col_horaFinRemontaje;
+    }
+
+    public TableColumn<RemontajeTable, ImageView> getCol_estadoRemontaje() {
+        return col_estadoRemontaje;
+    }
+
+    public void setCol_estadoRemontaje(TableColumn<RemontajeTable, ImageView> col_estadoRemontaje) {
+        this.col_estadoRemontaje = col_estadoRemontaje;
+    }
+
+    public ObservableList<RemontajeTable> getDatosTablaRemontaje() {
+        return datosTablaRemontaje;
+    }
+
+    public void setDatosTablaRemontaje(ObservableList<RemontajeTable> datosTablaRemontaje) {
+        this.datosTablaRemontaje = datosTablaRemontaje;
+    }
+
+    public ControladorRemontajesUI getControladorRemontajesUI() {
+        return controladorRemontajesUI;
+    }
+
+    public void setControladorRemontajesUI(ControladorRemontajesUI controladorRemontajesUI) {
+        this.controladorRemontajesUI = controladorRemontajesUI;
+    }
+
+    public Label getLabel_estadoConexionTanque() {
+        return label_estadoConexionTanque;
+    }
+
+    public void setLabel_estadoConexionTanque(Label label_estadoConexionTanque) {
+        this.label_estadoConexionTanque = label_estadoConexionTanque;
+    }
+
+    @FXML
+    private Label label_estadoConexionTanque;
 
     public ControllerEnviarDatos getControllerEnviarDatos() {
         return controllerEnviarDatos;
@@ -276,23 +337,20 @@ public class ControladorTanqueUI {
 
     @FXML
     void configurarRemontaje(ActionEvent event) throws IOException {
-        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/views/remontajeUI.fxml"));
-        Parent root = (Parent) fxml.load();
 
-        controladorRemontajesUI = new ControladorRemontajesUI();
-        controladorRemontajesUI = fxml.getController();
-        controladorRemontajesUI.setRemontajesConfiguracion(getRemontaje());
-        controladorRemontajesUI.inicializarSpinners();
+        if(tableEmpty){
+            controladorRemontajesUI.setRemontajesConfiguracion(getRemontaje());
+            tableEmpty = false;
+        }
 
-        Stage remontajes = new Stage();
-        remontajes.setScene(new Scene(root));
+
         remontajes.show();
     }
 
     @FXML
     void enviarRemontajes(ActionEvent event) throws FileNotFoundException, UnknownHostException {
         controllerEnviarDatos = new ControllerEnviarDatos();
-        controllerEnviarDatos.enviarDatos(table_remontajes , label_nro_tanque.getText() , periocidad, ipTanque );
+        controllerEnviarDatos.enviarDatos(getRemontaje() , label_nro_tanque.getText() , periocidad, ipTanque, puerto );
     }
 
     @FXML
@@ -320,21 +378,38 @@ public class ControladorTanqueUI {
     }
 
     public void setRemontajesTable(ArrayList<RemontajeDTO> remontaje) {
+
+        this.remontaje = remontaje;
         System.out.println("");
+
+
         //Manejo de la tabla de remontajes
         int i=0;
 
         while(i <remontaje.size()) {
-            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(), remontaje.get(i).getHabilitacionRemontaje()));
+            ImageView imageViewEstadoRemontaje = new ImageView();
+
+            if(remontaje.get(i).getHabilitacionRemontaje()){
+                imageViewEstadoRemontaje.setImage(new Image("images/Checkmark_64px.png"));
+                imageViewEstadoRemontaje.setFitHeight(10);
+                imageViewEstadoRemontaje.setFitWidth(10);
+            }else{
+
+                imageViewEstadoRemontaje.setImage(new Image("images/Delete_64px.png"));
+                imageViewEstadoRemontaje.setFitHeight(10);
+                imageViewEstadoRemontaje.setFitWidth(10);
+            }
+            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(),imageViewEstadoRemontaje));
             ++i;
         }
 
         col_numeroRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("numeroRemontaje"));
         col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
         col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
-        col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("estadoRemontaje"));
+        col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,ImageView>("estadoRemontaje"));
 
         table_remontajes.setItems(datosTablaRemontaje);
+
     }
 
     private void inicializarSpinners(){
@@ -357,9 +432,9 @@ public class ControladorTanqueUI {
     private void inicializarMenu() throws IOException {
         VBox vboxMenu = FXMLLoader.load(getClass().getResource("/views/vboxMenu2.fxml"));
         ControladorMenuTanque controladorMenuTanque= new ControladorMenuTanque();
+        controladorMenuTanque.setIpTanque(getIpTanque());
+        controladorMenuTanque.setPuerto(getPuerto());
         hbox_pane_vbox.getChildren().add(vboxMenu);
-
-
     }
 
 
@@ -367,6 +442,18 @@ public class ControladorTanqueUI {
     public void initialize() throws IOException {
        inicializarSpinners();
        inicializarMenu();
+        inicializarConfiguracionRemontajesUI();
+    }
+
+    private void inicializarConfiguracionRemontajesUI() throws IOException {
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/views/remontajeUI.fxml"));
+        Parent root = (Parent) fxml.load();
+
+        controladorRemontajesUI = new ControladorRemontajesUI();
+        controladorRemontajesUI = fxml.getController();
+        controladorRemontajesUI.setParent(root);
+        remontajes = new Stage();
+        remontajes.setScene(new Scene(root));
 
     }
 

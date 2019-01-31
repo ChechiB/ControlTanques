@@ -3,23 +3,82 @@ package com.javafx.girsyt.entidad;
 
 //Se encarga de enviar y recibir los mesnajes que vienen y van del servidor.
 
+import com.javafx.girsyt.dto.PaqueteAEnviarDTO;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClienteImp extends Thread{
-    private String mensaje = "";
 
-    public void sincronizar(boolean ready){
-        if (ready){
 
-        }
+    private InetAddress ipTanque;
+    private int port;
+
+    private DatagramSocket socketCliente;
+    private String mensaje;
+
+    public ClienteImp(InetAddress ipTanque, int port){
+        this.ipTanque = ipTanque;
+        this.port = port;
+
+    }
+
+    public InetAddress getIpTanque() {
+        return ipTanque;
+    }
+
+    public void setIpTanque(InetAddress ipTanque) {
+        this.ipTanque = ipTanque;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
 
+    public void conectar(){
+
+        try
+        {
+            socketCliente = new DatagramSocket();
+        } catch (IOException e)
+        {
+            System.out.println("Error al crear el objeto socket cliente");
+            System.exit ( 0 );
+        }
+
+    }
+
+
+    public void setMensaje(String mensaje){
+        this.mensaje =  mensaje;
+    }
+    private void enviarMensaje() throws IOException {
+        byte [] enviarDatos = new byte[1024];
+
+        enviarDatos = mensaje.getBytes();
+        DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length, ipTanque, port);
+        socketCliente.send(enviarPaquete);
+        socketCliente.close();
+    }
+
+    @Override
+    public void run() {
+        try {
+            enviarMensaje();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     /*private void enviar(String mensaje){

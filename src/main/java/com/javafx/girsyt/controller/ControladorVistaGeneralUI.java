@@ -209,6 +209,9 @@ public class ControladorVistaGeneralUI extends Application{
 
                                             ControladorTanqueUI controladorTanqueUI = fxmlLoader2.getController();
                                             controladorTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
+                                            controladorTanqueUI.getLabel_estadoConexionTanque().setText("Conectado");
+                                            controladorTanqueUI.setIpTanque(mensajeRecibido.getDireccionIP());
+                                            controladorTanqueUI.setPuerto(mensajeRecibido.getPort());
 
                                             controladorPlantillaTanqueUI.setParent(root2);
                                             controladorPlantillaTanqueUI.initScene();

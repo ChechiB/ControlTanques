@@ -130,7 +130,7 @@ public class TanqueImp {
     }
 
 
-    public void setRemontaje(String habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje) {
+    public void setRemontaje(boolean habilitacionRemontaje, String inicioRemontaje, String finRemontaje, int numeroRemontaje) {
 
         RemontajeImp remontajeImp = new RemontajeImp();
         remontajeImp.setHabilitacionRemontaje(habilitacionRemontaje);

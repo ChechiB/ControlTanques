@@ -5,6 +5,7 @@ import javafx.scene.control.TableView;
 
 import java.io.FileNotFoundException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class PaqueteAEnviarDTO {
     /*
@@ -130,10 +131,15 @@ public class PaqueteAEnviarDTO {
             return mensaje;
         }
 
-        public void setRemontaje(TableView<?> jTableRConfigurados) {
+        public void setRemontaje(ArrayList<RemontajeDTO> remontajesConfigurados) {
             //Items --> filas
             int n = 0;
-            //Extraccion del estado de los tanques para adicionarlos al String con todos los remontajes
+
+            for (RemontajeDTO remontajeDTO: remontajesConfigurados) {
+
+
+            }
+            /*Extraccion del estado de los tanques para adicionarlos al String con todos los remontajes
             for (int i = 0; i < jTableRConfigurados.getItems().size();i++ ){
 
                 if ("Habilitado".equals(jTableRConfigurados.getColumns().get(3).toString())){
@@ -155,7 +161,7 @@ public class PaqueteAEnviarDTO {
             for (String arrayRemontaje1 : arrayRemontaje) {
                 cadena = cadena.append(arrayRemontaje1);
                 cadena =cadena.append("-");
-            }
+            }*/
 
         }
         public int getBitIndicador() {

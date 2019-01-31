@@ -47,6 +47,7 @@
                   <Font name="Ebrima Bold" size="24.0" />
                </font></Label>
             <Label fx:id="label_menu" layoutX="906.0" layoutY="19.0" />
+            <Label fx:id="label_estadoConexionTanque" layoutX="783.0" layoutY="19.0" text="Desconectado" />
          </children>
       </Pane>
       <Pane layoutX="597.0" layoutY="94.0" prefHeight="581.0" prefWidth="394.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">

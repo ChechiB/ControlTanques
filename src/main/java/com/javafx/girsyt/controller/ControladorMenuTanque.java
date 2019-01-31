@@ -15,7 +15,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,8 +43,24 @@ public class ControladorMenuTanque {
     @FXML
     private VBox vBox_menuButtons;
 
-    ControllerEnviarDatos controllerEnviarDatos;
+    private ControllerEnviarDatos controllerEnviarDatos;
 
+    private String ipTanque;
+
+    private int puerto;
+
+
+    public void setPuerto(int puerto) {
+        this.puerto = puerto;
+    }
+
+    public int getPuerto(){
+        return puerto;
+    }
+
+    public String getIpTanque() {
+        return ipTanque;
+    }
 
     private void setBehaviorButtons(){
 
@@ -67,7 +85,13 @@ public class ControladorMenuTanque {
                             horaFecha = horaFecha.append("-");
                             horaFecha = horaFecha.append(this.getDiaSemana()).append("-");
                             controllerEnviarDatos = new ControllerEnviarDatos();
-                            //controllerEnviarDatos.enviarDatos(horaFecha,"192.168.0.38");
+                            try {
+                                controllerEnviarDatos.enviarDatos(horaFecha,getIpTanque(),getPuerto());
+                            } catch (UnknownHostException e) {
+                                e.printStackTrace();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
 
                             break;
                         case "historial":
@@ -164,5 +188,9 @@ public class ControladorMenuTanque {
         }
 
         return diaSemana;
+    }
+
+    public void setIpTanque(String ipTanque) {
+        this.ipTanque = ipTanque;
     }
 }
