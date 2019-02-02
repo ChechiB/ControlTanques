@@ -205,13 +205,14 @@ public class ControladorVistaGeneralUI extends Application{
                                             controladorPlantillaTanqueUI = fxmlLoader.getController();
                                             controladorPlantillaTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
                                             FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/views/tanqueUI.fxml"));
-                                            root2 = (Parent) fxmlLoader2.load();
+                                             root2 = (Parent) fxmlLoader2.load();
 
                                             ControladorTanqueUI controladorTanqueUI = fxmlLoader2.getController();
                                             controladorTanqueUI.getLabel_nro_tanque().setText(mensajeRecibido.getIdTanque());
-                                            controladorTanqueUI.getLabel_estadoConexionTanque().setText("Conectado");
+                                            controladorTanqueUI.getLabel_estadoConexionTanque().setText("CONECTADO");
                                             controladorTanqueUI.setIpTanque(mensajeRecibido.getDireccionIP());
                                             controladorTanqueUI.setPuerto(mensajeRecibido.getPort());
+                                            controladorTanqueUI.inicializarMenu();
 
                                             controladorPlantillaTanqueUI.setParent(root2);
                                             controladorPlantillaTanqueUI.initScene();
@@ -253,6 +254,7 @@ public class ControladorVistaGeneralUI extends Application{
                                                     controladorTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(mensajeRecibido.getTemperaturaMaximaInicial());
                                                     controladorTanqueUIList.get(i).setRemontaje(mensajeRecibido.getRemontaje());
                                                     controladorTanqueUIList.get(i).setRemontajesTable(mensajeRecibido.getRemontaje());
+                                                    controladorTanqueUIList.get(i).inicializarLineChart();
                                                 }
                                                 ++j;
                                             }

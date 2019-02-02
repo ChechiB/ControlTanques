@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class ControllerEnviarDatos {
     }
 
     //Envio de inicio de Conexion
-    public void enviarDatos(int bitConexion,String ipTanqueCliente,  int port) throws UnknownHostException, FileNotFoundException{
+    public void enviarDatosEstadoConexion(int bitConexion,String ipTanqueCliente,  int port) throws IOException {
         expertoEnviarDatos= (ExpertEnviarDatos) FabricaExpertos.getinstancia().crearExperto("EnviarDatos");
         expertoEnviarDatos.enviarDatos(bitConexion, ipTanqueCliente, port);
 

@@ -62,7 +62,7 @@ public class ClienteImp extends Thread{
     public void setMensaje(String mensaje){
         this.mensaje =  mensaje;
     }
-    private void enviarMensaje() throws IOException {
+    public void enviarMensaje() throws IOException {
         byte [] enviarDatos = new byte[1024];
 
         enviarDatos = mensaje.getBytes();

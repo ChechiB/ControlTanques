@@ -2,17 +2,14 @@ package com.javafx.girsyt.controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -48,7 +45,64 @@ public class ControladorMenuTanque {
     private String ipTanque;
 
     private int puerto;
+    private int estadoConexion;
 
+
+    public Button getBtn_conectarMenu() {
+        return btn_conectarMenu;
+    }
+
+    public void setBtn_conectarMenu(Button btn_conectarMenu) {
+        this.btn_conectarMenu = btn_conectarMenu;
+    }
+
+    public Button getBtn_sincronizarMenu() {
+        return btn_sincronizarMenu;
+    }
+
+    public void setBtn_sincronizarMenu(Button btn_sincronizarMenu) {
+        this.btn_sincronizarMenu = btn_sincronizarMenu;
+    }
+
+    public Button getBtn_historialMenu() {
+        return btn_historialMenu;
+    }
+
+    public void setBtn_historialMenu(Button btn_historialMenu) {
+        this.btn_historialMenu = btn_historialMenu;
+    }
+
+    public Button getBtn_stopMenu() {
+        return btn_stopMenu;
+    }
+
+    public void setBtn_stopMenu(Button btn_stopMenu) {
+        this.btn_stopMenu = btn_stopMenu;
+    }
+
+    public VBox getvBox_menu() {
+        return vBox_menu;
+    }
+
+    public void setvBox_menu(VBox vBox_menu) {
+        this.vBox_menu = vBox_menu;
+    }
+
+    public VBox getvBox_menuButtons() {
+        return vBox_menuButtons;
+    }
+
+    public void setvBox_menuButtons(VBox vBox_menuButtons) {
+        this.vBox_menuButtons = vBox_menuButtons;
+    }
+
+    public ControllerEnviarDatos getControllerEnviarDatos() {
+        return controllerEnviarDatos;
+    }
+
+    public void setControllerEnviarDatos(ControllerEnviarDatos controllerEnviarDatos) {
+        this.controllerEnviarDatos = controllerEnviarDatos;
+    }
 
     public void setPuerto(int puerto) {
         this.puerto = puerto;
@@ -140,7 +194,6 @@ public class ControladorMenuTanque {
     }
 
     public void initialize(){
-
         setBehaviorButtons();
     }
 
@@ -192,5 +245,21 @@ public class ControladorMenuTanque {
 
     public void setIpTanque(String ipTanque) {
         this.ipTanque = ipTanque;
+    }
+
+
+    @FXML
+    void setConexion(ActionEvent event) throws IOException {
+        if(estadoConexion == 0){
+            controllerEnviarDatos = new ControllerEnviarDatos();
+            controllerEnviarDatos.enviarDatosEstadoConexion(estadoConexion,ipTanque,puerto);
+
+        }else{
+
+        }
+    }
+
+    public void setEstadoConexion(int estadoConexion) {
+        this.estadoConexion = estadoConexion;
     }
 }

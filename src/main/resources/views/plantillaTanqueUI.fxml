@@ -7,72 +7,80 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane style="-fx-background-radius: 15;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.girsyt.controller.ControladorPlantillaTanqueUI">
+<Pane prefHeight="343.0" prefWidth="280.0" style="-fx-background-radius: 15;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.girsyt.controller.ControladorPlantillaTanqueUI">
    <children>
-      <Pane prefHeight="292.0" prefWidth="280.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
+      <Pane prefHeight="343.0" prefWidth="280.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
          <children>
-            <ImageView fx:id="img_enfriado" fitHeight="58.0" fitWidth="58.0" layoutX="65.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img_enfriado" fitHeight="58.0" fitWidth="58.0" layoutX="65.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/IconoLedAmarilloApagado.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="img_remontaje" fitHeight="58.0" fitWidth="58.0" layoutX="164.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img_remontaje" fitHeight="58.0" fitWidth="58.0" layoutX="164.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/IconoLedRojoApagado.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="57.0" layoutY="54.0" text="ENFRIANDO">
+            <Label alignment="CENTER" layoutX="57.0" layoutY="106.0" text="ENFRIANDO">
                <font>
                   <Font name="Ebrima Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="154.0" layoutY="54.0" text="REMONTANDO" textAlignment="CENTER">
+            <Label layoutX="154.0" layoutY="106.0" text="REMONTANDO" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="165.0" text="ACTUAL" textAlignment="CENTER" textFill="#0ed34b">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="217.0" text="ACTUAL" textAlignment="CENTER" textFill="#0ed34b">
                <font>
                   <Font name="Carlito Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="label_temp_actual" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="189.0" prefHeight="47.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#0ed34b">
+            <Label fx:id="label_temp_actual" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="241.0" prefHeight="47.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#0ed34b">
                <font>
                   <Font name="Ebrima Bold" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="209.0" layoutY="165.0" text="MAX" textFill="#ec1b15">
+            <Label layoutX="209.0" layoutY="217.0" text="MAX" textFill="#ec1b15">
                <font>
                   <Font name="Carlito Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="label_temp_max" alignment="CENTER" contentDisplay="CENTER" layoutX="182.0" layoutY="189.0" prefHeight="47.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#ec1b15">
+            <Label fx:id="label_temp_max" alignment="CENTER" contentDisplay="CENTER" layoutX="182.0" layoutY="241.0" prefHeight="47.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#ec1b15">
                <font>
                   <Font name="Ebrima Bold" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="129.0" layoutY="165.0" text="MIN" textFill="#3575f5">
+            <Label layoutX="129.0" layoutY="217.0" text="MIN" textFill="#3575f5">
                <font>
                   <Font name="Carlito Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="label_temp_min" alignment="CENTER" layoutX="97.0" layoutY="189.0" prefHeight="47.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#3575f5">
+            <Label fx:id="label_temp_min" alignment="CENTER" layoutX="97.0" layoutY="241.0" prefHeight="47.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#3575f5">
                <font>
                   <Font name="Ebrima Bold" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="66.0" layoutY="9.0" text="TANQUE">
+            <Label layoutX="69.0" layoutY="10.0" text="TANQUE">
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="label_nro_tanque" layoutX="179.0" layoutY="9.0" prefHeight="17.0" prefWidth="58.0" text="ID">
+            <Label fx:id="label_nro_tanque" layoutX="182.0" layoutY="10.0" prefHeight="17.0" prefWidth="58.0" text="ID">
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btn_ver_tanque" layoutX="112.0" layoutY="253.0" mnemonicParsing="false" onAction="#mostrarTanque" prefHeight="25.0" prefWidth="46.0" text="Ver" />
+            <Button fx:id="btn_ver_tanque" layoutX="120.0" layoutY="304.0" mnemonicParsing="false" onAction="#mostrarTanque" prefHeight="25.0" prefWidth="46.0" text="Ver" />
+            <Pane layoutX="72.0" layoutY="50.0" prefHeight="40.0" prefWidth="141.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-background-color: #60b400;">
+               <children>
+                  <Label fx:id="lbl_estadoTanque" alignment="BASELINE_CENTER" layoutX="34.0" layoutY="12.0" text="CONECTADO" textFill="#fffdfd">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>

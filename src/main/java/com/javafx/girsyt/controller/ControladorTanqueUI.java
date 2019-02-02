@@ -1,20 +1,15 @@
 package com.javafx.girsyt.controller;
 
 import com.javafx.girsyt.dto.RemontajeDTO;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.fxml.FXML;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,11 +21,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.UnknownHostException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class ControladorTanqueUI {
 
@@ -45,6 +38,10 @@ public class ControladorTanqueUI {
     private Stage remontajes;
 
     private String periocidad;
+
+    @FXML
+    private Pane pane_estadoTanque;
+
     @FXML
     private LineChart<String, Number> chart_temp;
 
@@ -74,7 +71,6 @@ public class ControladorTanqueUI {
 
     @FXML
     private TableColumn<RemontajeTable, ImageView> col_estadoRemontaje;
-
 
     @FXML
     private Button btn_configurar_remontaje;
@@ -109,6 +105,8 @@ public class ControladorTanqueUI {
     @FXML
     private Label label_temp_min;
 
+    @FXML
+    private Label label_estadoConexionTanque;
 
     private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
 
@@ -116,12 +114,23 @@ public class ControladorTanqueUI {
 
     private ArrayList<RemontajeDTO> remontaje = new ArrayList<>();
 
-    private CategoryAxis xAxis = new CategoryAxis();
-    private NumberAxis yAxis = new NumberAxis();
-    private XYChart.Series<String, Number> datos= new XYChart.Series<>();
-
-    private ObservableList<XYChart.Series<String, Number>> datosDos = FXCollections.observableArrayList();
     private boolean tableEmpty = true;
+
+    @FXML
+    private Label lbl_estadoTanque;
+
+    private XYChart.Series<String, Number> actual= new XYChart.Series<>();
+    private XYChart.Series<String, Number> maxima= new XYChart.Series<>();
+    private XYChart.Series<String, Number> minima= new XYChart.Series<>();
+    private boolean estadoTanque = true;
+
+    public Pane getPane_estadoTanque() {
+        return pane_estadoTanque;
+    }
+
+    public void setPane_estadoTanque(Pane pane_estadoTanque) {
+        this.pane_estadoTanque = pane_estadoTanque;
+    }
 
     public void setPuerto(int puerto) {
         this.puerto = puerto;
@@ -195,9 +204,6 @@ public class ControladorTanqueUI {
     public void setLabel_estadoConexionTanque(Label label_estadoConexionTanque) {
         this.label_estadoConexionTanque = label_estadoConexionTanque;
     }
-
-    @FXML
-    private Label label_estadoConexionTanque;
 
     public ControllerEnviarDatos getControllerEnviarDatos() {
         return controllerEnviarDatos;
@@ -348,12 +354,6 @@ public class ControladorTanqueUI {
     }
 
     @FXML
-    void enviarRemontajes(ActionEvent event) throws FileNotFoundException, UnknownHostException {
-        controllerEnviarDatos = new ControllerEnviarDatos();
-        controllerEnviarDatos.enviarDatos(getRemontaje() , label_nro_tanque.getText() , periocidad, ipTanque, puerto );
-    }
-
-    @FXML
     void enviarTemperatura(ActionEvent event) {
         controllerEnviarDatos = new ControllerEnviarDatos();
 
@@ -382,7 +382,6 @@ public class ControladorTanqueUI {
         this.remontaje = remontaje;
         System.out.println("");
 
-
         //Manejo de la tabla de remontajes
         int i=0;
 
@@ -391,13 +390,13 @@ public class ControladorTanqueUI {
 
             if(remontaje.get(i).getHabilitacionRemontaje()){
                 imageViewEstadoRemontaje.setImage(new Image("images/Checkmark_64px.png"));
-                imageViewEstadoRemontaje.setFitHeight(10);
-                imageViewEstadoRemontaje.setFitWidth(10);
+                imageViewEstadoRemontaje.setFitHeight(20);
+                imageViewEstadoRemontaje.setFitWidth(20);
             }else{
 
                 imageViewEstadoRemontaje.setImage(new Image("images/Delete_64px.png"));
-                imageViewEstadoRemontaje.setFitHeight(10);
-                imageViewEstadoRemontaje.setFitWidth(10);
+                imageViewEstadoRemontaje.setFitHeight(20);
+                imageViewEstadoRemontaje.setFitWidth(20);
             }
             datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(),imageViewEstadoRemontaje));
             ++i;
@@ -407,7 +406,6 @@ public class ControladorTanqueUI {
         col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
         col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
         col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,ImageView>("estadoRemontaje"));
-
         table_remontajes.setItems(datosTablaRemontaje);
 
     }
@@ -418,22 +416,44 @@ public class ControladorTanqueUI {
         SpinnerValueFactory<Double>  value2 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 100,0.0, 0.1);
 
         getSpinner_temp_min().setValueFactory(value);
+        getSpinner_temp_min().getEditor().setAlignment(Pos.BASELINE_RIGHT);
         getSpinner_temp_max().setValueFactory(value2);
+        getSpinner_temp_max().getEditor().setAlignment(Pos.BASELINE_RIGHT);
+
 
     }
 
     public void updateTemperaturaLineChart(){
-        //Colocar en un array las temperaturas para poder graficar. Sino solo grafica un punto.
+        minima.getData().add(new XYChart.Data<String, Number>(getLabel_hora_dispositivo().textProperty().getValue(),Double.parseDouble(getLabel_temp_min().textProperty().getValue())));
+        maxima.getData().add(new XYChart.Data<String, Number>(getLabel_hora_dispositivo().textProperty().getValue(),Double.parseDouble(getLabel_temp_max().textProperty().getValue())));
 
-        datos.getData().add(new XYChart.Data<String, Number>(getLabel_hora_dispositivo().textProperty().getValue(),Double.parseDouble(getLabel_temp_actual().textProperty().getValue())));
-        chart_temp.getData().add(datos);
+        //Colocar en un array las temperaturas para poder graficar. Sino solo grafica un punto.
+        actual.getData().add(new XYChart.Data<String, Number>(getLabel_hora_dispositivo().textProperty().getValue(),Double.parseDouble(getLabel_temp_actual().textProperty().getValue())));
+        actual.setName("Temperatura");
+
     }
 
-    private void inicializarMenu() throws IOException {
-        VBox vboxMenu = FXMLLoader.load(getClass().getResource("/views/vboxMenu2.fxml"));
-        ControladorMenuTanque controladorMenuTanque= new ControladorMenuTanque();
+    public void inicializarMenu() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/vboxMenu2.fxml"));
+        VBox vboxMenu = fxmlLoader.load();
+        ControladorMenuTanque controladorMenuTanque = fxmlLoader.getController();
         controladorMenuTanque.setIpTanque(getIpTanque());
         controladorMenuTanque.setPuerto(getPuerto());
+
+        if(estadoTanque){
+            getLabel_estadoConexionTanque().setText("CONECTADO");
+            controladorMenuTanque.getBtn_conectarMenu().setText("Desconectado");
+            //Bit 1 indica que quiere recibir datos
+            //Bit 0 indica que desea dejar de recibir datos
+            controladorMenuTanque.setEstadoConexion(0);
+            //controladorMenuTanque.getBtn_conectarMenu().getGraphic()..clipProperty().setValue(new ImageView(new Image("images/Stop_48px.png")));
+
+        }else{
+            getLabel_estadoConexionTanque().setText("DESCONECTADO");
+            getPane_estadoTanque().setStyle("-fx-background-color: #d2302e");
+            controladorMenuTanque.getBtn_conectarMenu().setText("Conectar");
+            controladorMenuTanque.setEstadoConexion(1);
+        }
         hbox_pane_vbox.getChildren().add(vboxMenu);
     }
 
@@ -441,8 +461,27 @@ public class ControladorTanqueUI {
     @FXML
     public void initialize() throws IOException {
        inicializarSpinners();
-       inicializarMenu();
-        inicializarConfiguracionRemontajesUI();
+       inicializarConfiguracionRemontajesUI();
+    }
+
+    public void inicializarLineChart() {
+        /*xAxis = new NumberAxis("nombre",0.0,100.0,10.0);
+        final CategoryAxis yAxis = new CategoryAxis();
+        chart_temp = new LineChart(xAxis, yAxis);*/
+
+        minima = new XYChart.Series<>();
+        maxima = new XYChart.Series<>();
+        actual = new XYChart.Series<>();
+
+        minima.setName("Minima");
+        maxima.setName("Maxima");
+        actual.setName("Actual");
+
+        chart_temp.getData().add(actual);
+        chart_temp.getData().add(minima);
+        chart_temp.getData().add(maxima);
+
+
     }
 
     private void inicializarConfiguracionRemontajesUI() throws IOException {
@@ -454,7 +493,15 @@ public class ControladorTanqueUI {
         controladorRemontajesUI.setParent(root);
         remontajes = new Stage();
         remontajes.setScene(new Scene(root));
-
     }
+
+    public void setEstadoTanque(boolean estadoTanque){
+        this.estadoTanque = estadoTanque;
+    }
+
+    public boolean getEstadoTanque(){
+        return estadoTanque;
+    }
+
 
 }

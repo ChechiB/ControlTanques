@@ -17,31 +17,15 @@ public class ExpertEnviarDatos {
     AdaptadorUDP adaptadorConexionUDPC;
     String remontajes[];
 
-    public void enviarDatos(String ipTanqueCliente, int puerto) throws FileNotFoundException, UnknownHostException{
 
-        paqueteAEnviarDTO = new PaqueteAEnviarDTO();
-        paqueteAEnviarDTO.setBitIndicador(1);
-        paqueteAEnviarDTO.setIpDireccion(ipTanqueCliente);
-        adaptadorConexionUDPC =  (AdaptadorUDP) FactoriaAdaptadorConexion.getInstance().crearAdaptadorConexion("AdaptadorUDP");
-        adaptadorConexionUDPC.establecerConexionCliente(InetAddress.getByName(ipTanqueCliente), puerto);
-        adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
-
-        //Llamada al adaptador metodo enviar con ip y paquete
-    }
-
-
-    public void enviarDatos(int bitConexion,String ipTanqueCliente, int puerto) throws FileNotFoundException, UnknownHostException {
+    public void enviarDatos(int bitConexion,String ipTanqueCliente, int puerto) throws IOException {
         paqueteAEnviarDTO = new PaqueteAEnviarDTO();
         paqueteAEnviarDTO.setIpDireccion(ipTanqueCliente);
-
-        if (bitConexion == 0){
-            paqueteAEnviarDTO.setBitStop(bitConexion);
-        }else if (bitConexion==1){
-            paqueteAEnviarDTO.setBitConectar(bitConexion);
-        }
-
+        paqueteAEnviarDTO.setBitConectar(bitConexion); //1 transmitir, 0 stop
         adaptadorConexionUDPC =  (AdaptadorUDP) FactoriaAdaptadorConexion.getInstance().crearAdaptadorConexion("AdaptadorUDP");
-        adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
+        adaptadorConexionUDPC.establecerConexionCliente(InetAddress.getByName(ipTanqueCliente),puerto);
+        adaptadorConexionUDPC.armarMensaje(paqueteAEnviarDTO);
+        adaptadorConexionUDPC.enviarMensaje();
 
     }
 
@@ -54,7 +38,7 @@ public class ExpertEnviarDatos {
         paqueteAEnviarDTO.settMin(contenidoTMin);
 
         adaptadorConexionUDPC =  (AdaptadorUDP) FactoriaAdaptadorConexion.getInstance().crearAdaptadorConexion("AdaptadorUDP");
-        adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
+        //adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
 
     }
 
@@ -64,7 +48,7 @@ public class ExpertEnviarDatos {
         paqueteAEnviarDTO.setBitIndicador(3);
         paqueteAEnviarDTO.setHoraFecha(horaFecha.toString());
         adaptadorConexionUDPC =  (AdaptadorUDP) FactoriaAdaptadorConexion.getInstance().crearAdaptadorConexion("AdaptadorUDP");
-        adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
+        //adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
 
     }
 
@@ -77,7 +61,7 @@ public class ExpertEnviarDatos {
         paqueteAEnviarDTO.setRemontaje(remontajesConfigurados);
         paqueteAEnviarDTO.setPeriocidad(periocidad);
         adaptadorConexionUDPC =  (AdaptadorUDP) FactoriaAdaptadorConexion.getInstance().crearAdaptadorConexion("AdaptadorUDP");
-        adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
+       // adaptadorConexionUDPC.enviarMensaje(paqueteAEnviarDTO);
 
     }
 

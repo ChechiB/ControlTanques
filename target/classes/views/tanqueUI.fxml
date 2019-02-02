@@ -20,7 +20,7 @@
    <children>
       <Pane layoutX="28.0" layoutY="384.0" prefHeight="290.0" prefWidth="544.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
          <children>
-            <LineChart fx:id="chart_temp" layoutX="20.0" layoutY="13.0" prefHeight="259.0" prefWidth="499.0" title="Histograma diario">
+            <LineChart fx:id="chart_temp" layoutX="23.0" layoutY="16.0" prefHeight="259.0" prefWidth="499.0" stylesheets="@../css/chartStyle.css" title="Monitoreo diario">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -47,12 +47,20 @@
                   <Font name="Ebrima Bold" size="24.0" />
                </font></Label>
             <Label fx:id="label_menu" layoutX="906.0" layoutY="19.0" />
-            <Label fx:id="label_estadoConexionTanque" layoutX="783.0" layoutY="19.0" text="Desconectado" />
+            <Pane fx:id="pane_estadoTanque" layoutX="774.0" layoutY="7.0" prefHeight="40.0" prefWidth="183.0" style="-fx-background-radius: 15; -fx-background-color: #60b400;" stylesheets="@../css/paneStyle.css">
+               <children>
+                  <Label fx:id="label_estadoConexionTanque" alignment="BASELINE_CENTER" layoutX="55.0" layoutY="12.0" text="CONECTADO" textFill="#fffdfd">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane layoutX="597.0" layoutY="94.0" prefHeight="581.0" prefWidth="394.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
          <children>
-            <TableView fx:id="table_remontajes" layoutX="23.0" layoutY="118.0" prefHeight="200.0" prefWidth="344.0" style="-fx-background-radius: 10; -fx-border-color: rgb(144,168,74); -fx-border-radius: 5;">
+            <TableView fx:id="table_remontajes" layoutX="23.0" layoutY="118.0" prefHeight="200.0" prefWidth="344.0" style="-fx-background-radius: 10; -fx-border-color: rgb(144,168,74); -fx-border-radius: 5;" stylesheets="@../css/tableStyle.css">
               <columns>
                 <TableColumn fx:id="col_numeroRemontaje" prefWidth="97.0" text="N° Remontaje" />
                 <TableColumn fx:id="col_horaInicioRemontaje" prefWidth="79.0" text="Hora Inicio" />
@@ -72,14 +80,9 @@
                   <Font name="Carlito Bold" size="12.0" />
                </font>
             </Label>
-            <HBox layoutX="92.0" layoutY="323.0" prefHeight="65.0" prefWidth="243.0" spacing="20.0">
+            <HBox layoutX="141.0" layoutY="319.0" prefHeight="65.0" prefWidth="115.0" spacing="20.0">
                <children>
                   <Button fx:id="btn_configurar_remontaje" mnemonicParsing="false" onAction="#configurarRemontaje" text="Configurar">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="btn_enviar_remontaje" mnemonicParsing="false" onAction="#enviarRemontajes" prefHeight="25.0" prefWidth="80.0" text="Enviar">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>

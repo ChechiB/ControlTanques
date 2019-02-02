@@ -8,6 +8,7 @@ import com.javafx.girsyt.entidad.*;
 import com.javafx.girsyt.expert.ExpertEstablecerConexion;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
@@ -44,9 +45,16 @@ public class AdaptadorUDP  implements AdaptadorConexion {
     }
 
 
+    //Debe devolver algo para saber que se recibio el mensaje
     @Override
-    public void enviarMensaje(PaqueteAEnviarDTO paqueteAEnviarDTO){
-
+    public void enviarMensaje() throws IOException {
+        clienteImp.run();
+    }
+    public void armarMensaje(PaqueteAEnviarDTO paqueteAEnviarDTO){
+        if(paqueteAEnviarDTO.getBitConectar()==0){
+            mensaje = String.valueOf(paqueteAEnviarDTO.getBitConectar());
+            clienteImp.setMensaje(mensaje);
+        }
      /*   if (paqueteAEnviarDTO.getBitIndicador() == 2){
             mensaje = new String(paqueteAEnviarDTO.getBitIndicador()+"-"+ paqueteAEnviarDTO.gettMin()+"-"+ paqueteAEnviarDTO.gettMax());
             clienteImp.setMensaje(mensaje);
@@ -84,15 +92,6 @@ public class AdaptadorUDP  implements AdaptadorConexion {
 
         return consumidor.getMensaje();
     }
-
-    private String armarMensaje(String contenidoTMax, String contenidoTMin, int bitTemperatura) {
-        return mensaje = new String(bitTemperatura+"-"+ contenidoTMin+"-"+ contenidoTMax+"-");
-    }
-
-    private String armarMensajeD(String bitRemontaje, String str) {
-        return mensaje = new String(bitRemontaje+ "-" + str);
-    }
-
 
 
 }

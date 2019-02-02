@@ -3,18 +3,32 @@ package com.javafx.girsyt.controller;
 import com.javafx.girsyt.dto.RemontajeDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.LocalTimeStringConverter;
 
+import java.io.FileNotFoundException;
+import java.net.UnknownHostException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 public class ControladorRemontajesUI {
+
+    private String ipTanque;
+    private String idTanque;
+    private int puerto;
+
+    @FXML
+    private DatePicker datePicker_Inicio;
+
+    @FXML
+    private DatePicker datePicker_Fin;
 
     @FXML
     private CheckBox checkbtn_periocidad;
@@ -47,14 +61,27 @@ public class ControladorRemontajesUI {
     private TableColumn<RemontajeTable, String> col_estadoRemontaje;
 
     @FXML
-    private Button btn_aceptar;
+    private Button btn_sincronizar;
 
     @FXML
     private Button btn_cancelar;
 
+
     private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
     private Parent root;
+    private ControllerEnviarDatos controllerEnviarDatos;
+    private ArrayList<RemontajeDTO> remontajesList = new ArrayList<>();
+    private String periocidad;
 
+    /*Metodos getters and setters*/
+
+    public ArrayList<RemontajeDTO> getRemontajesList() {
+        return remontajesList;
+    }
+
+    public void setRemontajesList(ArrayList<RemontajeDTO> remontajesList) {
+        this.remontajesList = remontajesList;
+    }
 
     public TableView<RemontajeTable> getTable_remontajes() {
         return table_remontajes;
@@ -128,15 +155,6 @@ public class ControladorRemontajesUI {
         this.btn_eliminar = btn_eliminar;
     }
 
-
-    public Button getBtn_aceptar() {
-        return btn_aceptar;
-    }
-
-    public void setBtn_aceptar(Button btn_aceptar) {
-        this.btn_aceptar = btn_aceptar;
-    }
-
     public Button getBtn_cancelar() {
         return btn_cancelar;
     }
@@ -161,21 +179,30 @@ public class ControladorRemontajesUI {
         this.spinner_timePickerFin = spinner_timePickerFin;
     }
 
+    @FXML
+    void enviar(ActionEvent event) throws FileNotFoundException, UnknownHostException {
+        controllerEnviarDatos = new ControllerEnviarDatos();
+        controllerEnviarDatos.enviarDatos(getRemontajesList() , idTanque, periocidad, ipTanque, puerto );
+    }
+
     public void inicializarSpinners(){
         TimePickerSpinner timePickerSpinnerInicio = new TimePickerSpinner();
         SpinnerValueFactory<LocalTime> valorHoraInicio = timePickerSpinnerInicio.initSpinnerTime();
         getSpinner_timePickerInicio().setValueFactory(valorHoraInicio);
+        getSpinner_timePickerInicio().getEditor().setAlignment(Pos.BASELINE_RIGHT);
         TimePickerSpinner timePickerSpinnerFin = new TimePickerSpinner();
         SpinnerValueFactory<LocalTime> valorHoraFin = timePickerSpinnerFin.initSpinnerTime();
         getSpinner_timePickerFin().setValueFactory(valorHoraFin);
+        getSpinner_timePickerFin().getEditor().setAlignment(Pos.BASELINE_RIGHT);
     }
 
-    public void setRemontajesConfiguracion(ArrayList<RemontajeDTO> remontaje) {
+    public void setRemontajesConfiguracion(ArrayList<RemontajeDTO> remontajesList) {
+        this.remontajesList = remontajesList;
        //Manejo de la tabla de remontajes
         int i=0;
 
-        while(i <remontaje.size()) {
-            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(), String.valueOf(remontaje.get(i).getHabilitacionRemontaje())));
+        while(i <remontajesList.size()) {
+            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontajesList.get(i).getNumRemontaje()), remontajesList.get(i).getInicioRemontaje(), remontajesList.get(i).getFinRemontaje(), String.valueOf(remontajesList.get(i).getHabilitacionRemontaje())));
             ++i;
         }
 
@@ -183,10 +210,7 @@ public class ControladorRemontajesUI {
         col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
         col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
         col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("estadoRemontaje"));
-        System.out.println(col_numeroRemontaje);
-        System.out.println(col_horaInicioRemontaje);
-        System.out.println(col_horaFinRemontaje);
-        System.out.println(col_estadoRemontaje);
+        table_remontajes.getStyleClass().add("css/tableStyle.css");
         table_remontajes.setItems(datosTablaRemontaje);
 
     }
@@ -197,5 +221,12 @@ public class ControladorRemontajesUI {
 
     public void setParent(Parent root) {
         this.root = root;
+    }
+
+
+    @FXML
+    void agregarRemontaje(ActionEvent event) {
+        datosTablaRemontaje.add(new RemontajeTable("5", spinner_timePickerInicio.getValue().toString(), spinner_timePickerFin.getValue().toString(), true));
+
     }
 }
