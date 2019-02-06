@@ -3,24 +3,27 @@ package com.javafx.girsyt.controller;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 
 public class RemontajeTable {
 
-    private final SimpleStringProperty numeroRemontaje;
+    private final SimpleObjectProperty<Integer> numeroRemontaje;
     private final SimpleStringProperty inicioRemontaje;
     private final SimpleStringProperty finRemontaje;
     private final SimpleObjectProperty estadoRemontaje;
 
-    public String getNumeroRemontaje() {
+
+    public Integer getNumeroRemontaje() {
         return numeroRemontaje.get();
     }
 
-    public SimpleStringProperty numeroRemontajeProperty() {
+    public SimpleObjectProperty<Integer> numeroRemontajeProperty() {
         return numeroRemontaje;
     }
 
-    public void setNumeroRemontaje(String numeroRemontaje) {
+    public void setNumeroRemontaje(Integer numeroRemontaje) {
         this.numeroRemontaje.set(numeroRemontaje);
     }
 
@@ -52,15 +55,21 @@ public class RemontajeTable {
         return estadoRemontaje.get();
     }
 
+    public SimpleObjectProperty estadoRemontajeProperty() {
+        return estadoRemontaje;
+    }
+
     public void setEstadoRemontaje(Object estadoRemontaje) {
         this.estadoRemontaje.set(estadoRemontaje);
     }
 
-    public RemontajeTable(String numeroRemontaje, String inicioRemontaje, String finRemontaje, Object estadoRemontaje){
-        this.numeroRemontaje = new SimpleStringProperty(numeroRemontaje);
+
+    public RemontajeTable(Integer numeroRemontaje, String inicioRemontaje, String finRemontaje, Object estadoRemontaje){
+
+        this.numeroRemontaje = new SimpleObjectProperty<Integer>(numeroRemontaje);
         this.inicioRemontaje =  new SimpleStringProperty(inicioRemontaje);
         this.finRemontaje =  new SimpleStringProperty(finRemontaje);
-        this.estadoRemontaje = new SimpleObjectProperty(estadoRemontaje);
+        this.estadoRemontaje = new SimpleObjectProperty<>(estadoRemontaje);
     }
 
 

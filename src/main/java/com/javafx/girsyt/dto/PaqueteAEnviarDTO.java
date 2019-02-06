@@ -62,10 +62,11 @@ public class PaqueteAEnviarDTO {
         private int bitStop; //error O TERMINA LA CONEXION
         private int bitConectar;
         private int bitIndicador;
-        private String tMax;
-        private String tMin;
-        private  StringBuffer cadena = new StringBuffer();;
+        private Double tMax;
+        private Double tMin;
+        private StringBuffer cadena = new StringBuffer();;
         private String horaFecha;
+        private ArrayList<String> remontajes;
 
         public int getBitStop() {
             return bitStop;
@@ -91,19 +92,19 @@ public class PaqueteAEnviarDTO {
             this.horaFecha = horaFecha;
         }
 
-        public String gettMax() {
+        public Double gettMax() {
             return tMax;
         }
 
-        public void settMax(String tMax) {
+        public void settMax(Double tMax) {
             this.tMax = tMax;
         }
 
-        public String gettMin() {
+        public Double gettMin() {
             return tMin;
         }
 
-        public void settMin(String tMin) {
+        public void settMin(Double tMin) {
             this.tMin = tMin;
         }
 
@@ -131,38 +132,8 @@ public class PaqueteAEnviarDTO {
             return mensaje;
         }
 
-        public void setRemontaje(ArrayList<RemontajeDTO> remontajesConfigurados) {
-            //Items --> filas
-            int n = 0;
-
-            for (RemontajeDTO remontajeDTO: remontajesConfigurados) {
-
-
-            }
-            /*Extraccion del estado de los tanques para adicionarlos al String con todos los remontajes
-            for (int i = 0; i < jTableRConfigurados.getItems().size();i++ ){
-
-                if ("Habilitado".equals(jTableRConfigurados.getColumns().get(3).toString())){
-                    arrayRemontaje[n]="1";
-                }else if("Deshabilitado".equals(jTableRConfigurados.getColumns().get(3).toString())){
-                    arrayRemontaje[n]= "0";
-                }else if("".equals(jTableRConfigurados.getColumns().get(3).toString())){
-                    arrayRemontaje[n]= "";
-                }
-
-                for(int j = 1; j < jTableRConfigurados.getColumns().size()-1; j++){
-                    ++n;
-                    arrayRemontaje[n] = jTableRConfigurados.getItems().get(i).toString();
-                }
-
-                ++n;
-            }
-
-            for (String arrayRemontaje1 : arrayRemontaje) {
-                cadena = cadena.append(arrayRemontaje1);
-                cadena =cadena.append("-");
-            }*/
-
+        public void setRemontaje(ArrayList<String> remontajesConfigurados) {
+            remontajes = remontajesConfigurados;
         }
         public int getBitIndicador() {
             return bitIndicador;
@@ -172,9 +143,9 @@ public class PaqueteAEnviarDTO {
             this.bitIndicador = bitIndicador;
         }
 
-        public String getRemontajes() {
-            cadena.append(periocidad + "-");
-            return cadena.toString();
+        public ArrayList<String> getRemontajes() {
+
+            return remontajes;
         }
 
         public String getIpDireccion() {

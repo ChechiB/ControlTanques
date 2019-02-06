@@ -16,30 +16,30 @@ public class ControllerEnviarDatos {
     ExpertEnviarDatos expertoEnviarDatos;
 
     //Envio de hora de la pc
-    public void enviarDatos(StringBuffer horaFecha, String ipTanqueCliente, int port) throws UnknownHostException, FileNotFoundException {
+    public int enviarDatos(StringBuffer horaFecha, String ipTanqueCliente, int port) throws IOException {
         expertoEnviarDatos= (ExpertEnviarDatos) FabricaExpertos.getinstancia().crearExperto("EnviarDatos");
-        expertoEnviarDatos.enviarDatos(horaFecha, ipTanqueCliente, port);
+        return expertoEnviarDatos.enviarDatos(horaFecha, ipTanqueCliente, port);
 
     }
 
     //Envio de inicio de Conexion
-    public void enviarDatosEstadoConexion(int bitConexion,String ipTanqueCliente,  int port) throws IOException {
+    public int enviarDatos(int bitConexion,String ipTanqueCliente,  int port) throws IOException {
         expertoEnviarDatos= (ExpertEnviarDatos) FabricaExpertos.getinstancia().crearExperto("EnviarDatos");
-        expertoEnviarDatos.enviarDatos(bitConexion, ipTanqueCliente, port);
+        return expertoEnviarDatos.enviarDatos(bitConexion, ipTanqueCliente, port);
 
     }
 
     //Envio de temperaturas
-    public void enviarDatos(String jLabelNumeroTanque, String contenidoTMax,String contenidoTMin, String ipTanqueCliente,  int port) throws UnknownHostException, FileNotFoundException{
+    public int enviarDatos(Double contenidoTMax,Double contenidoTMin, String ipTanqueCliente,  int port) throws IOException {
         expertoEnviarDatos= (ExpertEnviarDatos) FabricaExpertos.getinstancia().crearExperto("EnviarDatos");
-        expertoEnviarDatos.enviarDatos(jLabelNumeroTanque, contenidoTMax,contenidoTMin, ipTanqueCliente, port);
+        return expertoEnviarDatos.enviarDatos(contenidoTMax,contenidoTMin, ipTanqueCliente, port);
 
     }
 
     //Envío de Remontajes
-    public void enviarDatos(ArrayList<RemontajeDTO> remontajesConfigurados, String jLabelNumeroTanque, String periocidad, String ipTanqueCliente, int port) throws UnknownHostException, FileNotFoundException{
+    public int enviarDatos(int port,ArrayList<String> remontajesConfigurados, String ipTanqueCliente) throws IOException {
         expertoEnviarDatos= (ExpertEnviarDatos) FabricaExpertos.getinstancia().crearExperto("EnviarDatos");
-        expertoEnviarDatos.enviarDatos(remontajesConfigurados,jLabelNumeroTanque, periocidad, ipTanqueCliente, port);
+        return  expertoEnviarDatos.enviarDatos(port,remontajesConfigurados,ipTanqueCliente);
 
     }
 }

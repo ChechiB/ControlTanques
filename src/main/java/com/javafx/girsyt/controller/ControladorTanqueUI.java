@@ -21,8 +21,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class ControladorTanqueUI {
@@ -38,6 +40,7 @@ public class ControladorTanqueUI {
     private Stage remontajes;
 
     private String periocidad;
+
 
     @FXML
     private Pane pane_estadoTanque;
@@ -61,7 +64,7 @@ public class ControladorTanqueUI {
     private TableView<RemontajeTable> table_remontajes;
 
     @FXML
-    private TableColumn<RemontajeTable, String> col_numeroRemontaje;
+    private TableColumn<RemontajeTable, Integer> col_numeroRemontaje;
 
     @FXML
     private TableColumn<RemontajeTable, String> col_horaInicioRemontaje;
@@ -124,6 +127,8 @@ public class ControladorTanqueUI {
     private XYChart.Series<String, Number> minima= new XYChart.Series<>();
     private boolean estadoTanque = true;
 
+
+
     public Pane getPane_estadoTanque() {
         return pane_estadoTanque;
     }
@@ -149,11 +154,11 @@ public class ControladorTanqueUI {
     }
 
 
-    public TableColumn<RemontajeTable, String> getCol_numeroRemontaje() {
+    public TableColumn<RemontajeTable, Integer> getCol_numeroRemontaje() {
         return col_numeroRemontaje;
     }
 
-    public void setCol_numeroRemontaje(TableColumn<RemontajeTable, String> col_numeroRemontaje) {
+    public void setCol_numeroRemontaje(TableColumn<RemontajeTable, Integer> col_numeroRemontaje) {
         this.col_numeroRemontaje = col_numeroRemontaje;
     }
 
@@ -347,6 +352,8 @@ public class ControladorTanqueUI {
         if(tableEmpty){
             controladorRemontajesUI.setRemontajesConfiguracion(getRemontaje());
             tableEmpty = false;
+            controladorRemontajesUI.setIpTanque(ipTanque);
+            controladorRemontajesUI.setPuerto(puerto);
         }
 
 
@@ -354,8 +361,9 @@ public class ControladorTanqueUI {
     }
 
     @FXML
-    void enviarTemperatura(ActionEvent event) {
+    public void enviarTemperatura(ActionEvent event) throws IOException {
         controllerEnviarDatos = new ControllerEnviarDatos();
+        controllerEnviarDatos.enviarDatos(getSpinner_temp_max().getValue(),getSpinner_temp_min().getValue(),getIpTanque(),getPuerto());
 
     }
 
@@ -398,14 +406,16 @@ public class ControladorTanqueUI {
                 imageViewEstadoRemontaje.setFitHeight(20);
                 imageViewEstadoRemontaje.setFitWidth(20);
             }
-            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontaje.get(i).getNumRemontaje()), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(),imageViewEstadoRemontaje));
+
+            datosTablaRemontaje.add(new RemontajeTable(remontaje.get(i).getNumRemontaje(), remontaje.get(i).getInicioRemontaje(), remontaje.get(i).getFinRemontaje(),imageViewEstadoRemontaje));
             ++i;
         }
 
-        col_numeroRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("numeroRemontaje"));
+        col_numeroRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,Integer>("numeroRemontaje"));
         col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
         col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
         col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,ImageView>("estadoRemontaje"));
+
         table_remontajes.setItems(datosTablaRemontaje);
 
     }
@@ -442,16 +452,15 @@ public class ControladorTanqueUI {
 
         if(estadoTanque){
             getLabel_estadoConexionTanque().setText("CONECTADO");
-            controladorMenuTanque.getBtn_conectarMenu().setText("Desconectado");
+            controladorMenuTanque.getBtn_conectarMenu().setText("Stop");
+            controladorMenuTanque.getImgView_conexion().setImage(new Image("images/Stop_48px.png"));
             //Bit 1 indica que quiere recibir datos
             //Bit 0 indica que desea dejar de recibir datos
             controladorMenuTanque.setEstadoConexion(0);
-            //controladorMenuTanque.getBtn_conectarMenu().getGraphic()..clipProperty().setValue(new ImageView(new Image("images/Stop_48px.png")));
 
         }else{
             getLabel_estadoConexionTanque().setText("DESCONECTADO");
             getPane_estadoTanque().setStyle("-fx-background-color: #d2302e");
-            controladorMenuTanque.getBtn_conectarMenu().setText("Conectar");
             controladorMenuTanque.setEstadoConexion(1);
         }
         hbox_pane_vbox.getChildren().add(vboxMenu);
@@ -491,6 +500,7 @@ public class ControladorTanqueUI {
         controladorRemontajesUI = new ControladorRemontajesUI();
         controladorRemontajesUI = fxml.getController();
         controladorRemontajesUI.setParent(root);
+
         remontajes = new Stage();
         remontajes.setScene(new Scene(root));
     }

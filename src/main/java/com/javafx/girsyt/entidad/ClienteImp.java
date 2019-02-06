@@ -16,24 +16,34 @@ import java.util.Date;
 public class ClienteImp extends Thread{
 
 
-    private InetAddress ipTanque;
+    private String ipTanque;
     private int port;
 
     private DatagramSocket socketCliente;
     private String mensaje;
+    private int estadoEnvioMensaje;
+    private int bitEstado;
 
     public ClienteImp(InetAddress ipTanque, int port){
-        this.ipTanque = ipTanque;
+        this.ipTanque =ipTanque.getHostAddress();
         this.port = port;
 
     }
 
-    public InetAddress getIpTanque() {
+    public int getEstadoEnvioMensaje() {
+        return estadoEnvioMensaje;
+    }
+
+    public void setEstadoEnvioMensaje(int estadoEnvioMensaje) {
+        this.estadoEnvioMensaje = estadoEnvioMensaje;
+    }
+
+    public String getIpTanque() {
         return ipTanque;
     }
 
     public void setIpTanque(InetAddress ipTanque) {
-        this.ipTanque = ipTanque;
+        this.ipTanque = ipTanque.getHostAddress();
     }
 
     public int getPort() {
@@ -66,9 +76,17 @@ public class ClienteImp extends Thread{
         byte [] enviarDatos = new byte[1024];
 
         enviarDatos = mensaje.getBytes();
-        DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length, ipTanque, port);
+        DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length,InetAddress.getByName(ipTanque), port);
         socketCliente.send(enviarPaquete);
+
+       /* byte [] recibirDatos = new byte[1024];
+        DatagramPacket recibirPaquete = new DatagramPacket(recibirDatos, recibirDatos.length);
+        socketCliente.receive(recibirPaquete);
+        estadoEnvioMensaje = Integer.parseInt(new String(recibirPaquete.getData()));*/
+
         socketCliente.close();
+        estadoEnvioMensaje = 0;
+
     }
 
     @Override

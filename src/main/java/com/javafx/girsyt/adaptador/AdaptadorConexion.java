@@ -8,7 +8,7 @@ import java.net.InetAddress;
 public interface AdaptadorConexion {
     String establecerConexion() throws IOException;
     void establecerConexionCliente(InetAddress ipCliente, int puerto);
-    void enviarMensaje() throws IOException;
+    int enviarMensaje() throws IOException;
     void recibirMensaje();
 
 }

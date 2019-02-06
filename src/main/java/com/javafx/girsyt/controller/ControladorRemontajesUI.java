@@ -4,19 +4,16 @@ import com.javafx.girsyt.dto.RemontajeDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.converter.LocalTimeStringConverter;
 
-import java.io.FileNotFoundException;
-import java.net.UnknownHostException;
+import java.io.IOException;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.ArrayList;
+import java.util.*;
 
 public class ControladorRemontajesUI {
 
@@ -46,32 +43,42 @@ public class ControladorRemontajesUI {
     private Spinner<LocalTime> spinner_timePickerFin;
 
     @FXML
-    private TableView<RemontajeTable> table_remontajes;
+    private TableView<RemontajeConfiguracionTable> table_remontajes;
 
     @FXML
-    private TableColumn<RemontajeTable, String> col_numeroRemontaje;
+    private TableColumn<RemontajeConfiguracionTable, Integer> col_numeroRemontaje;
 
     @FXML
-    private TableColumn<RemontajeTable, String> col_horaInicioRemontaje;
+    private TableColumn<RemontajeConfiguracionTable, String> col_horaInicioRemontaje;
 
     @FXML
-    private TableColumn<RemontajeTable, String> col_horaFinRemontaje;
+    private TableColumn<RemontajeConfiguracionTable, String> col_horaFinRemontaje;
 
     @FXML
-    private TableColumn<RemontajeTable, String> col_estadoRemontaje;
+    private TableColumn<RemontajeConfiguracionTable, ComboBox<String>> col_estadoRemontaje;
+
+    @FXML
+    private TableColumn<RemontajeConfiguracionTable, Button > col_eliminar;
+
+    @FXML
+    private TableColumn<RemontajeConfiguracionTable, CheckBox > col_periocidad;
 
     @FXML
     private Button btn_sincronizar;
 
     @FXML
     private Button btn_cancelar;
+    @FXML
+    private ComboBox<String> cmbBox_estadoRemontaje;
 
 
-    private ObservableList<RemontajeTable> datosTablaRemontaje = FXCollections.observableArrayList();
+    private ObservableList<RemontajeConfiguracionTable> datosTablaRemontaje = FXCollections.observableArrayList();
+    private ObservableList<String> listEstado=  FXCollections.observableArrayList("Habilitado","Deshabiilitado");
     private Parent root;
     private ControllerEnviarDatos controllerEnviarDatos;
     private ArrayList<RemontajeDTO> remontajesList = new ArrayList<>();
     private String periocidad;
+    ComboBox<String> comboBoxEstado;
 
     /*Metodos getters and setters*/
 
@@ -83,51 +90,51 @@ public class ControladorRemontajesUI {
         this.remontajesList = remontajesList;
     }
 
-    public TableView<RemontajeTable> getTable_remontajes() {
+    public TableView<RemontajeConfiguracionTable> getTable_remontajes() {
         return table_remontajes;
     }
 
-    public void setTable_remontajes(TableView<RemontajeTable> table_remontajes) {
+    public void setTable_remontajes(TableView<RemontajeConfiguracionTable> table_remontajes) {
         this.table_remontajes = table_remontajes;
     }
 
-    public TableColumn<RemontajeTable, String> getCol_numeroRemontaje() {
+    public TableColumn<RemontajeConfiguracionTable, Integer> getCol_numeroRemontaje() {
         return col_numeroRemontaje;
     }
 
-    public void setCol_numeroRemontaje(TableColumn<RemontajeTable, String> col_numeroRemontaje) {
+    public void setCol_numeroRemontaje(TableColumn<RemontajeConfiguracionTable, Integer> col_numeroRemontaje) {
         this.col_numeroRemontaje = col_numeroRemontaje;
     }
 
-    public TableColumn<RemontajeTable, String> getCol_horaInicioRemontaje() {
+    public TableColumn<RemontajeConfiguracionTable, String> getCol_horaInicioRemontaje() {
         return col_horaInicioRemontaje;
     }
 
-    public void setCol_horaInicioRemontaje(TableColumn<RemontajeTable, String> col_horaInicioRemontaje) {
+    public void setCol_horaInicioRemontaje(TableColumn<RemontajeConfiguracionTable, String> col_horaInicioRemontaje) {
         this.col_horaInicioRemontaje = col_horaInicioRemontaje;
     }
 
-    public TableColumn<RemontajeTable, String> getCol_horaFinRemontaje() {
+    public TableColumn<RemontajeConfiguracionTable, String> getCol_horaFinRemontaje() {
         return col_horaFinRemontaje;
     }
 
-    public void setCol_horaFinRemontaje(TableColumn<RemontajeTable, String> col_horaFinRemontaje) {
+    public void setCol_horaFinRemontaje(TableColumn<RemontajeConfiguracionTable, String> col_horaFinRemontaje) {
         this.col_horaFinRemontaje = col_horaFinRemontaje;
     }
 
-    public TableColumn<RemontajeTable, String> getCol_estadoRemontaje() {
+    public TableColumn<RemontajeConfiguracionTable, ComboBox<String>> getCol_estadoRemontaje() {
         return col_estadoRemontaje;
     }
 
-    public void setCol_estadoRemontaje(TableColumn<RemontajeTable, String> col_estadoRemontaje) {
+    public void setCol_estadoRemontaje(TableColumn<RemontajeConfiguracionTable, ComboBox<String>> col_estadoRemontaje) {
         this.col_estadoRemontaje = col_estadoRemontaje;
     }
 
-    public ObservableList<RemontajeTable> getDatosTablaRemontaje() {
+    public ObservableList<RemontajeConfiguracionTable> getDatosTablaRemontaje() {
         return datosTablaRemontaje;
     }
 
-    public void setDatosTablaRemontaje(ObservableList<RemontajeTable> datosTablaRemontaje) {
+    public void setDatosTablaRemontaje(ObservableList<RemontajeConfiguracionTable> datosTablaRemontaje) {
         this.datosTablaRemontaje = datosTablaRemontaje;
     }
 
@@ -180,9 +187,22 @@ public class ControladorRemontajesUI {
     }
 
     @FXML
-    void enviar(ActionEvent event) throws FileNotFoundException, UnknownHostException {
+    void enviar(ActionEvent event) throws IOException {
+
         controllerEnviarDatos = new ControllerEnviarDatos();
-        controllerEnviarDatos.enviarDatos(getRemontajesList() , idTanque, periocidad, ipTanque, puerto );
+        
+        controllerEnviarDatos.enviarDatos(puerto,getRemontajes(), ipTanque);
+    }
+
+    private String getPeriocidad(CheckBox periocidad) {
+        if(periocidad.isSelected()){
+            this.periocidad = "1";
+        }else{
+            this.periocidad ="0";
+        }
+
+        return this.periocidad;
+
     }
 
     public void inicializarSpinners(){
@@ -202,14 +222,31 @@ public class ControladorRemontajesUI {
         int i=0;
 
         while(i <remontajesList.size()) {
-            datosTablaRemontaje.add(new RemontajeTable(String.valueOf(remontajesList.get(i).getNumRemontaje()), remontajesList.get(i).getInicioRemontaje(), remontajesList.get(i).getFinRemontaje(), String.valueOf(remontajesList.get(i).getHabilitacionRemontaje())));
+            ComboBox<String> comboBoxEstado= new ComboBox<>();
+            Button btn_eliminar = new Button();
+            btn_eliminar.setText("Eliminar");
+            CheckBox checkBox_periocidad = new CheckBox();
+            checkBox_periocidad.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            ObservableList<String> listEstado = FXCollections.observableArrayList("Habilitado","Deshabiilitado");
+            comboBoxEstado.setItems(listEstado);
+            if(remontajesList.get(i).getHabilitacionRemontaje()){
+                comboBoxEstado.getSelectionModel().selectFirst();
+            }else{
+                comboBoxEstado.getSelectionModel().selectLast();
+            }
+            RemontajeConfiguracionTable remontajeTable = new RemontajeConfiguracionTable(remontajesList.get(i).getNumRemontaje(), remontajesList.get(i).getInicioRemontaje(), remontajesList.get(i).getFinRemontaje(), comboBoxEstado, checkBox_periocidad, btn_eliminar);
+            datosTablaRemontaje.add(remontajeTable);
+            eliminar(btn_eliminar,remontajeTable);
             ++i;
         }
 
-        col_numeroRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("numeroRemontaje"));
-        col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("inicioRemontaje"));
-        col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("finRemontaje"));
-        col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeTable,String>("estadoRemontaje"));
+        col_numeroRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeConfiguracionTable,Integer>("numeroRemontaje"));
+        col_horaInicioRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeConfiguracionTable,String>("inicioRemontaje"));
+        col_horaFinRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeConfiguracionTable,String>("finRemontaje"));
+        col_estadoRemontaje.setCellValueFactory(new PropertyValueFactory<RemontajeConfiguracionTable,ComboBox<String>>("estadoRemontaje"));
+        col_eliminar.setCellValueFactory(new PropertyValueFactory<RemontajeConfiguracionTable,Button>("eliminar"));
+        col_periocidad.setCellValueFactory(new PropertyValueFactory<RemontajeConfiguracionTable, CheckBox>("periocidad"));
+
         table_remontajes.getStyleClass().add("css/tableStyle.css");
         table_remontajes.setItems(datosTablaRemontaje);
 
@@ -226,7 +263,61 @@ public class ControladorRemontajesUI {
 
     @FXML
     void agregarRemontaje(ActionEvent event) {
-        datosTablaRemontaje.add(new RemontajeTable("5", spinner_timePickerInicio.getValue().toString(), spinner_timePickerFin.getValue().toString(), true));
+        if(datosTablaRemontaje.size()>=4){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Limite de Remontajes alcanzado");
+        }else if (datosTablaRemontaje.size()<4){
+            ComboBox comboBox= new ComboBox<>();
+            comboBox.setItems(listEstado);
+            comboBox.getSelectionModel().select(0);
+            CheckBox checkBox_periocidad = new CheckBox();
+            checkBox_periocidad.setVisible(true);
+            checkBox_periocidad.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            Button btn_eliminar = new Button();
+            btn_eliminar.setText("Eliminar");
+            RemontajeConfiguracionTable remontajeTable=new RemontajeConfiguracionTable((5-datosTablaRemontaje.size()), spinner_timePickerInicio.getValue().toString(), spinner_timePickerFin.getValue().toString(), comboBox, checkBox_periocidad, btn_eliminar);
+            datosTablaRemontaje.add(remontajeTable);
+            eliminar(btn_eliminar,remontajeTable);
+        }
+    }
 
+    private ArrayList<String> getRemontajes(){
+        ArrayList <String> arrayList_mensaje = new ArrayList<>();
+        String estado="";
+
+
+        for (RemontajeConfiguracionTable table: datosTablaRemontaje) {
+
+            if(table.getEstadoRemontaje().getSelectionModel().getSelectedItem().equals("Habilitado")){
+                estado = "1";
+            }else{
+                estado= "0";
+            }
+            arrayList_mensaje.add(estado);
+            arrayList_mensaje.add(table.getInicioRemontaje());
+            arrayList_mensaje.add(table.getFinRemontaje());
+            arrayList_mensaje.add(getPeriocidad(table.getPeriocidad()));
+        }
+
+        return arrayList_mensaje;
+    }
+
+    private void eliminar(Button btn_eliminar, RemontajeConfiguracionTable remontajeTable){
+         btn_eliminar.setOnAction(new EventHandler<ActionEvent>() {
+            int i;
+            @Override
+            public void handle(ActionEvent event) {
+                datosTablaRemontaje.remove(remontajeTable);
+            }
+        });
+
+    }
+
+    public void setIpTanque(String ipTanque) {
+        this.ipTanque = ipTanque;
+    }
+
+    public void setPuerto(int puerto) {
+        this.puerto = puerto;
     }
 }

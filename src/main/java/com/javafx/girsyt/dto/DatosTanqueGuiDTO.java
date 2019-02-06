@@ -6,14 +6,12 @@ public class DatosTanqueGuiDTO {
 
     private int port;
     private int codigoOperacion;
-    private String temperaturaMaximaInicial;
-    private String temperaturaMinimaInicial;
+    private Double temperaturaMaximaInicial;
+    private Double temperaturaMinimaInicial;
     private String estadoRemontaje;
     private String estadoEnfriamiento;
     private String temperaturaActual;
     private String horaDispositivo;
-    private String tipoPaquete;
-    private int bandera;
     private String periocidad;
     private ArrayList<RemontajeDTO> arrayRemontaje = new ArrayList<>();
 
@@ -53,14 +51,6 @@ public class DatosTanqueGuiDTO {
         this.periocidad = periocidad;
     }
 
-    public String getTipoPaquete() {
-        return tipoPaquete;
-    }
-
-    public void setTipoPaquete(String tipoPaquete) {
-        this.tipoPaquete = tipoPaquete;
-    }
-
     public String getEstadoRemontaje() {
         return estadoRemontaje;
     }
@@ -93,19 +83,19 @@ public class DatosTanqueGuiDTO {
         this.horaDispositivo = horaDispositivo;
     }
 
-    public String getTemperaturaMaximaInicial() {
+    public Double getTemperaturaMaximaInicial() {
         return temperaturaMaximaInicial;
     }
 
-    public void setTemperaturaMaximaInicial(String temperaturaMaximaInicial) {
+    public void setTemperaturaMaximaInicial(Double temperaturaMaximaInicial) {
         this.temperaturaMaximaInicial = temperaturaMaximaInicial;
     }
 
-    public String getTemperaturaMinimaInicial() {
+    public Double getTemperaturaMinimaInicial() {
         return temperaturaMinimaInicial;
     }
 
-    public void setTemperaturaMinimaInicial(String temperaturaMinimaInicial) {
+    public void setTemperaturaMinimaInicial(Double temperaturaMinimaInicial) {
         this.temperaturaMinimaInicial = temperaturaMinimaInicial;
     }
     private String direccionIP; // Con la direccion IP se puede obtener el numero de tanque al que corresponde
@@ -129,14 +119,6 @@ public class DatosTanqueGuiDTO {
       this.arrayRemontaje =remontajes;
 
     }
-
-    public void setBandera(int i) {
-    }
-
-    public int getbandera(){
-        return bandera;
-    }
-
 
 }
 

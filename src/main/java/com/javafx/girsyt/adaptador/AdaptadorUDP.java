@@ -4,6 +4,7 @@ package com.javafx.girsyt.adaptador;
 import com.javafx.girsyt.controller.ControladorVistaGeneralUI;
 import com.javafx.girsyt.dto.PaqueteAEnviarDTO;
 import com.javafx.girsyt.dto.PaqueteRecibidoDTO;
+import com.javafx.girsyt.dto.RemontajeDTO;
 import com.javafx.girsyt.entidad.*;
 import com.javafx.girsyt.expert.ExpertEstablecerConexion;
 
@@ -47,29 +48,31 @@ public class AdaptadorUDP  implements AdaptadorConexion {
 
     //Debe devolver algo para saber que se recibio el mensaje
     @Override
-    public void enviarMensaje() throws IOException {
+    public int enviarMensaje() throws IOException {
         clienteImp.run();
+        return  clienteImp.getEstadoEnvioMensaje();
     }
+
     public void armarMensaje(PaqueteAEnviarDTO paqueteAEnviarDTO){
-        if(paqueteAEnviarDTO.getBitConectar()==0){
-            mensaje = String.valueOf(paqueteAEnviarDTO.getBitConectar());
-            clienteImp.setMensaje(mensaje);
-        }
-     /*   if (paqueteAEnviarDTO.getBitIndicador() == 2){
+        StringBuffer mensajeRemontaje = new StringBuffer();
+
+         if (paqueteAEnviarDTO.getBitIndicador() == 2){
             mensaje = new String(paqueteAEnviarDTO.getBitIndicador()+"-"+ paqueteAEnviarDTO.gettMin()+"-"+ paqueteAEnviarDTO.gettMax());
             clienteImp.setMensaje(mensaje);
-            System.out.println("Mensaje bitIndicador = 2: " +mensaje);
-        }else if (paqueteAEnviarDTO.getBitIndicador() == 3){
-            mensaje = new String(paqueteAEnviarDTO.getBitIndicador()+"-"+ paqueteAEnviarDTO.getHoraFecha());
-        }else if (paqueteAEnviarDTO.getBitIndicador() == 4){
-            mensaje = new String(paqueteAEnviarDTO.getBitIndicador(),remontajes);
-        }else if (paqueteAEnviarDTO.getBitStop() == 0){
-            mensaje = String.valueOf(paqueteAEnviarDTO.getBitStop());
-            bitStop = 1;
-        }else if (paqueteAEnviarDTO.getBitConectar() == 1){
-            mensaje = String.valueOf(paqueteAEnviarDTO.getBitConectar());
-            bitConectar = 0;
-        } */
+         }else if (paqueteAEnviarDTO.getBitIndicador() == 3) {
+             mensaje = new String(paqueteAEnviarDTO.getBitIndicador() + "-" + paqueteAEnviarDTO.getHoraFecha());
+             clienteImp.setMensaje(mensaje);
+         }else if(paqueteAEnviarDTO.getBitIndicador()==4){
+
+             for (String remontaje: paqueteAEnviarDTO.getRemontajes()) {
+                 mensajeRemontaje.append(remontaje+"-");
+             }
+             mensaje = String.valueOf(paqueteAEnviarDTO.getBitIndicador()) + "-" + mensajeRemontaje.toString();
+             clienteImp.setMensaje(mensaje);
+         }else{
+             mensaje = String.valueOf(paqueteAEnviarDTO.getBitConectar());
+             clienteImp.setMensaje(mensaje);
+         }
 
     }
 

@@ -99,16 +99,6 @@ public class ControladorVistaGeneralUI extends Application{
 
     }
 
-
-    @FXML
-    void mostrarTanque(ActionEvent event) {
-
-    }
-
-    @FXML
-
-
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println("En start");
@@ -150,31 +140,6 @@ public class ControladorVistaGeneralUI extends Application{
 
             };
 
-        }
-    }
-
-
-    private class ConsumidorHilo extends Task<DatosTanqueGuiDTO>{
-
-
-        @Override
-        protected DatosTanqueGuiDTO call() throws Exception {
-                while (estadoConexion){
-                    //obtener primero el consumidor
-                    //despues obtener el Dto
-                    //Separacion de funciones como en Servidor
-                    //Mirar video https://www.youtube.com/watch?v=y43Ra15sd7k&t=2662s
-                    controllerEstablecerConexion.actualizarGUI();
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-
-                        }
-                    });
-
-                }
-
-            return null;
         }
     }
 
@@ -245,13 +210,13 @@ public class ControladorVistaGeneralUI extends Application{
 
                                         //Comparar instancias de controlador para actualizar el tanque correcto
                                         if(controladorPlantillaTanqueUIList.get(i).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())) {
-                                           controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(mensajeRecibido.getTemperaturaMinimaInicial());
-                                           controladorPlantillaTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(mensajeRecibido.getTemperaturaMaximaInicial());
+                                           controladorPlantillaTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(String.valueOf(mensajeRecibido.getTemperaturaMinimaInicial()));
+                                           controladorPlantillaTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(String.valueOf(mensajeRecibido.getTemperaturaMaximaInicial()));
 
                                             while (j<controladorTanqueUIList.size()) {
                                                 if (controladorTanqueUIList.get(j).getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque())) {
-                                                    controladorTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(mensajeRecibido.getTemperaturaMinimaInicial());
-                                                    controladorTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(mensajeRecibido.getTemperaturaMaximaInicial());
+                                                    controladorTanqueUIList.get(i).getLabel_temp_min().textProperty().setValue(String.valueOf(mensajeRecibido.getTemperaturaMinimaInicial()));
+                                                    controladorTanqueUIList.get(i).getLabel_temp_max().textProperty().setValue(String.valueOf(mensajeRecibido.getTemperaturaMaximaInicial()));
                                                     controladorTanqueUIList.get(i).setRemontaje(mensajeRecibido.getRemontaje());
                                                     controladorTanqueUIList.get(i).setRemontajesTable(mensajeRecibido.getRemontaje());
                                                     controladorTanqueUIList.get(i).inicializarLineChart();

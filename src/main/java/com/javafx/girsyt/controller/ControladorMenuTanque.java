@@ -1,6 +1,7 @@
 package com.javafx.girsyt.controller;
 
-import javafx.event.ActionEvent;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -32,13 +35,13 @@ public class ControladorMenuTanque {
     private Button btn_historialMenu;
 
     @FXML
-    private Button btn_stopMenu;
-
-    @FXML
     private VBox vBox_menu;
 
     @FXML
     private VBox vBox_menuButtons;
+
+    @FXML
+    private ImageView imgView_conexion;
 
     private ControllerEnviarDatos controllerEnviarDatos;
 
@@ -70,14 +73,6 @@ public class ControladorMenuTanque {
 
     public void setBtn_historialMenu(Button btn_historialMenu) {
         this.btn_historialMenu = btn_historialMenu;
-    }
-
-    public Button getBtn_stopMenu() {
-        return btn_stopMenu;
-    }
-
-    public void setBtn_stopMenu(Button btn_stopMenu) {
-        this.btn_stopMenu = btn_stopMenu;
     }
 
     public VBox getvBox_menu() {
@@ -112,6 +107,14 @@ public class ControladorMenuTanque {
         return puerto;
     }
 
+    public ImageView getImgView_conexion() {
+        return imgView_conexion;
+    }
+
+    public void setImgView_conexion(ImageView imgView_conexion) {
+        this.imgView_conexion = imgView_conexion;
+    }
+
     public String getIpTanque() {
         return ipTanque;
     }
@@ -121,7 +124,7 @@ public class ControladorMenuTanque {
         this.setColorButtonHover(btn_conectarMenu);
         this.setColorButtonHover(btn_historialMenu);
         this.setColorButtonHover(btn_sincronizarMenu);
-        this.setColorButtonHover(btn_stopMenu);
+
 
         for (Node node: vBox_menuButtons.getChildren()) {
             System.out.println("En for nodes");
@@ -130,6 +133,9 @@ public class ControladorMenuTanque {
                 node.addEventHandler(MouseEvent.MOUSE_CLICKED, (event) ->{
                     switch (node.getAccessibleText()){
                         case "conectar":
+                            ControlBotones controlBotones = new ControlBotones();
+                            controlBotones.start();
+                            imgView_conexion.setImage(new Image("images/DataTransfer_50px.png"));
                             break;
                         case "sincronizar":
                             StringBuffer horaFecha = new StringBuffer();
@@ -144,6 +150,8 @@ public class ControladorMenuTanque {
                             } catch (UnknownHostException e) {
                                 e.printStackTrace();
                             } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
 
@@ -162,8 +170,6 @@ public class ControladorMenuTanque {
                                 e.printStackTrace();
                             }
 
-                            break;
-                        case "stop":
                             break;
                     }
                         }
@@ -200,7 +206,6 @@ public class ControladorMenuTanque {
     private String getHoraActual() {
         Date ahora = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
-
         return formateador.format(ahora);
     }
 
@@ -248,18 +253,39 @@ public class ControladorMenuTanque {
     }
 
 
-    @FXML
-    void setConexion(ActionEvent event) throws IOException {
-        if(estadoConexion == 0){
-            controllerEnviarDatos = new ControllerEnviarDatos();
-            controllerEnviarDatos.enviarDatosEstadoConexion(estadoConexion,ipTanque,puerto);
-
-        }else{
-
-        }
-    }
-
     public void setEstadoConexion(int estadoConexion) {
         this.estadoConexion = estadoConexion;
+    }
+
+    private class ControlBotones extends Service<Integer> {
+        int i;
+
+        @Override
+        protected Task<Integer> createTask() {
+            return new Task<Integer>(){
+
+                @Override
+                protected Integer call() throws Exception {
+                    controllerEnviarDatos = new ControllerEnviarDatos();
+
+                    Task<Integer> enviar = new Task<Integer>(){
+                        @Override
+                        protected Integer call() throws IOException {
+                             i =controllerEnviarDatos.enviarDatos(estadoConexion,ipTanque,puerto);
+                             if(i ==0){
+
+                             }
+                            return i;
+                        }
+                    };
+
+                    Thread t2 = new Thread(enviar);
+                    t2.setDaemon(true); // thread will not prevent application shutdown
+                    t2.start();
+
+                    return i;
+                }
+            };
+        }
     }
 }

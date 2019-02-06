@@ -1,5 +1,6 @@
 package com.javafx.girsyt.entidad;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,7 +16,7 @@ public class TanqueImp {
     private int bandera;
     private String periocidad;
     private ArrayList<RemontajeImp> arrayRemontaje = new ArrayList<>();
-    private TemperaturaImp temperaturaImp = new TemperaturaImp();
+    private ArrayList<TemperaturaActual> arrayList_temperaturaActual = new ArrayList<>();
     private int idTanque;
     private double tempMinima;
     private double tempMaxima;
@@ -33,8 +34,8 @@ public class TanqueImp {
         return tempMinima;
     }
 
-    public void setTempMinima(double getTempMinima) {
-        this.tempMinima = getTempMinima;
+    public void setTempMinima(double tempMinima) {
+        this.tempMinima = tempMinima;
     }
 
     public ArrayList<RemontajeImp> getArrayRemontaje() {
@@ -44,8 +45,6 @@ public class TanqueImp {
     public void setArrayRemontaje(ArrayList<RemontajeImp> arrayRemontaje) {
         this.arrayRemontaje = arrayRemontaje;
     }
-
-
 
     public int getPuerto() {
         return puerto;
@@ -77,8 +76,12 @@ public class TanqueImp {
         return temperaturaActual;
     }
 
-    public void setTemperaturaActual(String temperaturaActual) {
-        this.temperaturaActual = temperaturaActual;
+    public void setTemperaturaActual(Double temperatura) {
+        TemperaturaActual temperaturaActual= new TemperaturaActual();
+        temperaturaActual.setFechaTemperaturaActual(getFechaActual());
+        temperaturaActual.setHoraTemperaturaActual(getHoraActual());
+
+        arrayList_temperaturaActual.add(temperaturaActual);
     }
 
     public String getHoraDispositivo() {
@@ -113,13 +116,6 @@ public class TanqueImp {
         this.periocidad = periocidad;
     }
 
-    public TemperaturaImp getTemperaturaImp() {
-        return temperaturaImp;
-    }
-
-    public void setTemperaturaImp(TemperaturaImp temperaturaImp) {
-        this.temperaturaImp = temperaturaImp;
-    }
 
     public int getIdTanque() {
         return idTanque;
@@ -144,4 +140,17 @@ public class TanqueImp {
     public void setEstadoRemontaje(String estadoRemontaje) {
         this.estadoRemontaje = estadoRemontaje;
     }
+
+    private String getHoraActual() {
+        Date ahora = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
+        return formateador.format(ahora);
+    }
+
+    private String getFechaActual() {
+        Date ahora = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        return dateFormat.format(ahora);
+    }
+
 }

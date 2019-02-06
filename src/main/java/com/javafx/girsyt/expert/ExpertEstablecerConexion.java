@@ -8,7 +8,10 @@ import com.javafx.girsyt.dto.RemontajeDTO;
 import com.javafx.girsyt.entidad.TanqueImp;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ExpertEstablecerConexion {
     private AdaptadorUDP adaptadorUDP;
@@ -96,11 +99,8 @@ public class ExpertEstablecerConexion {
 
                     //Es necesario crear un DTO nuevo?
 
-
                         datosTanqueGuiDTO.setCodigoOperacion(1);
                         //Datos estaticos. Se recibe una vez
-                        datosTanqueGuiDTO.setTipoPaquete("estatico");
-                        datosTanqueGuiDTO.setBandera(0);
 
                         ArrayList<RemontajeDTO> remontajeDTOArrayList = new ArrayList<>();
 
@@ -136,11 +136,11 @@ public class ExpertEstablecerConexion {
                                     break;
                                 case 15:      //Temperatura Máxima
                                     tanqueImp.setTempMaxima(Double.parseDouble(parts[i]));
-                                    datosTanqueGuiDTO.setTemperaturaMaximaInicial(parts[i]);
+                                    datosTanqueGuiDTO.setTemperaturaMaximaInicial(Double.parseDouble(parts[i]));
                                     break;
                                 case 16:   //Temperatura Mínima
                                     tanqueImp.setTempMinima(Double.parseDouble(parts[i]));
-                                    datosTanqueGuiDTO.setTemperaturaMinimaInicial(parts[i]);
+                                    datosTanqueGuiDTO.setTemperaturaMinimaInicial(Double.parseDouble(parts[i]));
                                     break;
                             }
                         }
@@ -168,12 +168,7 @@ public class ExpertEstablecerConexion {
                                d: hora del equipo 5
                      */
                 datosTanqueGuiDTO.setCodigoOperacion(2);
-                datosTanqueGuiDTO.setBandera(1);
-                tanqueImp.setTipoPaquete("dinamico");
-
                 for (i = 1; i < parts.length; ++i){
-
-
                     switch (i){
                         case 1:
                             datosTanqueGuiDTO.setEstadoRemontaje(parts[i]);
@@ -185,7 +180,7 @@ public class ExpertEstablecerConexion {
                             break;
                         case 3:
                             datosTanqueGuiDTO.setTemperaturaActual(parts[i]);
-                            tanqueImp.setTemperaturaActual(parts[i]);
+                            tanqueImp.setTemperaturaActual(Double.parseDouble(parts[i]));
                             break;
                         case 4:
                             datosTanqueGuiDTO.setHoraDispositivo(parts[i]);
@@ -253,4 +248,9 @@ public class ExpertEstablecerConexion {
     }
 
 
+    private String getFechaActual() {
+        Date ahora = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        return dateFormat.format(ahora);
+    }
 }
