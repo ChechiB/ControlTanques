@@ -49,6 +49,8 @@ public class ControladorMenuTanque {
 
     private int puerto;
     private int estadoConexion;
+    private boolean estadoTanqueConexion = true;
+    private ControladorTanqueUI controladorTanqueUI;
 
 
     public Button getBtn_conectarMenu() {
@@ -133,9 +135,13 @@ public class ControladorMenuTanque {
                 node.addEventHandler(MouseEvent.MOUSE_CLICKED, (event) ->{
                     switch (node.getAccessibleText()){
                         case "conectar":
+
                             ControlBotones controlBotones = new ControlBotones();
                             controlBotones.start();
-                            imgView_conexion.setImage(new Image("images/DataTransfer_50px.png"));
+
+                            actualizarBotonConexion(estadoTanqueConexion, btn_conectarMenu, imgView_conexion);
+
+                            //imgView_conexion.setImage(new Image("images/DataTransfer_50px.png"));
                             break;
                         case "sincronizar":
                             StringBuffer horaFecha = new StringBuffer();
@@ -257,6 +263,14 @@ public class ControladorMenuTanque {
         this.estadoConexion = estadoConexion;
     }
 
+    public void setEstadoConexionTanque(boolean estadoTanqueConexion) {
+        this.estadoTanqueConexion = estadoTanqueConexion;
+    }
+
+    public void setControladorTanqueUI(ControladorTanqueUI controladorTanqueUI) {
+        this.controladorTanqueUI = controladorTanqueUI;
+    }
+
     private class ControlBotones extends Service<Integer> {
         int i;
 
@@ -272,10 +286,7 @@ public class ControladorMenuTanque {
                         @Override
                         protected Integer call() throws IOException {
                              i =controllerEnviarDatos.enviarDatos(estadoConexion,ipTanque,puerto);
-                             if(i ==0){
-
-                             }
-                            return i;
+                          return i;
                         }
                     };
 
@@ -287,5 +298,24 @@ public class ControladorMenuTanque {
                 }
             };
         }
+    }
+
+    public void actualizarBotonConexion(boolean estadoTanque, Button btn_conectarMenu, ImageView imgView_conexion){
+       if(estadoTanque){
+           btn_conectarMenu.setText("Stop");
+           imgView_conexion.setImage(new Image("images/Stop_48px.png"));
+           controladorTanqueUI.getLabel_estadoConexionTanque().setText("CONECTADO");
+           controladorTanqueUI.getPane_estadoTanque().setStyle("-fx-background-color: #60b400");
+           setEstadoConexion(0);
+       }else{
+           btn_conectarMenu.setText("Conectar");
+           imgView_conexion.setImage(new Image("images/DataTransfer_50px.png"));
+           controladorTanqueUI.getLabel_estadoConexionTanque().setText("DESCONECTADO");
+           controladorTanqueUI.getPane_estadoTanque().setStyle("-fx-background-color: #d2302e");
+           setEstadoConexion(1);
+
+       }
+       estadoTanqueConexion = !estadoTanque;
+       controladorTanqueUI.actualizarBotonConexion(estadoTanque);
     }
 }

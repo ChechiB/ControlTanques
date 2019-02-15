@@ -151,8 +151,6 @@ public class ControladorVistaGeneralUI extends Application{
             return new Task<DatosTanqueGuiDTO>() {
                 @Override
                 protected DatosTanqueGuiDTO call() throws Exception {
-                    System.out.println(" ");
-                    System.out.println("En hilo consumidor");
                     mensajeRecibido = controllerEstablecerConexion.actualizarGUI();
                     System.out.println("Codigo operacion: " + mensajeRecibido.getCodigoOperacion());
                     Platform.runLater(new Runnable() {
@@ -177,6 +175,8 @@ public class ControladorVistaGeneralUI extends Application{
                                             controladorTanqueUI.getLabel_estadoConexionTanque().setText("CONECTADO");
                                             controladorTanqueUI.setIpTanque(mensajeRecibido.getDireccionIP());
                                             controladorTanqueUI.setPuerto(mensajeRecibido.getPort());
+                                            controladorTanqueUI.setControladorPlantilla(controladorPlantillaTanqueUI);
+
                                             controladorTanqueUI.inicializarMenu();
 
                                             controladorPlantillaTanqueUI.setParent(root2);
@@ -186,15 +186,13 @@ public class ControladorVistaGeneralUI extends Application{
                                             controladorTanqueUIList.add(controladorTanqueUI);
                                             tanquesList.add(Arrays.asList(controladorPlantillaTanqueUI,controladorPlantillaTanqueUI));
                                             System.out.println("Tamaño " + controladorPlantillaTanqueUIList.size());
-                                            /*if (posColumna < 2){
-                                                gridPane_plantilla.add(root,posColumna,posFila);
-                                            }else{
-                                                gridPane_plantilla.addColumn(posColumna,root);
-                                            }*/
+
                                             paneMasonry.getChildren().add(root);
                                             System.out.println("Pos columna " + posColumna);
                                             ++posColumna;
 
+                                            ControllerEnviarDatos controllerEnviarDatos = new ControllerEnviarDatos();
+                                            controllerEnviarDatos.enviarDatos(1, controladorTanqueUI.getIpTanque(),controladorTanqueUI.getPuerto());
 
                                             //Cuando ya haya cuatro tanques colocar nueva fila
                                         } catch (IOException e) {
@@ -273,8 +271,6 @@ public class ControladorVistaGeneralUI extends Application{
 
             };
         }
-
-
     }
 
     private boolean verificarUnicidad(DatosTanqueGuiDTO mensajeRecibido, List<ControladorPlantillaTanqueUI> controladorPlantillaTanqueUIList) {

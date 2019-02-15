@@ -72,7 +72,7 @@
                </font>
             </Label>
             <Button fx:id="btn_ver_tanque" layoutX="120.0" layoutY="304.0" mnemonicParsing="false" onAction="#mostrarTanque" prefHeight="25.0" prefWidth="46.0" text="Ver" />
-            <Pane layoutX="72.0" layoutY="50.0" prefHeight="40.0" prefWidth="141.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-background-color: #60b400;">
+            <Pane fx:id="pane_estadoTanque" layoutX="72.0" layoutY="50.0" prefHeight="40.0" prefWidth="141.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-background-color: #60b400;">
                <children>
                   <Label fx:id="lbl_estadoTanque" alignment="BASELINE_CENTER" layoutX="34.0" layoutY="12.0" text="CONECTADO" textFill="#fffdfd">
                      <font>

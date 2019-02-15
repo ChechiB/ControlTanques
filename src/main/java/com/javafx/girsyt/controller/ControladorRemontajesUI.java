@@ -1,6 +1,7 @@
 package com.javafx.girsyt.controller;
 
 import com.javafx.girsyt.dto.RemontajeDTO;
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +33,12 @@ public class ControladorRemontajesUI {
 
     @FXML
     private Button btn_agregar;
+
+    @FXML
+    private JFXTimePicker horaInicio;
+
+    @FXML
+    private JFXTimePicker horaFin;
 
     @FXML
     private Button btn_eliminar;
@@ -79,6 +86,7 @@ public class ControladorRemontajesUI {
     private ArrayList<RemontajeDTO> remontajesList = new ArrayList<>();
     private String periocidad;
     ComboBox<String> comboBoxEstado;
+    private ControladorTanqueUI controladorTanqueUI;
 
     /*Metodos getters and setters*/
 
@@ -186,13 +194,43 @@ public class ControladorRemontajesUI {
         this.spinner_timePickerFin = spinner_timePickerFin;
     }
 
+    public JFXTimePicker getHoraInicio() {
+        return horaInicio;
+    }
+
+    public JFXTimePicker getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(JFXTimePicker horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public void setHoraInicio(JFXTimePicker horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
     @FXML
     void enviar(ActionEvent event) throws IOException {
+        int opcion = showAlertMessage();
 
-        controllerEnviarDatos = new ControllerEnviarDatos();
-        
-        controllerEnviarDatos.enviarDatos(puerto,getRemontajes(), ipTanque);
+        switch (opcion){
+            case 0:
+                break;
+            case 1:
+                controllerEnviarDatos = new ControllerEnviarDatos();
+                controllerEnviarDatos.enviarDatos(puerto,getRemontajes(), ipTanque);
+
+                controladorTanqueUI.actualizarTabla(datosTablaRemontaje);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+
     }
+
 
     private String getPeriocidad(CheckBox periocidad) {
         if(periocidad.isSelected()){
@@ -205,7 +243,8 @@ public class ControladorRemontajesUI {
 
     }
 
-    public void inicializarSpinners(){
+    //Se cambiaron los spinner genericos por los TimerPicker de Foenix 9
+    /*public void inicializarSpinners(){
         TimePickerSpinner timePickerSpinnerInicio = new TimePickerSpinner();
         SpinnerValueFactory<LocalTime> valorHoraInicio = timePickerSpinnerInicio.initSpinnerTime();
         getSpinner_timePickerInicio().setValueFactory(valorHoraInicio);
@@ -214,9 +253,10 @@ public class ControladorRemontajesUI {
         SpinnerValueFactory<LocalTime> valorHoraFin = timePickerSpinnerFin.initSpinnerTime();
         getSpinner_timePickerFin().setValueFactory(valorHoraFin);
         getSpinner_timePickerFin().getEditor().setAlignment(Pos.BASELINE_RIGHT);
-    }
+    }*/
 
     public void setRemontajesConfiguracion(ArrayList<RemontajeDTO> remontajesList) {
+
         this.remontajesList = remontajesList;
        //Manejo de la tabla de remontajes
         int i=0;
@@ -253,7 +293,7 @@ public class ControladorRemontajesUI {
     }
 
     public void initialize(){
-        inicializarSpinners();
+        //inicializarSpinners();
     }
 
     public void setParent(Parent root) {
@@ -263,6 +303,7 @@ public class ControladorRemontajesUI {
 
     @FXML
     void agregarRemontaje(ActionEvent event) {
+       System.out.println(horaInicio.getValue().toString());
         if(datosTablaRemontaje.size()>=4){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Limite de Remontajes alcanzado");
@@ -275,7 +316,7 @@ public class ControladorRemontajesUI {
             checkBox_periocidad.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             Button btn_eliminar = new Button();
             btn_eliminar.setText("Eliminar");
-            RemontajeConfiguracionTable remontajeTable=new RemontajeConfiguracionTable((5-datosTablaRemontaje.size()), spinner_timePickerInicio.getValue().toString(), spinner_timePickerFin.getValue().toString(), comboBox, checkBox_periocidad, btn_eliminar);
+            RemontajeConfiguracionTable remontajeTable=new RemontajeConfiguracionTable((5-datosTablaRemontaje.size()), horaInicio.getValue().toString(), horaFin.getValue().toString(), comboBox, checkBox_periocidad, btn_eliminar);
             datosTablaRemontaje.add(remontajeTable);
             eliminar(btn_eliminar,remontajeTable);
         }
@@ -320,4 +361,33 @@ public class ControladorRemontajesUI {
     public void setPuerto(int puerto) {
         this.puerto = puerto;
     }
+
+    public void setControladorTanqueUI(ControladorTanqueUI controladorTanqueUI) {
+        this.controladorTanqueUI = controladorTanqueUI;
+    }
+
+    private int showAlertMessage() {
+        int opcion=0;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Envio de remontajes");
+
+        // Header Text: null
+        alert.setHeaderText(null);
+        alert.setContentText("¿Está seguro de que desea enviar los remontajes configurados?");
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get() == null) {
+            opcion = 0;
+        } else if (option.get() == ButtonType.OK) {
+            opcion = 1;
+        } else if (option.get() == ButtonType.CANCEL) {
+            opcion = 2;
+        } else {
+            opcion=3;
+        }
+
+        return opcion;
+    }
+
 }

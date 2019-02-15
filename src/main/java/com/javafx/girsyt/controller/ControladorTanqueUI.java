@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ControladorTanqueUI {
 
@@ -40,7 +41,6 @@ public class ControladorTanqueUI {
     private Stage remontajes;
 
     private String periocidad;
-
 
     @FXML
     private Pane pane_estadoTanque;
@@ -119,13 +119,11 @@ public class ControladorTanqueUI {
 
     private boolean tableEmpty = true;
 
-    @FXML
-    private Label lbl_estadoTanque;
-
     private XYChart.Series<String, Number> actual= new XYChart.Series<>();
     private XYChart.Series<String, Number> maxima= new XYChart.Series<>();
     private XYChart.Series<String, Number> minima= new XYChart.Series<>();
     private boolean estadoTanque = true;
+    private ControladorPlantillaTanqueUI controladorPlantillaTanqueUI;
 
 
 
@@ -354,6 +352,7 @@ public class ControladorTanqueUI {
             tableEmpty = false;
             controladorRemontajesUI.setIpTanque(ipTanque);
             controladorRemontajesUI.setPuerto(puerto);
+            controladorRemontajesUI.setControladorTanqueUI(this);
         }
 
 
@@ -362,10 +361,26 @@ public class ControladorTanqueUI {
 
     @FXML
     public void enviarTemperatura(ActionEvent event) throws IOException {
-        controllerEnviarDatos = new ControllerEnviarDatos();
-        controllerEnviarDatos.enviarDatos(getSpinner_temp_max().getValue(),getSpinner_temp_min().getValue(),getIpTanque(),getPuerto());
 
+        if(getSpinner_temp_min().getValue()<getSpinner_temp_max().getValue()){
+            controllerEnviarDatos = new ControllerEnviarDatos();
+            controllerEnviarDatos.enviarDatos(getSpinner_temp_max().getValue(),getSpinner_temp_min().getValue(),getIpTanque(),getPuerto());
+        }else if(getSpinner_temp_min().getValue()>getSpinner_temp_max().getValue()){
+            showAlertMessage();
+        }
     }
+
+    private void showAlertMessage() {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Envio de temperaturas");
+        // Header Text: null
+        alert.setHeaderText(null);
+        alert.setContentText("La temperatura mínima debe ser menor a la temperatura máxima");
+
+        alert.showAndWait();
+    }
+
 
     public void setEstadoEnfriamiento(String estadoEnfriamiento){
         if (estadoEnfriamiento.equals("0")){
@@ -449,11 +464,12 @@ public class ControladorTanqueUI {
         ControladorMenuTanque controladorMenuTanque = fxmlLoader.getController();
         controladorMenuTanque.setIpTanque(getIpTanque());
         controladorMenuTanque.setPuerto(getPuerto());
+        controladorMenuTanque.setEstadoConexionTanque(estadoTanque);
+        controladorMenuTanque.setControladorTanqueUI(this);
 
         if(estadoTanque){
             getLabel_estadoConexionTanque().setText("CONECTADO");
-            controladorMenuTanque.getBtn_conectarMenu().setText("Stop");
-            controladorMenuTanque.getImgView_conexion().setImage(new Image("images/Stop_48px.png"));
+            controladorMenuTanque.actualizarBotonConexion(estadoTanque, controladorMenuTanque.getBtn_conectarMenu(),controladorMenuTanque.getImgView_conexion());
             //Bit 1 indica que quiere recibir datos
             //Bit 0 indica que desea dejar de recibir datos
             controladorMenuTanque.setEstadoConexion(0);
@@ -461,9 +477,11 @@ public class ControladorTanqueUI {
         }else{
             getLabel_estadoConexionTanque().setText("DESCONECTADO");
             getPane_estadoTanque().setStyle("-fx-background-color: #d2302e");
+            controladorMenuTanque.actualizarBotonConexion(estadoTanque, controladorMenuTanque.getBtn_conectarMenu(),controladorMenuTanque.getImgView_conexion());
             controladorMenuTanque.setEstadoConexion(1);
         }
         hbox_pane_vbox.getChildren().add(vboxMenu);
+
     }
 
 
@@ -493,6 +511,10 @@ public class ControladorTanqueUI {
 
     }
 
+    public void actualizarLabelConexion(){
+
+    }
+
     private void inicializarConfiguracionRemontajesUI() throws IOException {
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("/views/remontajeUI.fxml"));
         Parent root = (Parent) fxml.load();
@@ -514,4 +536,44 @@ public class ControladorTanqueUI {
     }
 
 
+    public void setControladorPlantilla(ControladorPlantillaTanqueUI controladorPlantillaTanqueUI) {
+        this.controladorPlantillaTanqueUI = controladorPlantillaTanqueUI;
+    }
+
+    public void actualizarBotonConexion(boolean estadoTanque){
+        if(estadoTanque){
+            controladorPlantillaTanqueUI.getLbl_estadoTanque().setText("CONECTADO");
+            controladorPlantillaTanqueUI.getPane_estadoTanque().setStyle("-fx-background-color: #60b400");
+        }else{
+            controladorPlantillaTanqueUI.getLbl_estadoTanque().setText("DESCONECTADO");
+            controladorPlantillaTanqueUI.getPane_estadoTanque().setStyle("-fx-background-color: #d2302e");
+
+        }
+        estadoTanque = !estadoTanque;
+    }
+
+    public void actualizarTabla(ObservableList<RemontajeConfiguracionTable> datosTablaRemontajeConfiguracion){
+        int i = 0;
+         getDatosTablaRemontaje().removeAll(datosTablaRemontaje);
+        for (RemontajeConfiguracionTable table: datosTablaRemontajeConfiguracion) {
+          //Se podria poner un spinner que diga elementos actualizandose
+            ImageView imageViewEstadoRemontaje = new ImageView();
+
+            if(table.getEstadoRemontaje().getSelectionModel().getSelectedItem().compareTo("Habilitado")==0){
+                imageViewEstadoRemontaje.setImage(new Image("images/Checkmark_64px.png"));
+                imageViewEstadoRemontaje.setFitHeight(20);
+                imageViewEstadoRemontaje.setFitWidth(20);
+            }else{
+
+                imageViewEstadoRemontaje.setImage(new Image("images/Delete_64px.png"));
+                imageViewEstadoRemontaje.setFitHeight(20);
+                imageViewEstadoRemontaje.setFitWidth(20);
+            }
+
+
+                RemontajeTable remontajeTable = new RemontajeTable(table.getNumeroRemontaje(),table.getInicioRemontaje(), table.getFinRemontaje(),imageViewEstadoRemontaje);
+                datosTablaRemontaje.add(remontajeTable);
+
+        }
+    }
 }

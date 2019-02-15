@@ -16,7 +16,7 @@ public class ExpertEnviarDatos {
     AdaptadorUDP adaptadorConexionUDPC;
     String remontajes[];
 
-
+    //Envio de inicio o fin de conexion
     public int enviarDatos(int bitConexion,String ipTanqueCliente, int puerto) throws IOException {
         paqueteAEnviarDTO = new PaqueteAEnviarDTO();
         paqueteAEnviarDTO.setIpDireccion(ipTanqueCliente);
@@ -28,6 +28,7 @@ public class ExpertEnviarDatos {
 
     }
 
+    //Envio de temperatura
     public int enviarDatos(Double contenidoTMax,Double contenidoTMin,String ipTanqueCliente, int puerto) throws IOException {
         paqueteAEnviarDTO = new PaqueteAEnviarDTO();
         paqueteAEnviarDTO.setIpDireccion(ipTanqueCliente);
@@ -42,6 +43,7 @@ public class ExpertEnviarDatos {
 
     }
 
+    //Envio de hora para sincronizacion
     public int enviarDatos(StringBuffer horaFecha, String ipTanqueCliente, int puerto) throws IOException {
         paqueteAEnviarDTO = new PaqueteAEnviarDTO();
         paqueteAEnviarDTO.setIpDireccion(ipTanqueCliente);
@@ -54,6 +56,7 @@ public class ExpertEnviarDatos {
 
     }
 
+    //Envio de remontajes configurados
     public int enviarDatos(int puerto,ArrayList<String> remontajesConfigurados,String ipTanqueCliente) throws IOException {
 
         paqueteAEnviarDTO = new PaqueteAEnviarDTO();

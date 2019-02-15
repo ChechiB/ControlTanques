@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,11 +43,35 @@ public class ControladorPlantillaTanqueUI implements Initializable {
     @FXML
     private Label label_nro_tanque;
 
+
+    @FXML
+    private Label lbl_estadoTanque;
+
+    @FXML
+    private Pane pane_estadoTanque;
+
     private ControladorTanqueUI controladorTanqueUI;
     private Parent root2;
     private Stage stage;
 
     //Metodos
+
+
+    public Label getLbl_estadoTanque() {
+        return lbl_estadoTanque;
+    }
+
+    public void setLbl_estadoTanque(Label lbl_estadoTanque) {
+        this.lbl_estadoTanque = lbl_estadoTanque;
+    }
+
+    public Pane getPane_estadoTanque() {
+        return pane_estadoTanque;
+    }
+
+    public void setPane_estadoTanque(Pane pane_estadoTanque) {
+        this.pane_estadoTanque = pane_estadoTanque;
+    }
 
     public ImageView getImg_enfriado() {
         return img_enfriado;
