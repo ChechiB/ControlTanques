@@ -198,6 +198,9 @@ public class ControladorVistaGeneralUI extends Application{
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
+                                    }else{
+                                        System.out.println("Falso. tanque ya existe");
+                                        break;
                                     }
                                     break;
 
@@ -275,6 +278,7 @@ public class ControladorVistaGeneralUI extends Application{
 
     private boolean verificarUnicidad(DatosTanqueGuiDTO mensajeRecibido, List<ControladorPlantillaTanqueUI> controladorPlantillaTanqueUIList) {
         boolean unicidad = false;// ya esta en la lista
+        int i = 0;
         Iterator<ControladorPlantillaTanqueUI> iteratorLista;
         //Si la lista esta vacía devolver true
 
@@ -283,12 +287,16 @@ public class ControladorVistaGeneralUI extends Application{
         }else if(!(controladorPlantillaTanqueUIList == null)){
             System.out.println("Size lista: " +controladorPlantillaTanqueUIList.size());
             iteratorLista = controladorPlantillaTanqueUIList.iterator();
+            System.out.println("Tamaño lista controlador:" +controladorPlantillaTanqueUIList.size());
 
-           while(iteratorLista.hasNext()){
-               if (!(iteratorLista.next().getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque()))){
+           while(i <controladorPlantillaTanqueUIList.size()){
+               if (mensajeRecibido.getIdTanque() == null){
+                   System.out.println("Nulo");
+                   unicidad = false;
+               }else if (!(iteratorLista.next().getLabel_nro_tanque().getText().equals(mensajeRecibido.getIdTanque()))){
                    unicidad = true;
                }
-
+                ++i;
            }
         }
         return unicidad;

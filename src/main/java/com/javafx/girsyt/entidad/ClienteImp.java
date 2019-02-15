@@ -76,7 +76,7 @@ public class ClienteImp extends Thread{
         byte [] enviarDatos = new byte[1024];
 
         enviarDatos = mensaje.getBytes();
-        DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length,InetAddress.getByName(ipTanque), 5000);
+        DatagramPacket enviarPaquete = new DatagramPacket(enviarDatos, enviarDatos.length,InetAddress.getByName(ipTanque), port);
         socketCliente.send(enviarPaquete);
 
        /* byte [] recibirDatos = new byte[1024];

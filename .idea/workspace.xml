@@ -1,46 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ControlDeTanques" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="733b127f-dcff-4e4c-82b9-0742acb1ddec" name="Default Changelist" comment="Agregados los Alert Messages">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/unnamed.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/unnamed2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="733b127f-dcff-4e4c-82b9-0742acb1ddec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ControlDeTanques.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControlDeTanques.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ControlDeTanques.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorMenuTanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorMenuTanque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorPlantillaTanqueUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorPlantillaTanqueUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorRemontajesUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorRemontajesUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEnviarDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEnviarDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/panelGeneralUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/panelGeneralUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/plantillaTanqueUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/plantillaTanqueUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/remontajeUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/remontajeUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$ControlBotones$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$ControlBotones$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$ControlBotones$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$ControlBotones$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$ControlBotones.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque$ControlBotones.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorMenuTanque.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorPlantillaTanqueUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorPlantillaTanqueUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEstablecerConexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEstablecerConexion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorRemontajesUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorRemontajesUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorRemontajesUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorRemontajesUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorTanqueUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorTanqueUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI$ConsumidorHilo$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI$ConsumidorHilo.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI$HiloConsumidor$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI$HiloConsumidor$1$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI$HiloConsumidor$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI$HiloConsumidor$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/controller/ControladorVistaGeneralUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/entidad/ClienteImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/entidad/ClienteImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/expert/ExpertEnviarDatos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/expert/ExpertEnviarDatos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/panelGeneralUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/panelGeneralUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/plantillaTanqueUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/plantillaTanqueUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/expert/ExpertEstablecerConexion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javafx/girsyt/expert/ExpertEstablecerConexion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/views/remontajeUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/remontajeUI.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -74,37 +52,40 @@
     <session id="1232063003">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="class" value="3" />
           <entry key="fxml" value="2" />
-          <entry key="java" value="19" />
+          <entry key="java" value="89" />
           <entry key="xml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="19" />
+          <entry key="CLASS" value="3" />
+          <entry key="JAVA" value="89" />
           <entry key="XML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="8" />
-          <entry key="java" value="2416" />
+          <entry key="java" value="2665" />
           <entry key="txt" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2416" />
+          <entry key="JAVA" value="2665" />
           <entry key="PLAIN_TEXT" value="51" />
           <entry key="XML" value="8" />
         </counts>
@@ -113,50 +94,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="347" column="55" selection-start-line="347" selection-start-column="55" selection-end-line="347" selection-end-column="55" />
+            <state relative-caret-position="123">
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
               <folding>
-                <element signature="e#4778#4779#0" expanded="true" />
-                <element signature="e#4820#4821#0" expanded="true" />
+                <element signature="e#788#789#0" expanded="true" />
+                <element signature="e#829#830#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="101" column="42" lean-forward="true" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorRemontajesUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="231" column="5" lean-forward="true" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
+            <state relative-caret-position="-115">
+              <caret line="146" column="46" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="46" />
               <folding>
-                <element signature="e#5786#5787#0" expanded="true" />
-                <element signature="e#5819#5820#0" expanded="true" />
-                <element signature="e#5910#5911#0" expanded="true" />
-                <element signature="e#5940#5941#0" expanded="true" />
-                <element signature="e#5993#5994#0" expanded="true" />
-                <element signature="e#6031#6032#0" expanded="true" />
-                <element signature="e#5878#5879#0" expanded="true" />
-                <element signature="e#5922#5923#0" expanded="true" />
-                <element signature="e#9948#9949#0" expanded="true" />
-                <element signature="e#9980#9981#0" expanded="true" />
-                <element signature="e#12056#12057#0" expanded="true" />
-                <element signature="e#12130#12131#0" expanded="true" />
-                <element signature="e#12197#12198#0" expanded="true" />
-                <element signature="e#12237#12238#0" expanded="true" />
-                <element signature="e#12278#12279#0" expanded="true" />
-                <element signature="e#12314#12315#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,40 +122,76 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEnviarDatos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            <state relative-caret-position="310">
+              <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/views/plantillaTanqueUI.fxml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEstablecerConexion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+            <state relative-caret-position="347">
+              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/views/remontajeUI.fxml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/adaptador/FactoriaAdaptadorConexion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="27" column="109" selection-start-line="27" selection-start-column="109" selection-end-line="27" selection-end-column="109" />
+            <state relative-caret-position="408">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/adaptador/AdaptadorUDP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="36" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/dto/PaqueteAEnviarDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="170" selection-start-line="170" selection-end-line="170" />
+            <state relative-caret-position="140">
+              <caret line="157" selection-start-line="157" selection-end-line="157" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="106">
+              <caret line="142" selection-start-line="142" selection-end-line="142" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3390#3391#0" expanded="true" />
+                <element signature="e#5838#5839#0" expanded="true" />
+                <element signature="e#5869#5870#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControllerEnviarDatos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/decorator/DecoratorEnviarDatos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -221,12 +214,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEnviarDatos.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorPlantillaTanqueUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorMenuTanque.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java" />
         <option value="$PROJECT_DIR$/src/main/resources/views/remontajeUI.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorRemontajesUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEstablecerConexion.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java" />
       </list>
     </option>
   </component>
@@ -247,8 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,36 +290,38 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="girsyt" type="462c0819:PsiDirectoryNode" />
-              <item name="entidad" type="462c0819:PsiDirectoryNode" />
+              <item name="decorator" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="controldetanques" type="b2602c69:ProjectViewProjectNode" />
               <item name="controldetanques" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="girsyt" type="462c0819:PsiDirectoryNode" />
+              <item name="expert" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="controldetanques" type="b2602c69:ProjectViewProjectNode" />
               <item name="controldetanques" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550204993862" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550248279546" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
@@ -378,18 +372,26 @@
       <workItem from="1550020293928" duration="6945000" />
       <workItem from="1550068884907" duration="3007000" />
       <workItem from="1550172263770" duration="3827000" />
-      <workItem from="1550189085486" duration="8140000" />
+      <workItem from="1550189085486" duration="9560000" />
+      <workItem from="1550229750133" duration="10695000" />
     </task>
+    <task id="LOCAL-00001" summary="Agregados los Alert Messages">
+      <created>1550205144179</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1550205144179</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28423000" />
+    <option name="totallyTimeSpent" value="40538000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.21860817" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15618336" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -399,13 +401,13 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.3286334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50075644" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Java Enterprise" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
@@ -432,66 +434,79 @@
     <MESSAGE value="Agregados los Alert Messages" />
     <option name="LAST_COMMIT_MESSAGE" value="Agregados los Alert Messages" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java</url>
+          <line>161</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java</url>
+          <line>284</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java</url>
+          <line>159</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControllerEnviarDatos.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java</url>
+          <line>78</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControllerEnviarDatos.java</url>
+          <line>25</line>
+          <properties class="com.javafx.girsyt.controller.ControllerEnviarDatos" method="enviarDatos">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/cssdialects.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/DataProcess.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/views/remontajeUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="459">
+          <caret line="27" column="109" selection-start-line="27" selection-start-column="109" selection-end-line="27" selection-end-column="109" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/main/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ServidorImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="-10">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControllerEnviarDatos.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorRemontajesUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="3772" selection-start-line="3772" selection-end-line="3772" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/Monitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="-884">
+          <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorPlantillaTanqueUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
+        <state relative-caret-position="154">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
           <folding>
+            <element signature="e#1209#1210#0" expanded="true" />
             <element signature="e#1248#1249#0" expanded="true" />
             <element signature="e#1311#1312#0" expanded="true" />
             <element signature="e#1367#1368#0" expanded="true" />
@@ -499,122 +514,424 @@
             <element signature="e#1449#1450#0" expanded="true" />
             <element signature="e#1513#1514#0" expanded="true" />
             <element signature="e#1571#1572#0" expanded="true" />
+            <element signature="e#2608#2609#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/beans/property/ObjectPropertyBase.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/beans/property/StringPropertyBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1110">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="130">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/RemontajeConfiguracionTable.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/beans/binding/StringExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="95" column="89" selection-start-line="95" selection-start-column="74" selection-end-line="95" selection-end-column="89" />
+        <state relative-caret-position="113">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
-            <element signature="e#984#985#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1142#1143#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ServidorImp.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/Labeled.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="113">
+          <caret line="145" column="35" selection-start-line="145" selection-start-column="35" selection-end-line="145" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ServidorHiloImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/ClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="356" selection-start-line="356" selection-end-line="356" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/misc/Launcher.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="179" selection-start-line="179" selection-end-line="179" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="1335" selection-start-line="1335" selection-end-line="1335" />
+          <folding>
+            <element signature="e#52271#52272#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="1653" selection-start-line="1653" selection-end-line="1653" />
+          <folding>
+            <element signature="e#62860#62861#0" expanded="true" />
+            <element signature="e#62916#62917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/TanqueImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1418#1419#0" expanded="true" />
+            <element signature="e#1514#1515#0" expanded="true" />
+            <element signature="e#1568#1569#0" expanded="true" />
+            <element signature="e#1614#1615#0" expanded="true" />
+            <element signature="e#3066#3067#0" expanded="true" />
+            <element signature="e#3106#3107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="363" selection-start-line="363" selection-end-line="363" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/concurrent/atomic/AtomicInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="185" selection-start-line="185" selection-end-line="185" />
+          <folding>
+            <element signature="e#4793#4794#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="540" selection-start-line="540" selection-end-line="540" />
+          <folding>
+            <element signature="e#22703#22704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/concurrent/CountDownLatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="301" selection-start-line="301" selection-end-line="301" />
+          <folding>
+            <element signature="e#5294#5295#0" expanded="true" />
+            <element signature="e#5335#5336#0" expanded="true" />
+            <element signature="e#10177#10178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/javafx/runtime/SystemProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="246" selection-start-line="246" selection-end-line="246" />
+          <folding>
+            <element signature="e#8126#8127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/security/AccessControlContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="629" selection-start-line="629" selection-end-line="629" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/security/AccessController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="825" selection-start-line="825" selection-end-line="825" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/javafx/tk/Toolkit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="198" selection-start-line="198" selection-end-line="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/invoke/DirectMethodHandle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="282" selection-start-line="282" selection-end-line="282" />
+          <folding>
+            <element signature="e#12011#12012#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/invoke/LambdaForm.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/concurrent/atomic/AtomicBoolean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="e#1852#1853#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Throwable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="250" selection-start-line="250" selection-end-line="250" />
+          <folding>
+            <element signature="e#10280#10281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/ref/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="253" selection-start-line="253" selection-end-line="253" />
+          <folding>
+            <element signature="e#9377#9378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/ThreadLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="166" selection-start-line="166" selection-end-line="166" />
+          <folding>
+            <element signature="e#7765#7766#0" expanded="true" />
+            <element signature="e#7802#7803#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="746" selection-start-line="746" selection-end-line="746" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/InvokeLaterDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
+          <folding>
+            <element signature="e#4979#4980#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="332" selection-start-line="332" selection-end-line="332" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/javafx/tk/quantum/QuantumToolkit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="749" selection-start-line="749" selection-end-line="749" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="481" selection-start-line="481" selection-end-line="481" />
+          <folding>
+            <element signature="e#13120#13121#0" expanded="true" />
+            <element signature="e#13166#13167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/javafx/application/PlatformImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="268" selection-start-line="268" selection-end-line="268" />
+          <folding>
+            <element signature="e#9485#9486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControllerEstablecerConexion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/dto/DatosTanqueGuiDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#614#615#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/application/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#2657#2658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/concurrent/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="727" selection-start-line="727" selection-end-line="727" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/concurrent/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="1439" selection-start-line="1439" selection-end-line="1439" />
+          <folding>
+            <element signature="e#51037#51038#0" expanded="true" />
+            <element signature="e#51073#51074#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="2057" selection-start-line="2057" selection-end-line="2057" />
+          <folding>
+            <element signature="e#79010#79011#0" expanded="true" />
+            <element signature="e#79248#79249#0" expanded="true" />
+            <element signature="e#79295#79296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/fabrica/FabricaExpertos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/dto/PaqueteAEnviarDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="142" selection-start-line="142" selection-end-line="142" />
+          <folding>
+            <element signature="e#3390#3391#0" expanded="true" />
+            <element signature="e#5838#5839#0" expanded="true" />
+            <element signature="e#5869#5870#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControllerEnviarDatos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/decorator/DecoratorEnviarDatos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/entidad/ClienteImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="101" column="42" lean-forward="true" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
+        <state relative-caret-position="123">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
+          <folding>
+            <element signature="e#788#789#0" expanded="true" />
+            <element signature="e#829#830#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorMenuTanque.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/adaptador/FactoriaAdaptadorConexion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1333">
-          <caret line="287" column="80" selection-start-line="287" selection-start-column="66" selection-end-line="287" selection-end-column="80" />
+        <state relative-caret-position="408">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/RemontajeTable.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEnviarDatos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="71" column="55" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="55" />
+        <state relative-caret-position="310">
+          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorVistaGeneralUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
+        <state relative-caret-position="-115">
+          <caret line="146" column="46" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/views/remontajeUI.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEstablecerConexion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="27" column="109" selection-start-line="27" selection-start-column="109" selection-end-line="27" selection-end-column="109" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorRemontajesUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="231" column="5" lean-forward="true" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
-          <folding>
-            <element signature="e#5786#5787#0" expanded="true" />
-            <element signature="e#5819#5820#0" expanded="true" />
-            <element signature="e#5910#5911#0" expanded="true" />
-            <element signature="e#5940#5941#0" expanded="true" />
-            <element signature="e#5993#5994#0" expanded="true" />
-            <element signature="e#6031#6032#0" expanded="true" />
-            <element signature="e#5878#5879#0" expanded="true" />
-            <element signature="e#5922#5923#0" expanded="true" />
-            <element signature="e#9948#9949#0" expanded="true" />
-            <element signature="e#9980#9981#0" expanded="true" />
-            <element signature="e#12056#12057#0" expanded="true" />
-            <element signature="e#12130#12131#0" expanded="true" />
-            <element signature="e#12197#12198#0" expanded="true" />
-            <element signature="e#12237#12238#0" expanded="true" />
-            <element signature="e#12278#12279#0" expanded="true" />
-            <element signature="e#12314#12315#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="347">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/expert/ExpertEnviarDatos.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/adaptador/AdaptadorUDP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/views/plantillaTanqueUI.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/javafx/girsyt/controller/ControladorTanqueUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="347" column="55" selection-start-line="347" selection-start-column="55" selection-end-line="347" selection-end-column="55" />
-          <folding>
-            <element signature="e#4778#4779#0" expanded="true" />
-            <element signature="e#4820#4821#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="126">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -624,7 +941,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>unnamed2</last-edited>
+          <last-edited>ControlDeTanques</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

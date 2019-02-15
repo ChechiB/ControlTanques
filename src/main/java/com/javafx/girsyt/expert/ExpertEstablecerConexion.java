@@ -77,8 +77,8 @@ public class ExpertEstablecerConexion {
                                 tanqueImp.setDireccionIP(parts[i]);
                                 break;
                             case 2:
-                                datosTanqueGuiDTO.setPort(Integer.parseInt(parts[i]));
-                                tanqueImp.setPuerto(Integer.parseInt(parts[i]));
+                                datosTanqueGuiDTO.setPort(Integer.parseInt(datosTanque[1]));
+                                tanqueImp.setPuerto(Integer.parseInt(datosTanque[1]));
                                 break;
                         }
                     }

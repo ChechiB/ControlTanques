@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
@@ -25,10 +24,8 @@
             <Label layoutX="129.0" layoutY="35.0" text="Inicio" />
             <Label layoutX="272.0" layoutY="35.0" text="Fin" />
             <Button fx:id="btn_agregar" layoutX="222.0" layoutY="92.0" mnemonicParsing="false" onAction="#agregarRemontaje" text="Agregar" />
-            <Spinner fx:id="spinner_timePickerInicio" editable="true" layoutX="163.0" layoutY="31.0" prefHeight="25.0" prefWidth="76.0" />
-            <Spinner fx:id="spinner_timePickerFin" layoutX="296.0" layoutY="31.0" prefHeight="25.0" prefWidth="76.0" />
-            <JFXTimePicker fx:id="horaInicio" layoutX="164.0" layoutY="54.0" prefHeight="28.0" prefWidth="74.0" />
-            <JFXTimePicker fx:id="horaFin" layoutX="297.0" layoutY="54.0" prefHeight="28.0" prefWidth="74.0" />
+            <JFXTimePicker fx:id="horaInicio" layoutX="177.0" layoutY="30.0" prefHeight="28.0" prefWidth="74.0" />
+            <JFXTimePicker fx:id="horaFin" layoutX="297.0" layoutY="30.0" prefHeight="28.0" prefWidth="74.0" />
          </children>
       </Pane>
       <TableView fx:id="table_remontajes" layoutX="30.0" layoutY="263.0" prefHeight="185.0" prefWidth="500.0" stylesheets="@../css/tableStyle.css">
